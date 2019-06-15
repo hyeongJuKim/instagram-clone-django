@@ -77,7 +77,7 @@ body {
 
 .feed-box {
     max-width: 600px;
-    height: 660px;
+    /*height: 660px;*/
     margin: 0 auto 60px auto;
     background-color: white;
     border: 1px solid #e6e6e6;
@@ -89,7 +89,6 @@ body {
     align-items: center;
     display: flex;
     font-weight: 600;
-    /*border-bottom: 1px solid #efefef;*/
 }
 
 .feed-box-top > .userImg {
@@ -113,6 +112,11 @@ body {
 }
 
 .feed-box-bottom {
-    min-height: 55px;
-    border: 1px solid #efefef;
+    padding: 0 16px 16px 16px;
+}
+
+.feed-box-write-time{
+    font-size: 10px;
+    letter-spacing: .2px;
+    color: #999;
 }
