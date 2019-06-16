@@ -1,5 +1,6 @@
 body {
     margin: 0;
+    background-color: #fafafa;
 }
 
 
@@ -119,4 +120,30 @@ body {
     font-size: 10px;
     letter-spacing: .2px;
     color: #999;
+}
+
+
+/* registration */
+
+.login-box {
+    background-color: #fff;
+    border: 1px solid #e6e6e6;
+    border-radius: 1px;
+    margin: 44px auto;
+    padding: 10px 0;
+
+    width: 350px;
+    height: 358px;
+
+    text-align: center;
+}
+
+.login-box input {
+    width: 250px;
+    height: 20px;
+}
+
+.login-btn {
+    width: 250px;
+    height: 20px;
 }

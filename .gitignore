@@ -2,3 +2,4 @@
 secrets.json
 static/
 db.sqlite3
+posts/migrations/

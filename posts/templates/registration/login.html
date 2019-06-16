@@ -1,0 +1,21 @@
+{% extends "posts/base.html" %}
+{% load static %}
+
+{% block content %}
+
+      <form method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+
+                  <div class="login-box">
+                        <img src="{% static 'images/nav-logo-text.png' %}" class="" alt="logo-text"/>
+                        {{ form.as_p }}
+                        <button type="submit">로그인</button>
+
+                        <!--<img src="{% static 'images/nav-logo-text.png' %}" class="" alt="logo-text"/>-->
+                        <!--<p><input type="text" placeholder="전화번호, 사용자 이름 또는 이메일"></p>-->
+                        <!--<p><input type="password" placeholder="비밀번호"></p>-->
+                        <!--<p><button class="login-btn">로그인</button></p>-->
+            </div>
+      </form>
+
+{% endblock %}

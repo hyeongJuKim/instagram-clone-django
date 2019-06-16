@@ -1,5 +1,8 @@
 from django.db import models
 
+# Create your models here.
+from django.db import models
+
 
 class Post(models.Model):
     content = models.CharField(max_length=200, help_text="최대 200자까지 입력 할 수 있습니다.")
@@ -8,6 +11,3 @@ class Post(models.Model):
 
     class Meta:
         ordering = ['-create_dt']
-
-    def __str__(self):
-        return self.content
