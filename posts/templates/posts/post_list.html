@@ -5,8 +5,9 @@
 <div class="nav">
     <div class="nav-inner">
         <div class="nav-left inline-block">
-
-            <img src="{% static 'images/nav-logo.png' %}" class="nav-logo" alt="logo"/>
+            <span id="addPost">
+                <img src="{% static 'images/nav-logo.png' %}" class="nav-logo" alt="logo"/>
+            </span>
             <a href="/">
                 <img src="{% static 'images/nav-logo-text.png' %}" class="nav-logo-text" alt="logo-text"/>
             </a>
@@ -23,7 +24,7 @@
         <div class="feed-box">
             <div class="feed-box-top">
                 <img class="userImg" src="{% static 'images/dummy-userImg.jpg' %}" alt="user" />
-                <span class="userName">usrename? {{post.username}}</span>
+                <span class="userName">{{post.author}}</span>
                 <span class="hamburger"></span>
             </div>
             <div class="feed-box-middle"><img class="feed-box-middle-img" src="{% static 'images/dummy-img.jpg' %}" alt="feedImage" /></div>
