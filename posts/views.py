@@ -2,8 +2,6 @@ from django.views.generic import ListView, View, CreateView, FormView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Post
 from .forms import UserCreateFrom, UserLoginForm
-
-
 from django.urls import reverse_lazy
 
 
