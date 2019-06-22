@@ -1,8 +1,9 @@
 from django.db import models
+from django.conf import settings
 
 
 class Post(models.Model):
-    author = models.ForeignKey('auth.User', on_delete=models.CASCADE)
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     content = models.CharField(max_length=200, help_text="최대 200자까지 입력 할 수 있습니다.")
     create_dt = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
