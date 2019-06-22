@@ -3,7 +3,7 @@
 
 {% block content %}
 
-<form method="post">
+<form method="post" action="{% url 'signup' %}">
   {% csrf_token %}
   <div class="login-box">
     <img src="{% static 'images/nav-logo-text.png' %}" class="" alt="logo-text"/>
