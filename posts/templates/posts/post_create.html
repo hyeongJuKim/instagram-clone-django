@@ -1,0 +1,20 @@
+{% extends "posts/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<body>
+  <div class="main">
+
+    <div class="feed-box">
+      <form action="{% url 'post-create' %}" method="post">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <input type="submit" value="등록" />
+      </form>
+    </div>
+
+  </div>
+</body>
+
+{% endblock %}

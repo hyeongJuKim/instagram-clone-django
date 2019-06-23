@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
+from posts.models import Post
 from django.contrib.auth.forms import AuthenticationForm
 
 
@@ -43,3 +44,12 @@ class UserCreateFrom(forms.ModelForm):
     class Meta:
         model = User
         fields = ['username', 'password']
+
+
+class PostCreateForm(forms.ModelForm):
+    content = forms.CharField(
+        widget=forms.TextInput(attrs={'placeholder': '내용'}), label="")
+
+    class Meta:
+        model = Post
+        fields = ['author', 'content']

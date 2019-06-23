@@ -1,7 +1,7 @@
 from django.views.generic import ListView, View, CreateView, FormView, TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Post
-from .forms import UserCreateFrom, UserLoginForm
+from .forms import UserCreateFrom, UserLoginForm, PostCreateForm
 
 from django.urls import reverse_lazy
 
@@ -12,6 +12,13 @@ class Posts(LoginRequiredMixin, ListView):
     def get_queryset(self):
         queryset = Post.objects.filter(author=self.request.user)
         return queryset
+
+
+class PostCreate(LoginRequiredMixin, CreateView):
+    model = Post
+    form_class = PostCreateForm
+    template_name = 'posts/post_create.html'
+    success_url = '/'
 
 
 class Signup(CreateView):

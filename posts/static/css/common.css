@@ -16,6 +16,10 @@ body {
     display: inline-block;
 }
 
+.underline-none {
+    text-decoration:none;
+}
+
 .nav {
     background-color: #fff;
     position: fixed;
@@ -40,10 +44,14 @@ body {
 }
 
 .nav-logo {
-    width: 24px;
     padding-right: 28px;
-    border-right: 1px solid black;
     vertical-align: middle;
+    width: 24px;
+    border-right: 1px solid black;
+}
+
+.nav-pipe {
+
 }
 
 .nav-logo-text {
