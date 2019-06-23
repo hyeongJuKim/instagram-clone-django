@@ -5,9 +5,9 @@
 <div class="nav">
     <div class="nav-inner">
         <div class="nav-left inline-block">
-            <span id="addPost">
+            <a href="{% url 'post-create' %}" class="underline-none">
                 <img src="{% static 'images/nav-logo.png' %}" class="nav-logo" alt="logo"/>
-            </span>
+            </a>
             <a href="/">
                 <img src="{% static 'images/nav-logo-text.png' %}" class="nav-logo-text" alt="logo-text"/>
             </a>
