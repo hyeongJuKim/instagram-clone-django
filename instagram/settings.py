@@ -147,6 +147,7 @@ LOGOUT_REDIRECT_URL = '/'
 
 AUTH_USER_MODEL = 'auth.User'
 
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 # rest framework
 REST_FRAMEWORK = {
