@@ -6,11 +6,16 @@
 <body>
   <div class="main">
 
-    <div class="feed-box">
+    <div class="post-box">
       <form action="{% url 'post-create' %}" method="post">
+        <div class="post-box-header">
+          <span class="post-box-header-title">새 게시물</span>
+          <span class="float-r">
+            <a href="#" class="post-box-header-btnShare" onclick="document.forms[0].submit();" >공유</a>
+          </span>
+        </div>
           {% csrf_token %}
           {{ form.as_p }}
-          <input type="submit" value="등록" />
       </form>
     </div>
 

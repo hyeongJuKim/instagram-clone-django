@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from posts.models import Post
 from django.contrib.auth.forms import AuthenticationForm
+from django.conf import settings
 
 
 class UserLoginForm(AuthenticationForm):
@@ -48,7 +49,7 @@ class UserCreateFrom(forms.ModelForm):
 
 class PostCreateForm(forms.ModelForm):
     content = forms.CharField(
-        widget=forms.TextInput(attrs={'placeholder': '내용'}), label="")
+        widget=forms.Textarea(attrs={'placeholder': '내용'}), label="")
 
     class Meta:
         model = Post

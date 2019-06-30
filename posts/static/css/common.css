@@ -20,6 +20,11 @@ body {
     text-decoration:none;
 }
 
+.float-r {
+ float:right;
+}
+
+
 .nav {
     background-color: #fff;
     position: fixed;
@@ -130,6 +135,35 @@ body {
     color: #999;
 }
 
+
+.post-box {
+    font-size: 20px;
+    max-width: 600px;
+    margin: 0 auto 60px auto;
+    /*padding:30px;*/
+    background-color: white;
+    border: 1px solid #e6e6e6;
+    text-align: center;
+}
+
+.post-box textarea {
+    font-size: 20px;
+    width: 90%;
+    border: 0;
+    resize: vertical;
+}
+
+.post-box-header {
+    font-weight: 400;
+    padding:20px;
+    border-bottom: 1px solid #e6e6e6;
+}
+
+.post-box-header-btnShare {
+    text-decoration:none;
+    font-weight: 400;
+    color: #3897f0;
+}
 
 /* registration */
 
