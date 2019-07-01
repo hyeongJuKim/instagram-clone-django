@@ -15,7 +15,8 @@
           </span>
         </div>
           {% csrf_token %}
-          {{ form.as_p }}
+          <input type="hidden" name="author" id="id_author" required="true" value="{{request.user.id}}">
+          {{ form.content }}
       </form>
     </div>
 

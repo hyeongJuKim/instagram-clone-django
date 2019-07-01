@@ -149,6 +149,7 @@ body {
 .post-box textarea {
     font-size: 20px;
     width: 90%;
+    margin:20px 0px;
     border: 0;
     resize: vertical;
 }
