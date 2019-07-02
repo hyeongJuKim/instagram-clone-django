@@ -2,7 +2,6 @@ from django import forms
 from django.contrib.auth.models import User
 from posts.models import Post
 from django.contrib.auth.forms import AuthenticationForm
-from django.conf import settings
 
 
 class UserLoginForm(AuthenticationForm):
@@ -53,4 +52,4 @@ class PostCreateForm(forms.ModelForm):
 
     class Meta:
         model = Post
-        fields = ['author', 'content']
+        fields = ['author', 'content', 'image']

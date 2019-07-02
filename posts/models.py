@@ -7,6 +7,7 @@ class Post(models.Model):
     content = models.CharField(max_length=200, help_text="최대 200자까지 입력 할 수 있습니다.")
     create_dt = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    image = models.ImageField(upload_to='upload/%Y/%M', blank=True)
 
     def __str__(self):
         return self.content

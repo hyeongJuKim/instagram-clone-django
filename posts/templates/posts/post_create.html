@@ -4,10 +4,26 @@
 {% block content %}
 
 <body>
+  <div class="nav">
+      <div class="nav-inner">
+          <div class="nav-left inline-block">
+              <a href="{% url 'post-create' %}" class="underline-none">
+                  <img src="{% static 'images/nav-logo.png' %}" class="nav-logo" alt="logo"/>
+              </a>
+              <a href="/">
+                  <img src="{% static 'images/nav-logo-text.png' %}" class="nav-logo-text" alt="logo-text"/>
+              </a>
+          </div>
+          <div class="nav-center inline-block"><input class="nav-search-input" type="text" placeholder="검색" /></div>
+          <div class="nav-right inline-block">
+              <a href="{% url 'logout' %}">logout</a>
+          </div>
+      </div>
+  </div>
   <div class="main">
 
     <div class="post-box">
-      <form action="{% url 'post-create' %}" method="post">
+      <form action="{% url 'post-create' %}" method="post" enctype="multipart/form-data">
         <div class="post-box-header">
           <span class="post-box-header-title">새 게시물</span>
           <span class="float-r">
@@ -16,6 +32,7 @@
         </div>
           {% csrf_token %}
           <input type="hidden" name="author" id="id_author" required="true" value="{{request.user.id}}">
+          {{ form.image }}
           {{ form.content }}
       </form>
     </div>

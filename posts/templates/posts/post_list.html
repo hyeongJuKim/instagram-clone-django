@@ -27,7 +27,7 @@
                 <span class="userName">{{post.author}}</span>
                 <span class="hamburger"></span>
             </div>
-            <div class="feed-box-middle"><img class="feed-box-middle-img" src="{% static 'images/dummy-img.jpg' %}" alt="feedImage" /></div>
+            <div class="feed-box-middle"><img class="feed-box-middle-img" src="{{post.image.url}}" alt="feedImage" /></div>
             <div class="feed-box-bottom">
                 <div>
                     <p>{{post.content}}</p>
