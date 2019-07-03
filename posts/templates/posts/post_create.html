@@ -32,7 +32,9 @@
         </div>
           {% csrf_token %}
           <input type="hidden" name="author" id="id_author" required="true" value="{{request.user.id}}">
-          {{ form.image }}
+          <input type="file" name="image" id="take-picture1" class="take-picture" accept="image/*">
+          <input type="button" id="delete-picture1" class="delete-picture" value="삭제">
+          <img src="" id="show-picture1" class="show-picture" style="width: 600px; height:600px;">
           {{ form.content }}
       </form>
     </div>
