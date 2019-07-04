@@ -101,12 +101,13 @@ body {
     height: 28px;
     padding: 16px;
     align-items: center;
-    display: flex;
+    /*display: flex;*/
     font-weight: 600;
 }
 
 .feed-box-top > .userImg {
     width: 32px;
+    float: left;
 }
 
 .feed-box-top > .userName {
