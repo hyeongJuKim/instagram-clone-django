@@ -53,3 +53,12 @@ class PostCreateForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = ['author', 'content', 'image']
+
+
+class PostUpdateForm(forms.ModelForm):
+    content = forms.CharField(
+        widget=forms.Textarea(attrs={'placeholder': '내용'}), label="")
+
+    class Meta:
+        model = Post
+        fields = ['author', 'content', 'image']
