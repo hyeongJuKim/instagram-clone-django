@@ -32,7 +32,11 @@
                     </a>
                 </span>
             </div>
-            <div class="feed-box-middle"><img class="feed-box-middle-img" src="{{post.image.url}}" alt="feedImage" /></div>
+            <div class="feed-box-middle">
+                <img class="feed-box-middle-img"
+                     src="{%if post.image != '' %} {{post.image.url}} {% endif %}"
+                     alt="feedImage" />
+            </div>
             <div class="feed-box-bottom">
                 <div>
                     <p>{{post.content}}</p>

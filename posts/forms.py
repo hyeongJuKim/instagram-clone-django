@@ -48,7 +48,7 @@ class UserCreateFrom(forms.ModelForm):
 
 class PostCreateForm(forms.ModelForm):
     content = forms.CharField(
-        widget=forms.Textarea(attrs={'placeholder': '내용'}), label="")
+        widget=forms.Textarea(attrs={'placeholder': '문구 입력..'}), label="")
 
     class Meta:
         model = Post
@@ -57,8 +57,8 @@ class PostCreateForm(forms.ModelForm):
 
 class PostUpdateForm(forms.ModelForm):
     content = forms.CharField(
-        widget=forms.Textarea(attrs={'placeholder': '내용'}), label="")
+        widget=forms.Textarea(attrs={'placeholder': '문구 입력..'}), label="")
 
     class Meta:
         model = Post
-        fields = ['author', 'content', 'image']
+        fields = ['author', 'content']
