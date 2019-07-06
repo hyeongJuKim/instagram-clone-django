@@ -28,7 +28,6 @@ body {
 .nav {
     background-color: #fff;
     position: fixed;
-
     border-bottom: rgba(0, 0, 0, 0.098) 1px solid;
     top: 0;
     width: 100%;
@@ -52,7 +51,7 @@ body {
     padding-right: 28px;
     vertical-align: middle;
     width: 24px;
-    border-right: 1px solid black;
+    /*border-right: 1px solid black;*/
 }
 
 .nav-pipe {
@@ -63,12 +62,14 @@ body {
     height: 36px;
     padding-left: 28px;
     vertical-align: middle;
+    border-left: 1px solid black;
 }
 
 .nav-left {
     width: 33%;
     float:left;
     text-align: left;
+    padding: 5px 0px;
 }
 .nav-center {
     display: inline-block;
@@ -136,12 +137,18 @@ body {
     color: #999;
 }
 
+.feed-more-icon {
+    cursor: pointer;
+}
+
+.feed-more {
+    width: 23px;
+}
 
 .post-box {
     font-size: 20px;
     max-width: 600px;
     margin: 0 auto 60px auto;
-    /*padding:30px;*/
     background-color: white;
     border: 1px solid #e6e6e6;
     text-align: center;
@@ -209,4 +216,59 @@ body {
     margin: 0 40px 10px;
     color: #999;
     text-align: center;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    border-radius: 12px;
+    text-align: center;
+}
+
+
+/* modal */
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    /*width: 80%;*/
+    width:400px;
+    min-width: 400px;
+    border-radius: 12px;
 }

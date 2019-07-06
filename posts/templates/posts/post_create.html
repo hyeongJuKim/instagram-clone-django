@@ -5,16 +5,31 @@
 <script type="text/javascript">
   $( document ).ready(function() {
 
-    $('#take-picture1').hide();
 
-    {% if post.id != null %}
-      $('#id_content').focus();
-    {% endif %}
+  // scroll down resize
+  window.onscroll = function() {scrollFunction()};
 
-    $('#show-picture1').on('click', function (e) {
-      e.preventDefault();
-      $('#take-picture1').click();
-    });
+  function scrollFunction() {
+    if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+        $('.nav-inner').css('padding', '10px 20px');
+        $('.scrolldown-hide').fadeOut(200);
+    } else {
+        $('.nav-inner').css('padding', '26px 20px');
+        $('.scrolldown-hide').fadeIn(200);
+    }
+  };
+
+
+  $('#take-picture1').hide();
+
+  {% if post.id != null %}
+    $('#id_content').focus();
+  {% endif %}
+
+  $('#show-picture1').on('click', function (e) {
+    e.preventDefault();
+    $('#take-picture1').click();
+  });
 
 });
 
@@ -28,7 +43,7 @@
                   <img src="{% static 'images/nav-logo.png' %}" class="nav-logo" alt="logo"/>
               </a>
               <a href="/">
-                  <img src="{% static 'images/nav-logo-text.png' %}" class="nav-logo-text" alt="logo-text"/>
+                  <img src="{% static 'images/nav-logo-text.png' %}" class="nav-logo-text scrolldown-hide" alt="logo-text"/>
               </a>
           </div>
           <div class="nav-center inline-block"><input class="nav-search-input" type="text" placeholder="검색" /></div>
