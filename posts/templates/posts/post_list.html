@@ -8,15 +8,21 @@
     $(document).ready(function(){
 
       // modal
-      $('.feed-more-icon').on('click', function () {
+      $('.feed-more-icon').on('click', function (e) {
         let updateUrl = $(this).data('updateUrl');
+        let deleteUrl = $(this).data('deleteUrl');
+
         $('#feed-more-modal').css('display','block');
+        $('#feed-more-modal-delete').attr('href', deleteUrl);
         $('#feed-more-modal-update').attr('href', updateUrl);
       });
 
-      $('.feed-more-modal').on('click', function () {
-        $('#feed-more-modal').css('display','none');
-        $('#feed-more-modal-update').attr('href', '');
+      $('#feed-more-modal').on('click', function (e){
+        if(e.target.className == "modal"){
+          $('#feed-more-modal').css('display','none');
+          $('#feed-more-modal-delete').attr('href', '');
+          $('#feed-more-modal-update').attr('href', '');
+        }
       });
 
     });
@@ -60,7 +66,11 @@
                 <img class="userImg" src="{% static 'images/dummy-userImg.jpg' %}" alt="user" />
                 <span class="userName">{{post.author}}</span>
                 <span id="hamburger" class="hamburger">
-                    <a class="feed-more-icon" data-post-id="{{post.id}}" data-update-url="{% url 'post-update' pk=post.id %}">
+                    <a class="feed-more-icon"
+                       data-post-id="{{post.id}}"
+                       data-update-url="{% url 'post-update' pk=post.id %}"
+                       data-delete-url="{% url 'post-delete' pk=post.id %}"
+                    >
                         <img class="feed-more" src="{% static 'images/more.png' %}" alt="more" />
                     </a>
                 </span>
@@ -85,8 +95,8 @@
 
 <div id="feed-more-modal" class="modal">
   <div class="modal-content">
-      <p><a>삭제</a></p>
-      <p><a href="" id="feed-more-modal-update" class="underline-none">수정</a></p>
+      <a href="" id="feed-more-modal-delete" class="modal-button a-none delete-color">삭제</a>
+      <a href="" id="feed-more-modal-update" class="modal-button a-none">수정</a>
   </div>
 
 </div>

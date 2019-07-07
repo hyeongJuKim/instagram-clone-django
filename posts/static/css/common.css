@@ -3,14 +3,12 @@ body {
     background-color: #fafafa;
 }
 
-
 .main {
     line-height: 18px;
     margin-top: 87px;
     padding-top: 60px;
     background-color: #fafafa;
 }
-
 
 .inline-block {
     display: inline-block;
@@ -24,6 +22,10 @@ body {
  float:right;
 }
 
+.a-none:link { color: black; text-decoration: none;}
+.a-none:visited { color: black; text-decoration: none;}
+.a-none:hover { color: black; text-decoration: none;}
+.delete-color { color: red !important;}
 
 .nav {
     background-color: #fff;
@@ -235,6 +237,7 @@ body {
 
 /* Modal Content */
 .modal-content {
+    z-index: 2;
     background-color: #fefefe;
     margin: auto;
     padding: 20px;
@@ -263,12 +266,22 @@ body {
 
 /* Modal Content */
 .modal-content {
+    z-index: 999;
     background-color: #fefefe;
     margin: auto;
-    padding: 20px;
+    padding: 0;
     border: 1px solid #888;
-    /*width: 80%;*/
     width:400px;
     min-width: 400px;
     border-radius: 12px;
+}
+
+.modal-button {
+    font-size: 14px;
+    border-top: 1px solid #efefef;
+    cursor: pointer;
+    margin: 0;
+    width:100%;
+    min-height: 48px;
+    display: inline-block;
 }

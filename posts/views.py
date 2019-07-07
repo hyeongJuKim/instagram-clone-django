@@ -1,8 +1,7 @@
-from django.views.generic import ListView, View, CreateView, UpdateView, FormView, TemplateView
+from django.views.generic import ListView, View, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Post
 from .forms import UserCreateFrom, UserLoginForm, PostCreateForm, PostUpdateForm
-
 from django.urls import reverse_lazy
 
 
@@ -26,6 +25,14 @@ class PostUpdate(LoginRequiredMixin, UpdateView):
     form_class = PostUpdateForm
     template_name = 'posts/post_create.html'
     success_url = '/'
+
+
+class PostDelete(DeleteView):
+    model = Post
+    success_url = '/'
+
+    def get(self, *args, **kwargs):
+        return self.post(*args, **kwargs)
 
 
 class Signup(CreateView):
