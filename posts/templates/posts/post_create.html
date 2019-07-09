@@ -5,33 +5,31 @@
 <script type="text/javascript">
   $( document ).ready(function() {
 
+    $('#take-picture1').hide();
 
-  // scroll down resize
-  window.onscroll = function() {scrollFunction()};
+    // scroll down resize
+    window.onscroll = function() {scrollFunction()};
 
-  function scrollFunction() {
-    if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
-        $('.nav-inner').css('padding', '10px 20px');
-        $('.scrolldown-hide').fadeOut(200);
-    } else {
-        $('.nav-inner').css('padding', '26px 20px');
-        $('.scrolldown-hide').fadeIn(200);
-    }
-  };
+    {% if post.id != null %}
+      $('#id_content').focus();
+    {% endif %}
 
-
-  $('#take-picture1').hide();
-
-  {% if post.id != null %}
-    $('#id_content').focus();
-  {% endif %}
-
-  $('#show-picture1').on('click', function (e) {
-    e.preventDefault();
-    $('#take-picture1').click();
-  });
+    $('#show-picture1').on('click', function (e) {
+      e.preventDefault();
+      $('#take-picture1').click();
+    });
 
 });
+
+function scrollFunction() {
+  if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+      $('.nav-inner').css('padding', '10px 20px');
+      $('.scrolldown-hide').fadeOut(200);
+  } else {
+      $('.nav-inner').css('padding', '26px 20px');
+      $('.scrolldown-hide').fadeIn(200);
+    }
+};
 
 </script>
 

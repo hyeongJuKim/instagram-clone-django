@@ -285,3 +285,7 @@ body {
     min-height: 48px;
     display: inline-block;
 }
+
+.show-picture {
+    cursor: pointer;
+}
