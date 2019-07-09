@@ -1,8 +1,14 @@
+from django.contrib.auth.models import User
 from django.views.generic import ListView, View, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Post
 from .forms import UserCreateFrom, UserLoginForm, PostCreateForm, PostUpdateForm
 from django.urls import reverse_lazy
+
+
+class User(LoginRequiredMixin, DeleteView):
+    model = User
+    template_name = 'posts/profile.html'
 
 
 class Posts(LoginRequiredMixin, ListView):

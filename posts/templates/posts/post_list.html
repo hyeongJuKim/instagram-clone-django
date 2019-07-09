@@ -54,6 +54,7 @@
         </div>
         <div class="nav-center inline-block"><input class="nav-search-input" type="text" placeholder="검색" /></div>
         <div class="nav-right inline-block">
+            <a href="{% url 'profile' pk=user.id %}">profile</a>
             <a href="{% url 'logout' %}">logout</a>
         </div>
     </div>
