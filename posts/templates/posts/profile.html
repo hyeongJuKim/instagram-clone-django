@@ -2,7 +2,114 @@
 {% load static %}
 
 {% block content %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
 
-{{user.id}}
+<div class="nav">
+    <div class="nav-inner">
+        <div class="nav-left inline-block">
+            <a href="{% url 'post-create' %}" class="underline-none">
+                <img src="{% static 'images/nav-logo.png' %}" class="nav-logo" alt="logo"/>
+            </a>
+            <a href="/">
+                <img src="{% static 'images/nav-logo-text.png' %}" class="nav-logo-text scrolldown-hide" alt="logo-text"/>
+            </a>
+        </div>
+        <div class="nav-center inline-block"><input class="nav-search-input" type="text" placeholder="검색" /></div>
+        <div class="nav-right inline-block">
+            <a href="{% url 'profile' pk=user.id %}">profile</a>
+            <a href="{% url 'logout' %}">logout</a>
+        </div>
+    </div>
+</div>
+<div class="main">
+</div>
+
+
+  <header>
+
+	<div class="container">
+
+		<div class="profile">
+
+			<div class="profile-image">
+
+				<img src="https://images.unsplash.com/photo-1513721032312-6a18a42c8763?w=152&h=152&fit=crop&crop=faces" alt="profile_img">
+
+			</div>
+
+			<div class="profile-user-settings">
+
+				<h1 class="profile-user-name">{{user.username}}</h1>
+
+				<button class="btn profile-edit-btn">프로필 편집</button>
+
+				<button class="btn profile-settings-btn" aria-label="profile settings"><i class="fas fa-cog" aria-hidden="true"></i></button>
+
+			</div>
+
+			<div class="profile-stats">
+
+				<ul>
+					<li>게시물 <span class="profile-stat-count">100</span></li>
+					<li>팔로워 <span class="profile-stat-count">188</span></li>
+					<li>팔로우 <span class="profile-stat-count">206</span></li>
+				</ul>
+
+			</div>
+
+			<div class="profile-bio">
+
+				<p><span class="profile-real-name">{{user.username}}</span><br>
+          나의소개입력하는부분!!
+        </p>
+
+			</div>
+
+		</div>
+		<!-- End of profile section -->
+
+	</div>
+	<!-- End of container -->
+
+</header>
+
+<main>
+
+	<div class="container">
+
+		<div class="gallery">
+
+      {% for post in object_list %}
+        <div class="gallery-item" tabindex="0">
+
+          <img src="{{post.image.url}}" class="gallery-image" alt="">
+
+          <div class="gallery-item-info">
+
+            <ul>
+              <li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 56</li>
+              <li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 2</li>
+            </ul>
+
+          </div>
+
+        </div>
+      {% endfor %}
+
+			</div>
+
+		</div>
+		<!-- End of gallery -->
+
+		<div class="loader"></div>
+
+	</div>
+	<!-- End of container -->
+
+</main>
+
+
+
+    <script  src="./script.js"></script>
 
 {% endblock %}

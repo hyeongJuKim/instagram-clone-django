@@ -6,9 +6,13 @@ from .forms import UserCreateFrom, UserLoginForm, PostCreateForm, PostUpdateForm
 from django.urls import reverse_lazy
 
 
-class User(LoginRequiredMixin, DeleteView):
-    model = User
+class User(LoginRequiredMixin, ListView):
+    model = Post
     template_name = 'posts/profile.html'
+
+    def get_queryset(self):
+        queryset = Post.objects.filter(author=self.request.user)
+        return queryset
 
 
 class Posts(LoginRequiredMixin, ListView):
