@@ -1,0 +1,34 @@
+{% extends "posts/base.html" %}
+{% load static %}
+
+{% block content %}
+
+    <div class="nav">
+        <div class="nav-inner">
+            <div class="nav-left inline-block">
+                <a href="{% url 'post-create' %}" class="underline-none">
+                    <img src="{% static 'images/nav-logo.png' %}" class="nav-logo" alt="logo"/>
+                </a>
+                <a href="/">
+                    <img src="{% static 'images/nav-logo-text.png' %}" class="nav-logo-text scrolldown-hide" alt="logo-text"/>
+                </a>
+            </div>
+            <div class="nav-center inline-block"><input class="nav-search-input" type="text" placeholder="검색" /></div>
+            <div class="nav-right inline-block">
+
+                <a href="{% url 'profile' pk=user.id %}" class="underline-none">
+                    <img src="{% static 'images/heart_white.png' %}" class="nav-icon icon-medium" alt="new feed"/>
+                </a>
+                <a href="{% url 'profile' pk=user.id %}" class="underline-none">
+                    <img src="{% static 'images/profile.png' %}" class="nav-icon icon-medium" alt="profile"/>
+                </a>
+                <a href="{% url 'logout' %}">
+                    <img src="{% static 'images/logout.png' %}" class="nav-icon icon-medium" alt="logout"/>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    {% block page_content %}{% endblock %}
+
+{% endblock %}

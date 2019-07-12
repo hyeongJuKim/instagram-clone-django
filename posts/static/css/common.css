@@ -91,6 +91,10 @@ body {
     font-size: 16px;
 }
 
+.nav-icon { margin-left: 30px; }
+.icon-small { width: 12px; }
+.icon-medium { width: 24px; }
+.icon-large { width: 32px; }
 
 .feed-box {
     max-width: 600px;

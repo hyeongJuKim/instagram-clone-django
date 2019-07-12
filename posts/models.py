@@ -1,5 +1,7 @@
 from django.db import models
+from django.db.models.signals import post_delete
 from django.conf import settings
+from django.dispatch import receiver
 
 
 class Post(models.Model):
@@ -14,3 +16,8 @@ class Post(models.Model):
 
     class Meta:
         ordering = ['-create_dt']
+
+
+@receiver(post_delete, sender=Post)
+def submission_delete(sender, instance, **kwargs):
+    instance.image.delete(False)
