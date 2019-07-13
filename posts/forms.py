@@ -1,7 +1,6 @@
 from django import forms
-from django.contrib.auth.models import User
-from posts.models import Post
-from django.contrib.auth.forms import AuthenticationForm
+from .models import User, Post
+from django.contrib.auth.forms import AuthenticationForm, ReadOnlyPasswordHashField
 
 
 class UserLoginForm(AuthenticationForm):
@@ -9,8 +8,8 @@ class UserLoginForm(AuthenticationForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        self.username = forms.CharField(
-            widget=forms.TextInput(attrs={'placeholder': '사용자이름'}), label="")
+        self.email = forms.EmailField(
+            widget=forms.EmailInput(attrs={'placeholder': '사용자이름'}), label="")
         self.password = forms.CharField(
             widget=forms.PasswordInput(attrs={'placeholder': '비밀번호'}), label="")
 
@@ -23,28 +22,43 @@ class UserLoginForm(AuthenticationForm):
 
     class Meta:
         model = User
-        fields = ['username', 'password']
+        fields = ['email', 'password']
 
 
-class UserCreateFrom(forms.ModelForm):
-    username = forms.CharField(
-        widget=forms.TextInput(attrs={'placeholder': '사용자이름'}), label="")
-    password = forms.CharField(
-        widget=forms.PasswordInput(attrs={'placeholder': '비밀번호'}), label="")
-    confirm_password = forms.CharField(
-        widget=forms.PasswordInput(attrs={'placeholder': '비밀번호 확인'}), label="")
-
-    def clean(self):
-        cleaned_data = super(UserCreateFrom, self).clean()
-        password = cleaned_data.get("password")
-        confirm_password = cleaned_data.get("confirm_password")
-
-        if password != confirm_password:
-            raise forms.ValidationError("비밀번호가 일치하지 않습니다.")
+class UserCreationForm(forms.ModelForm):
+    comment = forms.CharField(label='comment', widget=forms.TextInput)
+    password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
+    password2 = forms.CharField(label='Password confirmation', widget=forms.PasswordInput)
 
     class Meta:
         model = User
-        fields = ['username', 'password']
+        fields = ('email',)
+
+    def clean_password2(self):
+        password1 = self.cleaned_data.get("password1")
+        password2 = self.cleaned_data.get("password2")
+        if password1 and password2 and password1 != password2:
+            raise forms.ValidationError("Passwords don't match")
+        return password2
+
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        user.set_password(self.cleaned_data["password1"])
+        if commit:
+            user.save()
+        return user
+
+
+class UserChangeForm(forms.ModelForm):
+    password = ReadOnlyPasswordHashField()
+
+    class Meta:
+        model = User
+        fields = ('email', 'password',
+                  'is_active', 'is_admin')
+
+    def clean_password(self):
+        return self.initial["password"]
 
 
 class PostCreateForm(forms.ModelForm):
@@ -53,7 +67,7 @@ class PostCreateForm(forms.ModelForm):
 
     class Meta:
         model = Post
-        fields = ['author', 'content', 'image']
+        fields = ['user', 'content', 'image']
 
 
 class PostUpdateForm(forms.ModelForm):
@@ -62,4 +76,4 @@ class PostUpdateForm(forms.ModelForm):
 
     class Meta:
         model = Post
-        fields = ['author', 'content']
+        fields = ['user', 'content']

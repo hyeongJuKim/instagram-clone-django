@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from django.views.generic import ListView, View, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Post
-from .forms import UserCreateFrom, UserLoginForm, PostCreateForm, PostUpdateForm
+from .forms import UserCreationForm, UserLoginForm, PostCreateForm, PostUpdateForm
 from django.urls import reverse_lazy
 
 
@@ -11,7 +11,7 @@ class User(LoginRequiredMixin, ListView):
     template_name = 'posts/profile.html'
 
     def get_queryset(self):
-        queryset = Post.objects.filter(author=self.request.user)
+        queryset = Post.objects.filter(user=self.request.user)
         return queryset
 
 
@@ -19,7 +19,7 @@ class Posts(LoginRequiredMixin, ListView):
     model = Post
 
     def get_queryset(self):
-        queryset = Post.objects.filter(author=self.request.user)
+        queryset = Post.objects.filter(user=self.request.user)
         return queryset
 
 
@@ -46,7 +46,7 @@ class PostDelete(DeleteView):
 
 
 class Signup(CreateView):
-    form_class = UserCreateFrom
+    form_class = UserCreationForm
     success_url = reverse_lazy('login')
     template_name = 'registration/signup.html'
 

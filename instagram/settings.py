@@ -145,7 +145,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
-AUTH_USER_MODEL = 'auth.User'
+AUTH_USER_MODEL = 'posts.User'
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
