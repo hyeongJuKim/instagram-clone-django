@@ -26,8 +26,9 @@
 
 				<button class="btn profile-edit-btn">프로필 편집</button>
 
-				<img src="{% static 'images/settings.png' %}" class="icon-medium" alt="logo"/>
-
+				<a href="{% url 'profile_update' pk=user.id %}">
+					<img src="{% static 'images/settings.png' %}" class="icon-medium" alt="logo"/>
+				</a>
 				<button class="btn profile-settings-btn" aria-label="profile settings"><i class="fas fa-cog" aria-hidden="true"></i></button>
 
 			</div>
@@ -35,7 +36,7 @@
 			<div class="profile-stats">
 
 				<ul>
-					<li>게시물 <span class="profile-stat-count">100</span></li>
+					<li>게시물 <span class="profile-stat-count">{{object_list.count}}</span></li>
 					<li>팔로워 <span class="profile-stat-count">188</span></li>
 					<li>팔로우 <span class="profile-stat-count">206</span></li>
 				</ul>

@@ -26,7 +26,6 @@ class UserLoginForm(AuthenticationForm):
 
 
 class UserCreationForm(forms.ModelForm):
-    comment = forms.CharField(label='comment', widget=forms.TextInput)
     password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
     password2 = forms.CharField(label='Password confirmation', widget=forms.PasswordInput)
 
@@ -49,7 +48,7 @@ class UserCreationForm(forms.ModelForm):
         return user
 
 
-class UserChangeForm(forms.ModelForm):
+class UserUpdateForm(forms.ModelForm):
     password = ReadOnlyPasswordHashField()
 
     class Meta:

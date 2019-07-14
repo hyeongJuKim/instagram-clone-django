@@ -1,8 +1,10 @@
 from django.contrib.auth.models import User
 from django.views.generic import ListView, View, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Post
-from .forms import UserCreationForm, UserLoginForm, PostCreateForm, PostUpdateForm
+
+from posts import models
+from .models import Post, User
+from .forms import UserCreationForm, UserLoginForm, PostCreateForm, PostUpdateForm, UserUpdateForm
 from django.urls import reverse_lazy
 
 
@@ -13,6 +15,13 @@ class User(LoginRequiredMixin, ListView):
     def get_queryset(self):
         queryset = Post.objects.filter(user=self.request.user)
         return queryset
+
+
+class UserUpdate(LoginRequiredMixin, UpdateView):
+    model = models.User
+    form_class = UserUpdateForm
+    template_name = 'users/user_create.html'
+    success_url = 'posts/profile.html'
 
 
 class Posts(LoginRequiredMixin, ListView):
