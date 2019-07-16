@@ -32,8 +32,8 @@ class UserManager(BaseUserManager):
 
 class User(AbstractBaseUser):
     email = models.EmailField(verbose_name='email', max_length=255, unique=True,)
-    name = models.TextField(verbose_name='name', max_length=20, blank=False)
-    comment = models.TextField(verbose_name='comment', max_length=255, blank=False)
+    name = models.CharField(verbose_name='name', max_length=20, blank=False)
+    comment = models.CharField(verbose_name='comment', max_length=255, blank=False)
     profile_image = models.ImageField(upload_to='upload/profile', blank=False)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)

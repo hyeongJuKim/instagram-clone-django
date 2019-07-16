@@ -1,0 +1,15 @@
+{% extends "posts/base-inner.html" %}
+{% load static %}
+
+{% block page_content %}
+<div class="main">
+    <div class="post-box">
+        <form method="POST" class="post-form">{% csrf_token %}
+            <p>이름 {{ form.name }}</p>
+            <p>프로필 사진 바꾸기 {{ form.profile_image }}</p>
+            <p>소개 {{ form.comment }}</p>
+            <button type="submit" class="save btn btn-default">Save</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

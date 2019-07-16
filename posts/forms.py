@@ -49,15 +49,14 @@ class UserCreationForm(forms.ModelForm):
 
 
 class UserUpdateForm(forms.ModelForm):
-    password = ReadOnlyPasswordHashField()
+    # password = ReadOnlyPasswordHashField()
 
     class Meta:
         model = User
-        fields = ('email', 'password',
-                  'is_active', 'is_admin')
+        fields = ['email', 'name', 'profile_image', 'comment']
 
-    def clean_password(self):
-        return self.initial["password"]
+    # def clean_password(self):
+    #     return self.initial["password"]
 
 
 class PostCreateForm(forms.ModelForm):
