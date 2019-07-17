@@ -21,7 +21,7 @@ class UserUpdate(LoginRequiredMixin, UpdateView):
     model = models.User
     form_class = UserUpdateForm
     template_name = 'users/user_update.html'
-    success_url = 'posts/profile.html'
+    success_url = '/'
 
 
 class Posts(LoginRequiredMixin, ListView):

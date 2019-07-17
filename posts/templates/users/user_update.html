@@ -5,9 +5,24 @@
 <div class="main">
     <div class="post-box">
         <form method="POST" class="post-form">{% csrf_token %}
-            <p>이름 {{ form.name }}</p>
-            <p>프로필 사진 바꾸기 {{ form.profile_image }}</p>
-            <p>소개 {{ form.comment }}</p>
+            <input type="hidden" name="email" id="id_email" required="true" value="{{user.email}}">
+            <table >
+                <tr>
+                    <td rowspan="2" class="align-r"><img class="userImg" src="{%if post.image != '' %} {{user.profile_image.url}} {% endif %}"></td>
+                    <td class="align-l">{{ user.name }}</td>
+                </tr>
+                <tr>
+                    <td class="align-l">프로필 사진 바꾸기<br><span style="font-size: 8px;">{{ form.profile_image }}</span></td>
+                </tr>
+                <tr>
+                    <td class="align-r">이름</td>
+                    <td class="align-l">{{ form.name }}</td>
+                </tr>
+                <tr>
+                    <td class="align-r">소개</td>
+                    <td class="align-l">{{ form.comment}}</td>
+                </tr>
+            </table>
             <button type="submit" class="save btn btn-default">Save</button>
         </form>
     </div>

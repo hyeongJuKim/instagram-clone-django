@@ -1,7 +1,7 @@
-{% extends "posts/base.html" %}
+{% extends "posts/base-inner.html" %}
 {% load static %}
 
-{% block content %}
+{% block page_content %}
 <script type="text/javascript">
   $( document ).ready(function() {
 
@@ -33,24 +33,7 @@ function scrollFunction() {
 
 </script>
 
-<body>
-  <div class="nav">
-      <div class="nav-inner">
-          <div class="nav-left inline-block">
-              <a href="{% url 'post-create' %}" class="underline-none">
-                  <img src="{% static 'images/nav-logo.png' %}" class="nav-logo" alt="logo"/>
-              </a>
-              <a href="/">
-                  <img src="{% static 'images/nav-logo-text.png' %}" class="nav-logo-text scrolldown-hide" alt="logo-text"/>
-              </a>
-          </div>
-          <div class="nav-center inline-block"><input class="nav-search-input" type="text" placeholder="검색" /></div>
-          <div class="nav-right inline-block">
-              <a href="{% url 'logout' %}">logout</a>
-          </div>
-      </div>
-  </div>
-  <div class="main">
+<div class="main">
 
     <div class="post-box">
       <form method="post" enctype="multipart/form-data">
@@ -73,7 +56,6 @@ function scrollFunction() {
       </form>
     </div>
 
-  </div>
-</body>
+</div>
 
 {% endblock %}

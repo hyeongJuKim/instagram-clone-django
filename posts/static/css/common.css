@@ -22,6 +22,10 @@ body {
  float:right;
 }
 
+.align-r {text-align: right;}
+.align-l {text-align: left;}
+
+
 .a-none:link { color: black; text-decoration: none;}
 .a-none:visited { color: black; text-decoration: none;}
 .a-none:hover { color: black; text-decoration: none;}
@@ -112,9 +116,15 @@ body {
     font-weight: 600;
 }
 
-.feed-box-top > .userImg {
+.userImg {
     width: 32px;
     float: left;
+    border-radius: 50%;
+}
+.userImgLarge {
+    width: 152px;
+    float: left;
+    border-radius: 50%;
 }
 
 .feed-box-top > .userName {
@@ -160,13 +170,13 @@ body {
     text-align: center;
 }
 
-.post-box textarea {
+.post-box .post textarea {
     font-size: 20px;
     width: 90%;
     height: 100px;
     margin:20px 0px;
     border: 0;
-    resize: vertical;
+    resize: vertical;postcpost
 }
 
 .post-box-header {
