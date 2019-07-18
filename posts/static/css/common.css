@@ -18,10 +18,43 @@ body {
     text-decoration:none;
 }
 
-.float-r {
- float:right;
+.float-r {float:right;}
+
+.input-custom {
+    border: 1px solid #efefef;
+    border-radius: 3px;
+    font-size: 16px;
+    height: 32px;
+    padding: 0 10px;
 }
 
+.textarea-custom {
+    border: 1px solid #efefef;
+    border-radius: 3px;
+    font-size: 16px;
+    height: 46px;
+    padding: 6px 10px;
+}
+
+.button-blue {
+    border: 0;
+    color: #3897f0;
+    display: inline;
+    padding: 0;
+    cursor: pointer;
+}
+
+.btn-submit {
+    background-color: #3897f0;
+    border: 1px solid #3897f0;
+    border-radius: 4px;
+    padding: 5px 9px;
+    color: #fff;
+    font-size: 13px;
+    position: relative;
+}
+
+.profile-table td{width: 50%;}
 .align-r {text-align: right;}
 .align-l {text-align: left;}
 
@@ -170,13 +203,13 @@ body {
     text-align: center;
 }
 
-.post-box .post textarea {
+.post-box .textarea {
     font-size: 20px;
     width: 90%;
     height: 100px;
     margin:20px 0px;
     border: 0;
-    resize: vertical;postcpost
+    resize: vertical;
 }
 
 .post-box-header {

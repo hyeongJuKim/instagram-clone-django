@@ -16,37 +16,28 @@
 
 			<div class="profile-image">
 				<img class="userImgLarge" src="{%if post.image != '' %} {{user.profile_image.url}} {% endif %}" alt="profile img">
-
 			</div>
-
 			<div class="profile-user-settings">
-
-				<h1 class="profile-user-name">{{user.username}}</h1>
-
+				<h1 class="profile-user-name">{{user.user_name}}</h1>
 				<a href="{% url 'profile_update' pk=user.id %}" class="a-none">
 					<button class="btn profile-edit-btn">프로필 편집</button>
 					<img src="{% static 'images/settings.png' %}" class="icon-medium" alt="logo"/>
 				</a>
-
 			</div>
 
 			<div class="profile-stats">
-
 				<ul>
 					<li>게시물 <span class="profile-stat-count">{{object_list.count}}</span></li>
 					<li>팔로워 <span class="profile-stat-count">188</span></li>
 					<li>팔로우 <span class="profile-stat-count">206</span></li>
 				</ul>
-
 			</div>
 
 			<div class="profile-bio">
-
 				<p>
 					<span class="profile-real-name">{{user.username}}</span><br>
-          {{user.comment}}
-        </p>
-
+          			{{user.comment}}
+        		</p>
 			</div>
 
 		</div>
