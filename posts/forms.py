@@ -26,12 +26,17 @@ class UserLoginForm(AuthenticationForm):
 
 
 class UserCreationForm(forms.ModelForm):
-    password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
-    password2 = forms.CharField(label='Password confirmation', widget=forms.PasswordInput)
+    email = forms.EmailField(label='email', widget=forms.EmailInput(attrs={'placeholder': '이메일 주소'}))
+    name = forms.CharField(label='성명', widget=forms.TextInput(attrs={'placeholder': '성명'}))
+    user_name = forms.CharField(label='사용자 이름', widget=forms.TextInput(attrs={'placeholder': '사용자 이름'}))
+    password1 = forms.CharField(label='Password',
+                                widget=forms.PasswordInput(attrs={'placeholder': '비밀번호'}))
+    password2 = forms.CharField(label='Password confirmation',
+                                widget=forms.PasswordInput(attrs={'placeholder': '비밀번호 재입력'}))
 
     class Meta:
         model = User
-        fields = ('email',)
+        fields = ('email','name')
 
     def clean_password2(self):
         password1 = self.cleaned_data.get("password1")
@@ -49,14 +54,10 @@ class UserCreationForm(forms.ModelForm):
 
 
 class UserUpdateForm(forms.ModelForm):
-    # password = ReadOnlyPasswordHashField()
 
     class Meta:
         model = User
         fields = ['email', 'name', 'user_name', 'profile_image', 'comment']
-
-    # def clean_password(self):
-    #     return self.initial["password"]
 
 
 class PostCreateForm(forms.ModelForm):

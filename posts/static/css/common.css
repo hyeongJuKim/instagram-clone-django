@@ -46,7 +46,19 @@ body {
     font-weight: 600;
 }
 
-.btn-submit {
+.button-submit {
+    background-color: #3897f0;
+    border: 1px solid #3897f0;
+    border-radius: 4px;
+    padding: 5px 9px;
+    color: #fff;
+    font-size: 13px;
+    position: relative;
+}
+
+.button-sign-up {
+    width: 100%;
+    max-width: 256px;
     background-color: #3897f0;
     border: 1px solid #3897f0;
     border-radius: 4px;
@@ -156,6 +168,10 @@ body {
 
 .userImg {
     width: 32px;
+    border-radius: 50%;
+}
+.userImg-38x {
+    width: 38px;
     border-radius: 50%;
 }
 .userImgLarge {
@@ -341,6 +357,8 @@ body {
 }
 
 .profile-box {padding: 32px 0 23px 0;}
+.profile-table{border-spacing: 0 13px;}
+.profile-table-title{font-weight: 520;}
 .profile-table-name{width: 35%; padding-right:32px;}
 .profile-table-input{width: 65%;}
 .profile-submit-div {margin-bottom: 32px;}

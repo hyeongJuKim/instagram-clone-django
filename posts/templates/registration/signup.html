@@ -7,8 +7,12 @@
   {% csrf_token %}
   <div class="login-box">
     <img src="{% static 'images/nav-logo-text.png' %}" class="" alt="logo-text"/>
-    {{ form.as_p }}
-    <button type="submit">가입</button>
+    {{ form.email}}
+    {{ form.name}}
+    {{ form.user_name}}
+    {{ form.password1}}
+    {{ form.password2}}
+    <button type="submit" class="button-sign-up">가입</button>
     <p>계정이 있으신가요?<a href="{% url 'login' %}">로그인</a></p>
   </div>
 
