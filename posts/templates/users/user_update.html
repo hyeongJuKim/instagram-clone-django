@@ -22,7 +22,7 @@
                 <tr>
                     <td class="align-r profile-table-name ">
                         <div class="align-r">
-                            <img id="show-picture1" class="userImg-38x show-picture" src="{%if post.image != '' %} {{user.profile_image.url}} {% endif %}">
+                            <img id="show-picture1" class="userImg-38x show-picture" src="{%if user.profile_image != '' %} {{user.profile_image.url}} {% endif %}">
                         </div>
                     </td>
                     <td class="align-l profile-table-input">
@@ -45,10 +45,36 @@
                     </td>
                 </tr>
                 <tr>
+                    <td class="align-r profile-table-name">웹사이트</td>
+                    <td class="align-l profile-table-input">
+                        <input type="text" name="web_site" class="input-custom" value="{{user.web_site}}" required="" id="id_web_site">
+                    </td>
+                </tr>
+                <tr>
                     <td class="align-r profile-table-name vertical-t">소개</td>
                     <td class="align-l profile-table-input">
-                        <textarea name="comment" class="textarea-custom" cols="40" rows="30" maxlength="255" required="" id="id_comment">{{user.comment}}</textarea>
+                        <textarea name="comment" class="textarea-custom" cols="40" rows="30" maxlength="255" id="id_comment">{{user.comment}}</textarea>
                     </td>
+                </tr>
+                <tr>
+                    <td class="profile-table-name vertical-t" colspan="2">개인정보</td>
+
+                </tr>
+                <tr>
+                    <td class="align-r profile-table-name vertical-t">이메일</td>
+                    <td class="align-l profile-table-input">
+                        <input type="email" name="email" class="input-custom" value="{{user.email}}" required="" id="email">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="align-r profile-table-name vertical-t">전화번호</td>
+                    <td class="align-l profile-table-input">
+                        <input type="text" name="phone_number" class="input-custom" value="{{user.phone_number}}" required="" id="id_phone_number">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="align-r profile-table-name vertical-t">성별</td>
+                    <td class="align-l profile-table-input">{{form.gender}}</td>
                 </tr>
             </table>
             <div class="profile-submit-div"><button type="submit" class="btn-default button-submit">제출</button></div>

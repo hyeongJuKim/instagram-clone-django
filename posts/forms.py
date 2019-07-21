@@ -26,17 +26,17 @@ class UserLoginForm(AuthenticationForm):
 
 
 class UserCreationForm(forms.ModelForm):
-    email = forms.EmailField(label='email', widget=forms.EmailInput(attrs={'placeholder': '이메일 주소'}))
-    name = forms.CharField(label='성명', widget=forms.TextInput(attrs={'placeholder': '성명'}))
-    user_name = forms.CharField(label='사용자 이름', widget=forms.TextInput(attrs={'placeholder': '사용자 이름'}))
+    email = forms.EmailField(label='email', widget=forms.EmailInput(attrs={'placeholder': '이메일 주소', 'class': 'input-custom'}))
+    name = forms.CharField(label='성명', widget=forms.TextInput(attrs={'placeholder': '성명', 'class': 'input-custom'}))
+    user_name = forms.CharField(label='사용자 이름', widget=forms.TextInput(attrs={'placeholder': '사용자 이름', 'class': 'input-custom'}))
     password1 = forms.CharField(label='Password',
-                                widget=forms.PasswordInput(attrs={'placeholder': '비밀번호'}))
+                                widget=forms.PasswordInput(attrs={'placeholder': '비밀번호', 'class': 'input-custom'}))
     password2 = forms.CharField(label='Password confirmation',
-                                widget=forms.PasswordInput(attrs={'placeholder': '비밀번호 재입력'}))
+                                widget=forms.PasswordInput(attrs={'placeholder': '비밀번호 재입력', 'class': 'input-custom'}))
 
     class Meta:
         model = User
-        fields = ('email','name')
+        fields = ('email', 'name', 'user_name')
 
     def clean_password2(self):
         password1 = self.cleaned_data.get("password1")
@@ -57,7 +57,7 @@ class UserUpdateForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ['email', 'name', 'user_name', 'profile_image', 'comment']
+        fields = ['email', 'name', 'user_name', 'web_site', 'profile_image', 'comment', 'phone_number', 'gender']
 
 
 class PostCreateForm(forms.ModelForm):

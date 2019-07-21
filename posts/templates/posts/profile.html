@@ -15,13 +15,13 @@
 		<div class="profile">
 
 			<div class="profile-image">
-				<img class="userImgLarge float-l" src="{%if post.image != '' %} {{user.profile_image.url}} {% endif %}" alt="profile img">
+				<img class="userImgLarge float-l" src="{%if user.profile_image != '' %} {{user.profile_image.url}} {% endif %}">
 			</div>
 			<div class="profile-user-settings">
-				<h1 class="profile-user-name">{{user.user_name}}</h1>
+				<h1 class="profile-user-name vertical-m">{{user.user_name}}</h1>
 				<a href="{% url 'profile_update' pk=user.id %}" class="a-none">
-					<button class="btn profile-edit-btn">프로필 편집</button>
-					<img src="{% static 'images/settings.png' %}" class="icon-medium" alt="logo"/>
+					<button class="btn profile-edit-btn vertical-m">프로필 편집</button>
+					<img src="{% static 'images/settings.png' %}" class="icon-medium vertical-m" alt="logo"/>
 				</a>
 			</div>
 
@@ -36,7 +36,8 @@
 			<div class="profile-bio">
 				<p>
 					<span class="profile-real-name">{{user.username}}</span><br>
-          			{{user.comment}}
+					<span>{{user.comment}}</span>
+					<span><a href="{{user.web_site}}" class="underline-none " target="_blank">{{user.web_site}}</a> </span>
         		</p>
 			</div>
 

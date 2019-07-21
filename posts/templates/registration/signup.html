@@ -6,14 +6,14 @@
 <form method="post" action="{% url 'signup' %}">
   {% csrf_token %}
   <div class="login-box">
-    <img src="{% static 'images/nav-logo-text.png' %}" class="" alt="logo-text"/>
-    {{ form.email}}
-    {{ form.name}}
-    {{ form.user_name}}
-    {{ form.password1}}
-    {{ form.password2}}
+    <img src="{% static 'images/nav-logo-text.png' %}" class="nav-log-text-sign" alt="logo-text"/>
+    <p>{{ form.email}}</p>
+    <p>{{ form.name}}</p>
+    <p>{{ form.user_name}}</p>
+    <p>{{ form.password1}}</p>
+    <p>{{ form.password2}}</p>
     <button type="submit" class="button-sign-up">가입</button>
-    <p>계정이 있으신가요?<a href="{% url 'login' %}">로그인</a></p>
+    <p>계정이 있으신가요? <a href="{% url 'login' %}" class="button-blue underline-none">로그인</a></p>
   </div>
 
 </form>
