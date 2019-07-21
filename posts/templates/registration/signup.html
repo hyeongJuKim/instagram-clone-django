@@ -6,7 +6,7 @@
 <form method="post" action="{% url 'signup' %}">
   {% csrf_token %}
   <div class="login-box">
-    <img src="{% static 'images/nav-logo-text.png' %}" class="nav-log-text-sign" alt="logo-text"/>
+    <a href="/"><img src="{% static 'images/nav-logo-text.png' %}" class="nav-log-text-sign" alt="logo-text"/></a>
     <p>{{ form.email}}</p>
     <p>{{ form.name}}</p>
     <p>{{ form.user_name}}</p>
