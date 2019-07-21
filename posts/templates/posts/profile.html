@@ -4,9 +4,23 @@
 {% block page_content %}
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
+<script type="text/javascript">
+    // nav scroll resize
+    window.onscroll = function() {scrollFunction()};
+
+    function scrollFunction() {
+      if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+          $('.nav-inner').css('padding', '10px 20px');
+          $('.scrolldown-hide').fadeOut(200);
+      } else {
+          $('.nav-inner').css('padding', '26px 20px');
+          $('.scrolldown-hide').fadeIn(200);
+      }
+    }
+</script>
+
 <div class="main">
 </div>
-
 
   <header>
 
