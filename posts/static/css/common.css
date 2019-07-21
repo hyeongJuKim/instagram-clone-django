@@ -251,10 +251,7 @@ body {
     border-radius: 1px;
     margin: 44px auto;
     padding: 10px 0;
-
     width: 350px;
-    height: 358px;
-
     text-align: center;
 }
 
@@ -272,6 +269,7 @@ body {
     max-width: 268px;
     width:100%;
     height: 30px;
+
     font-size: 14px;
     font-weight: 600;
 }
