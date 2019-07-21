@@ -1,4 +1,3 @@
-from django.contrib.auth.models import User
 from django.views.generic import ListView, View, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
@@ -26,6 +25,7 @@ class UserUpdate(LoginRequiredMixin, UpdateView):
 
 class Posts(LoginRequiredMixin, ListView):
     model = Post
+    template_name = 'posts/post_list.html'
 
     def get_queryset(self):
         queryset = Post.objects.filter(user=self.request.user)
