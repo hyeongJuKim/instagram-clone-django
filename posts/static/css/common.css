@@ -255,6 +255,16 @@ body {
     text-align: center;
 }
 
+.signup-box {
+    background-color: #fff;
+    border: 1px solid #e6e6e6;
+    border-radius: 1px;
+    margin: -35px auto;
+    padding: 10px 0;
+    width: 350px;
+    text-align: center;
+}
+
 .login-box input {
     width: 250px;
     height: 32px;
@@ -278,6 +288,23 @@ body {
     font-weight: 600;
     line-height: 20px;
     font-size: 17px;
+    margin: 0 40px 10px;
+    color: #999;
+    text-align: center;
+}
+.forget-box-h2 {
+    font-weight: 600;
+    line-height: 20px;
+    font-size: 17px;
+    margin: 0 40px 10px;
+    color: black;
+    text-align: center;
+}
+
+.login-box-h3 {
+    font-weight: 600;
+    line-height: 20px;
+    font-size: 14px;
     margin: 0 40px 10px;
     color: #999;
     text-align: center;

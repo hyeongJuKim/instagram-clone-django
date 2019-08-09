@@ -1,3 +1,4 @@
+from django.shortcuts import render
 from django.views.generic import ListView, View, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
@@ -64,4 +65,9 @@ class Login(View):
     form_class = UserLoginForm
     success_url = reverse_lazy('login')
     template_name = 'registration/login.html'
+
+
+def password_reset_request(request):
+    return render(request, 'users/password_reset_request.html')
+
 
