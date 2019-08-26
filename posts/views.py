@@ -71,3 +71,9 @@ def password_reset_request(request):
     return render(request, 'users/password_reset_request.html')
 
 
+def password_reset_response(request):
+
+    print(request.user)
+    return render(request, 'users/password_reset_response.html')
+
+
