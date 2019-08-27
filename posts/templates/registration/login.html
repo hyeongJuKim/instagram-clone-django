@@ -11,6 +11,10 @@
 		<p><input type="text" name="username" class="input-custom pd-32" placeholder="이메일 주소"></p>
 		<p><input type="password" name="password" class="input-custom" placeholder="비밀번호"></p>
 		<p><button class="login-btn" type="submit">로그인</button></p>
+		<p><a href="{% url 'forget-password' %}" class="button-blue underline-none">비밀번호를 잊으셨나요?</a></p>
+
+	</div>
+	<div class="signup-box">
 		<p>계정이 없으신가요? <a href="{% url 'signup' %}" class="button-blue underline-none">가입하기</a></p>
 	</div>
 </form>
