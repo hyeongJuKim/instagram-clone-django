@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import ListView, View, CreateView, UpdateView, DeleteView
@@ -5,7 +6,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 from posts import models
 from posts.module import send_find_password_email
-from .models import Post, User
+from .models import Post
 from .forms import UserCreationForm, UserLoginForm, PostCreateForm, PostUpdateForm, UserUpdateForm
 from django.urls import reverse_lazy
 
@@ -76,11 +77,15 @@ def password_reset_request(request):
 
     elif request.method == 'POST':
         email = request.POST.get('email', '')
-        send_find_password_email(email)
-        return render(request, 'users/password_reset_request.html')
+        status = send_find_password_email(email)
+        return HttpResponse(status)
 
 
 def password_reset_response(request):
-    return render(request, 'users/password_reset_response.html')
+    if request.method == 'GET':
+        return render(request, 'users/password_reset_response.html')
+    elif request.method == 'POST':
+        return render(request, 'users/password_reset.html')
+
 
 
