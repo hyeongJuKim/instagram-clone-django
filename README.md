@@ -5,9 +5,9 @@
 ![](./preview-profile.png)
 
 - [진행상황 보기](https://trello.com/b/0S9XNYLa)
+- [demo site](http://welove.hopto.org:10080)
 
 ## 기술스택
-  - [demo site](http://welove.hopto.org:10080)
   - 서버 - raspbian
   - 형상관리 - GIT
   - language - Python 3.X
