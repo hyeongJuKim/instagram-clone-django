@@ -2,10 +2,10 @@
 
 > 취미로 시작한 인스타그램 클론 코딩입니다 :)
 
-- [진행상황](https://trello.com/b/0S9XNYLa){:target="_blank"}
+- [진행상황](https://trello.com/b/0S9XNYLa)
 
 ## 기술스택
-  - [demo site](http://welove.hopto.org:10080){:target="_blank"}
+  - [demo site](http://welove.hopto.org:10080)
   - 서버 - raspbian
   - 형상관리 - GIT
   - language - Python 3.X
