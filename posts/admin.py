@@ -21,11 +21,13 @@ class UserAdmin(BaseUserAdmin):
             'fields': ('email', 'password1', 'password2')}
          ),
     )
-    search_fields = ('email',)
+
     ordering = ('email',)
     filter_horizontal = ()
+
 
 admin.site.register(User)
 
 admin.site.register(Post)
+
 

@@ -1,5 +1,9 @@
 .idea/
 secrets.json
-static/
-db.sqlite3
+Pipfile
+Pipfile.lock
+media/
+db.sqlite
 posts/migrations/
+nohup.out
+__pycache__/

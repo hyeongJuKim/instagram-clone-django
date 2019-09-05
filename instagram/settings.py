@@ -34,9 +34,9 @@ def get_secret(setting, secrets=secrets):
         error_msg = "Set the {} environment variable".format(setting)
         raise ImproperlyConfigured(error_msg)
 
+
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = get_secret("SECRET_KEY")
-
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'posts.apps.PostsConfig',
     'rest_framework',
+    'el_pagination',
 ]
 
 MIDDLEWARE = [
@@ -152,8 +153,10 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 # rest framework
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 10
+    'PAGE_SIZE': 10,
 }
+
+PASSWORD_RESET_TIMEOUT_DAYS = 1
 
 # EMAIL
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

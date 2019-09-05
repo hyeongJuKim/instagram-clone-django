@@ -1,6 +1,6 @@
 # instagram-clone-django
 
-> 취미로 시작한 인스타그램 클론 코딩입니다 :)
+> 취미로 시작한 인스타그램 클론 코딩입니다 :)  
 
 ![](./preview-profile.png)
 
@@ -26,4 +26,7 @@
     - [x] my profile
   - follower, following
   - like
+  - book mark
+  - comment
+  - search
   - activity history
