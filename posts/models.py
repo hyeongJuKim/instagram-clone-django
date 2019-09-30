@@ -50,6 +50,8 @@ class User(AbstractBaseUser):
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
 
+    search_fields = ['email']
+
     objects = UserManager()
 
     USERNAME_FIELD = 'email'
@@ -63,7 +65,6 @@ class User(AbstractBaseUser):
 
     def has_module_perms(self, app_label):
         return True
-
 
     @property
     def is_staff(self):

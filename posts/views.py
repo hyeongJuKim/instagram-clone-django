@@ -9,6 +9,7 @@ from posts.module import send_find_password_email
 from .models import Post
 from .forms import UserCreationForm, UserLoginForm, PostCreateForm, PostUpdateForm, UserUpdateForm
 from django.urls import reverse_lazy
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 
 class User(LoginRequiredMixin, ListView):
@@ -16,7 +17,7 @@ class User(LoginRequiredMixin, ListView):
     template_name = 'posts/profile.html'
 
     def get_queryset(self):
-        queryset = Post.objects.filter(user=self.request.user)
+        queryset = Post.objects.filter(user=self.request.user).order_by('-create_dt')
         return queryset
 
 
@@ -29,11 +30,11 @@ class UserUpdate(LoginRequiredMixin, UpdateView):
 
 class Posts(LoginRequiredMixin, ListView):
     model = Post
+    context_object_name = "object_list"
     template_name = 'posts/post_list.html'
 
     def get_queryset(self):
-        queryset = Post.objects.filter(user=self.request.user)
-        return queryset
+        return Post.objects.filter(user=self.request.user).order_by('-create_dt')
 
 
 class PostCreate(LoginRequiredMixin, CreateView):
@@ -77,15 +78,13 @@ def password_reset_request(request):
 
     elif request.method == 'POST':
         email = request.POST.get('email', '')
+        user = models.User.objects.get(email=email)
+        # 토큰 생성 > a tag까지 전달. email전송 할 때 param으로 담아
         status = send_find_password_email(email)
         return HttpResponse(status)
 
 
-def password_reset_response(request):
+def password_reset_response(request, key):
+
     if request.method == 'GET':
-        return render(request, 'users/password_reset_response.html')
-    elif request.method == 'POST':
         return render(request, 'users/password_reset.html')
-
-
-

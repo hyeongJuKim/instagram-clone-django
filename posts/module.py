@@ -1,5 +1,7 @@
+from django.contrib.auth.tokens import default_token_generator
 from django.core.mail import EmailMessage, EmailMultiAlternatives
 from django.template.loader import get_template
+from django.utils.http import int_to_base36
 
 from posts.models import User
 
@@ -9,14 +11,16 @@ def send_find_password_email(email):
         성공여부를 Return 한다.
     """
 
-    user_name = None
+    user = None
 
     try:
-        user_name = User.objects.get(email=email)
+        user = User.objects.get(email=email)
     except User.DoesNotExist:
         return False
 
-    d = dict({'email': email, 'user_name': user_name.user_name})
+    token = default_token_generator.make_token(user)
+
+    d = dict({'email': email, 'user_name': user.user_name, 'token': token})
     html = get_template('users/password_reset_response.html')
     html_content = html.render(d)
 
