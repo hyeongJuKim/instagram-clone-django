@@ -4,6 +4,8 @@ Pipfile
 Pipfile.lock
 media/
 db.sqlite
+db.sqlite3
 posts/migrations/
 nohup.out
 __pycache__/
+.DS_Store
