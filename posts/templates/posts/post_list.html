@@ -49,7 +49,7 @@
             {% for post in object_list %}
             <div class="feed-box">
                 <div class="feed-box-top">
-                    <img class="userImg float-l" src="{{user.profile_image.url}}" alt="user" />
+                    <img class="userImg float-l" src="{{user.profile_image}}" alt="user" />
                     <span class="userName">{{post.user.user_name}}</span>
                     <span id="hamburger" class="hamburger">
                         <a class="feed-more-icon"
