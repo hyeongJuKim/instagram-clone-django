@@ -9,3 +9,5 @@ posts/migrations/
 nohup.out
 __pycache__/
 .DS_Store
+
+django.log
