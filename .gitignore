@@ -1,13 +1,15 @@
+_Store
 .idea/
-secrets.json
 Pipfile
 Pipfile.lock
+staticfiles/
 media/
+posts/migrations/
+__pycache__/
 db.sqlite
 db.sqlite3
-posts/migrations/
-nohup.out
-__pycache__/
-.DS_Store
+secrets.json
 
+nohup.out
+uwsgi.ini
 django.log

@@ -43,7 +43,7 @@ class User(AbstractBaseUser):
     name = models.CharField(verbose_name='name', max_length=20, blank=False)
     user_name = models.CharField(verbose_name='user_name', max_length=20, blank=False)
     comment = models.TextField(verbose_name='comment', max_length=255, blank=True)
-    web_site = models.CharField(verbose_name='web_site', max_length=255, blank=True)
+    web_site = models.CharField(verbose_name='web_site', max_length=255, blank=False)
     profile_image = models.ImageField(upload_to='upload/profile', blank=True)
     phone_number = models.CharField(verbose_name='phone_number', max_length=15, blank=True)
     gender = models.CharField(max_length=1, choices=GENDERS, blank=True)
