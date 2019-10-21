@@ -9,4 +9,8 @@ __pycache__/
 db.sqlite
 db.sqlite3
 secrets.json
+
 nohup.out
+uwsgi.ini
+django.loig
+
