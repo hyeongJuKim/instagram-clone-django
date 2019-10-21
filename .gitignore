@@ -12,4 +12,5 @@ secrets.json
 
 nohup.out
 uwsgi.ini
-django.log
+django.loig
+
