@@ -309,21 +309,6 @@ body {
     text-align: center;
 }
 
-/* The Modal (background) */
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
-
 /* Modal Content */
 .modal-content {
     z-index: 2;
@@ -357,11 +342,14 @@ body {
 .modal-content {
     z-index: 999;
     background-color: #fefefe;
-    margin: auto;
     padding: 0;
     border: 1px solid #888;
     width:400px;
     min-width: 400px;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    margin-left: -200px;
     border-radius: 12px;
 }
 
@@ -371,7 +359,7 @@ body {
     cursor: pointer;
     margin: 0;
     width:100%;
-    min-height: 48px;
+    padding: 15px 0;
     display: inline-block;
 }
 
@@ -385,7 +373,7 @@ body {
 
 .profile-box {padding: 32px 0 23px 0;}
 .profile-table{border-spacing: 0 13px;}
-.profile-table-title{font-weight: 520;}
+.profile-table-title{font-weight: 500;}
 .profile-table-name{width: 35%; padding-right:32px;}
 .profile-table-input{width: 65%;}
 .profile-submit-div {margin-bottom: 32px;}
