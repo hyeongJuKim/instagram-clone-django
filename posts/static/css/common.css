@@ -378,3 +378,15 @@ body {
 .profile-table-input{width: 65%;}
 .profile-submit-div {margin-bottom: 32px;}
 .profile-table-input input, .profile-table-input textarea {width: 100%;}
+
+/*  */
+@media (max-width:799px){
+    .nav-left > a:first-child {width: 30%;float: left;}
+    .nav-left > a:last-child {width: 70%; padding: 0 20px 0 0; float: left; box-sizing: border-box;}
+    .nav-logo {padding-right:0; margin-top:3px;}
+    .nav-logo-text {padding-left:0;float: right;width: 100%;max-width: 103px;padding-left: 10px;}
+    .nav-right > a {margin-left:8%;}
+    .nav-icon {margin-left:0;}
+    .post-box-header, .post-box {font-size:18px;}
+    .show-picture {width:100% !important; max-width:600px; height:auto !important;}
+}
