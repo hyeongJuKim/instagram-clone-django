@@ -35,15 +35,15 @@ class UserManager(BaseUserManager):
 
 class User(AbstractBaseUser):
     GENDERS = (
-        ('M', 'Male'),
-        ('F', 'Female'),
+        ('M', '남성'),
+        ('F', '여성'),
     )
 
     email = models.EmailField(verbose_name='email', max_length=255, unique=True)
     name = models.CharField(verbose_name='name', max_length=20, blank=False)
     user_name = models.CharField(verbose_name='user_name', max_length=20, blank=False)
     comment = models.TextField(verbose_name='comment', max_length=255, blank=True)
-    web_site = models.CharField(verbose_name='web_site', max_length=255, blank=False)
+    web_site = models.CharField(verbose_name='web_site', max_length=255, blank=True)
     profile_image = models.ImageField(upload_to='upload/profile', blank=True)
     phone_number = models.CharField(verbose_name='phone_number', max_length=15, blank=True)
     gender = models.CharField(max_length=1, choices=GENDERS, blank=True)
@@ -96,7 +96,6 @@ def auto_delete_file_on_change(sender, instance, **kwargs):
         return False
     try:
         old_file = sender.objects.get(pk=instance.pk).profile_image
-        print(sender.objects.get(pk=instance.pk).profile_image)
         new_file = instance.profile_image
         if not old_file == new_file:
             if os.path.isfile(old_file.path):
