@@ -1,3 +1,4 @@
+/* default element */
 body {
     margin: 0;
     background-color: #fafafa;
@@ -10,6 +11,7 @@ body {
     background-color: #fafafa;
 }
 
+/* custom css */
 .inline-block {
     display: inline-block;
 }
@@ -168,7 +170,7 @@ body {
 }
 
 .feed-box-top {
-    height: 28px;
+    height: 32px;
     padding: 16px;
     align-items: center;
     font-weight: 600;
@@ -189,6 +191,7 @@ body {
 
 .feed-box-top > .userName {
     padding-left: 15px;
+    line-height: 32px !important;
 }
 .feed-box-top > .hamburger {
     float:right;
@@ -383,20 +386,49 @@ body {
 
 .profile-box {padding: 32px 0 23px 0;}
 .profile-table{border-spacing: 0 13px;}
-.profile-table-title{font-weight: 500;}
-.profile-table-name{width: 35%; padding-right:32px;}
+.profile-table-title{
+    font-weight: 500;
+    margin-bottom: 2px;
+}
+.profile-table-name{
+    width: 35%;
+    padding-right:32px;
+    font-size: 16px;
+    font-weight: 600;
+}
+.profile-table-divide-name{
+    text-align: left;
+    color: #999;
+    font-size: 14px;
+    font-weight: 600;
+}
 .profile-table-input{width: 65%;}
 .profile-submit-div {margin-bottom: 32px;}
 .profile-table-input input, .profile-table-input textarea {width: 100%;}
 
 
+/* django */
+
+.errorlist {
+    text-align: left;
+    list-style: none;
+    margin: 0;
+    padding: 10px 0;
+    font-size: 13px;
+    color: red;
+}
+
+
 @media (max-width:799px){
+    .main {padding-top: 10px;}
+
     .nav-left > a:first-child {width: 30%;float: left;}
     .nav-left > a:last-child {width: 70%; padding: 0 20px 0 0; float: left; box-sizing: border-box;}
     .nav-logo {padding-right:0; margin-top:3px;}
     .nav-logo-text {padding-left:0;float: right;width: 100%;max-width: 103px;padding-left: 10px;}
     .nav-right > a {margin-left:8%;}
     .nav-icon {margin-left:0;}
+
     .post-box-header, .post-box {font-size:18px;}
     .show-picture {width:100% !important; max-width:600px; height:auto !important;}
     .feed-box {margin: 0 auto 15px auto;}

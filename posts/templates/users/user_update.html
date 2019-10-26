@@ -35,46 +35,55 @@
                     <td class="align-r profile-table-name">이름</td>
                     <td class="align-l profile-table-input">
                         <input type="text" name="name" class="input-custom" value="{{user.name}}" maxlength="20" required="true" id="id_name">
+                        {{ form.name.errors }}
                     </td>
 
                 </tr>
                 <tr>
-                    <td class="align-r profile-table-name">사용자이름</td>
+                    <td class="align-r profile-table-name">사용자 이름</td>
                     <td class="align-l profile-table-input">
                         <input type="text" name="user_name" class="input-custom" value="{{user.user_name}}" maxlength="20" required="true" id="id_user_name">
+                        {{ form.user_name.errors }}
                     </td>
                 </tr>
                 <tr>
                     <td class="align-r profile-table-name">웹사이트</td>
                     <td class="align-l profile-table-input">
                         <input type="text" name="web_site" class="input-custom" value="{{user.web_site}}" id="id_web_site">
+                        {{ form.web_site.errors }}
                     </td>
                 </tr>
                 <tr>
                     <td class="align-r profile-table-name vertical-t">소개</td>
                     <td class="align-l profile-table-input">
                         <textarea name="comment" class="textarea-custom" cols="40" rows="30" maxlength="255" id="id_comment">{{user.comment}}</textarea>
+                        {{ form.comment.errors }}
                     </td>
                 </tr>
                 <tr>
-                    <td class="profile-table-name vertical-t" colspan="2">개인정보</td>
-
+                    <td></td>
+                    <td class="profile-table-divide-name vertical-t">개인정보</td>
                 </tr>
                 <tr>
                     <td class="align-r profile-table-name vertical-t">이메일</td>
                     <td class="align-l profile-table-input">
                         <input type="email" name="email" class="input-custom" value="{{user.email}}" required="" id="email">
+                        {{ form.email.errors }}
                     </td>
                 </tr>
                 <tr>
                     <td class="align-r profile-table-name vertical-t">전화번호</td>
                     <td class="align-l profile-table-input">
                         <input type="text" name="phone_number" class="input-custom" value="{{user.phone_number}}" required="" id="id_phone_number">
+                        {{ form.phone_number.errors }}
                     </td>
                 </tr>
                 <tr>
                     <td class="align-r profile-table-name vertical-t">성별</td>
-                    <td class="align-l profile-table-input">{{form.gender}}</td>
+                    <td class="align-l profile-table-input">
+                        {{form.gender}}
+                        {{ form.gender.errors }}
+                    </td>
                 </tr>
             </table>
             <div class="profile-submit-div"><button type="submit" class="btn-default button-submit">제출</button></div>
