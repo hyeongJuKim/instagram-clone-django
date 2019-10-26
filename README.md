@@ -8,7 +8,7 @@
 - [demo site](http://welove.hopto.org:10080)
 
 ## 기술스택
-  - 서버 - raspbian
+  - 서버 - AWS EC2
   - 형상관리 - GIT
   - language - Python 3.X
   - Web F/W - Django
