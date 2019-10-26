@@ -194,10 +194,11 @@ body {
     float:right;
 }
 .feed-box-middle {
-    height: 600px;
+    max-height: 600px;
 }
 .feed-box-middle img {
     width: 100%;
+    min-width: 150px;
     max-width: 600px;
 }
 
@@ -398,4 +399,5 @@ body {
     .nav-icon {margin-left:0;}
     .post-box-header, .post-box {font-size:18px;}
     .show-picture {width:100% !important; max-width:600px; height:auto !important;}
+    .feed-box {margin: 0 auto 15px auto;}
 }
