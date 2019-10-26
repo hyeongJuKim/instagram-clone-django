@@ -9,7 +9,6 @@ from posts.module import send_find_password_email
 from .models import Post
 from .forms import UserCreationForm, UserLoginForm, PostCreateForm, PostUpdateForm, UserUpdateForm
 from django.urls import reverse_lazy
-from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 
 class User(LoginRequiredMixin, ListView):
