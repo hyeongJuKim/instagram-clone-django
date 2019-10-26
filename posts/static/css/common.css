@@ -402,9 +402,8 @@ body {
     font-size: 14px;
     font-weight: 600;
 }
-.profile-table-input{width: 65%;}
 .profile-submit-div {margin-bottom: 32px;}
-.profile-table-input input, .profile-table-input textarea {width: 100%;}
+.profile-table-input input {width: 100%;}
 
 
 /* django */
@@ -432,4 +431,10 @@ body {
     .post-box-header, .post-box {font-size:18px;}
     .show-picture {width:100% !important; max-width:600px; height:auto !important;}
     .feed-box {margin: 0 auto 15px auto;}
+
+    /* profile */
+    .profile-picture{margin-left: 25px;}
+    .profile-table-name{width: 30%;}
+    .profile-table-input{width:70%;}
+    .profile-table-input > input, .profile-table-input > textarea{width: 80%; !important;}
 }
