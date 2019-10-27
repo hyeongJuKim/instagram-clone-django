@@ -83,6 +83,14 @@ body {
 .a-none:hover { color: black; text-decoration: none;}
 .delete-color { color: red !important;}
 
+.no-drag {
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
+}
+
 .nav {
     background-color: #fff;
     position: fixed;

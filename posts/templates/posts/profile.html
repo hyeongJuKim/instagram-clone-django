@@ -29,14 +29,17 @@
 		<div class="profile">
 
 			<div class="profile-image">
-				<img class="userImgLarge float-l" src="{%if user.profile_image != '' %} {{user.profile_image.url}} {% endif %}">
+				<img class="userImgLarge no-drag float-l" src="{%if user.profile_image != '' %} {{user.profile_image.url}} {% endif %}">
 			</div>
 			<div class="profile-user-settings">
 				<h1 class="profile-user-name vertical-m">{{user.user_name}}</h1>
-				<a href="{% url 'profile_update' pk=user.id %}" class="a-none">
-					<button class="btn profile-edit-btn vertical-m">프로필 편집</button>
-					<img src="{% static 'images/settings.png' %}" class="icon-medium vertical-m" alt="logo"/>
-				</a>
+                <div class="profile-edit-div">
+                    <a href="{% url 'profile_update' pk=user.id %}" class="a-none">
+                        <button class="btn profile-edit-btn vertical-m">프로필 편집</button>
+                        <img src="{% static 'images/settings.png' %}" class="icon-medium vertical-m" alt="logo"/>
+                    </a>
+                </div>
+
 			</div>
 
 			<div class="profile-stats">
