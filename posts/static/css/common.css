@@ -412,6 +412,7 @@ body {
 }
 .profile-submit-div {margin-bottom: 32px;}
 .profile-table-input input {width: 100%;}
+.profile-edit-div {margin: auto;}
 
 
 /* django */
