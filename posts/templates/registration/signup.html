@@ -8,10 +8,15 @@
   <div class="login-box">
     <a href="/"><img src="{% static 'images/nav-logo-text.png' %}" class="nav-log-text-sign" alt="logo-text"/></a>
     <p>{{ form.email}}</p>
+    <div class="signup-errors">{{ form.email.errors }}</div>
     <p>{{ form.name}}</p>
+    <div class="signup-errors">{{ form.name.errors }}</div>
     <p>{{ form.user_name}}</p>
+    <div class="signup-errors">{{ form.user_name.errors }}</div>
     <p>{{ form.password1}}</p>
+    <div class="signup-errors">{{ form.password1.errors }}</div>
     <p>{{ form.password2}}</p>
+    <div class="signup-errors">{{ form.password2.errors }}</div>
     <button type="submit" class="button-sign-up">가입</button>
     <p>계정이 있으신가요? <a href="{% url 'login' %}" class="button-blue underline-none">로그인</a></p>
   </div>
