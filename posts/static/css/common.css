@@ -286,6 +286,11 @@ body {
     text-align: center;
 }
 
+.signup-errors {
+    padding: 0 40px;
+    margin-top: -10px;
+}
+
 .login-box input {
     width: 250px;
     height: 32px;
