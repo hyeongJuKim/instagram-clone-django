@@ -8,7 +8,7 @@
 	<div class="login-box">
 		<a href="/"><img src="{% static 'images/nav-logo-text.png' %}" class="logo-text" alt="logo-text"/></a>
 		<!--<div class="login-box-h2">친구들의 사진과 동영상을 보려면 가입하세요.</div>-->
-		<p><input type="text" name="username" class="input-custom pd-32" placeholder="이메일 주소"></p>
+		<p><input type="email" name="username" class="input-custom pd-32" placeholder="이메일 주소"></p>
 		<p><input type="password" name="password" class="input-custom" placeholder="비밀번호"></p>
 		<p><button class="login-btn" type="submit">로그인</button></p>
 		<p><a href="{% url 'forget-password' %}" class="button-blue underline-none">비밀번호를 잊으셨나요?</a></p>
