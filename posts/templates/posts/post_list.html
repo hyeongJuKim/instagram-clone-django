@@ -50,8 +50,8 @@
     }
 
 </script>
-
 <div class="main">
+
     <div class="feed-box-list">
 
         {% if object_list %}
@@ -59,7 +59,7 @@
             <div class="feed-box">
                 <div class="feed-box-top">
                     {% if user.profile_image %}
-                    <img class="userImg float-l" src="{{user.profile_image.url}}" alt="user" />
+                    <img class="userImg no-drag float-l" src="{{user.profile_image.url}}" alt="user" />
                     {% endif %}
                     <span class="userName">{{post.user.user_name}}</span>
                     <span id="hamburger" class="hamburger">
@@ -68,7 +68,7 @@
                            data-update-url="{% url 'post-update' pk=post.id %}"
                            data-delete-url="{% url 'post-delete' pk=post.id %}"
                         >
-                            <img class="feed-more" src="{% static 'images/more.png' %}" alt="more" />
+                            <img class="feed-more no-drag" src="{% static 'images/more.png' %}" alt="more" />
                         </a>
                     </span>
                 </div>
