@@ -52,7 +52,9 @@ function scrollFunction() {
              src="{%if post.image != null %} {{post.image.url}} {% else %} {% static 'images/default_image.jpeg' %} {% endif %}"
              class="show-picture no-drag"
              style="width: 600px; height:600px;">
+        {{ form.image.errors }}
         <textarea name="content" class="textarea" cols="40" rows="10" placeholder="문구 입력.." required="true" id="id_content">{{post.content}}</textarea>
+        {{ form.content.errors }}
       </form>
     </div>
 
