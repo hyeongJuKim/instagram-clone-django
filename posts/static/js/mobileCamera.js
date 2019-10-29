@@ -1,4 +1,5 @@
 $(document).ready(function(){
+
   $('.take-picture').on('change',handleImgFileSelect);
   function handleImgFileSelect(event) {
     // Get a reference to the taken picture or chosen file
@@ -57,11 +58,11 @@ $(document).ready(function(){
     if ( (navigator.appName == 'Netscape' && navigator.userAgent.search('Trident') != -1) || (agent.indexOf("msie") != -1) ){
       // ie 일때 input[type=file] init.
       takePicture.replaceWith( $("#excelFile").clone(true) );
-      showPicture.attr("src","img/noImg.jpg"); //about:blank대신 noimage.jpg로 대체
+      // showPicture.attr("src","img/noImg.jpg"); //about:blank대신 noimage.jpg로 대체
     } else {
       //other browser 일때 input[type=file] init.
       takePicture.val("");
-      showPicture.attr("src","img/noImg.jpg"); //about:blank대신 noimage.jpg로 대체
+      // showPicture.attr("src","img/noImg.jpg"); //about:blank대신 noimage.jpg로 대체
     }
   });
 
