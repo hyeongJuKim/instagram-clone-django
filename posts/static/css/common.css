@@ -468,16 +468,9 @@ body {
     }
 
     .feed-box-middle {
-        height: 300px;
+        height: auto;
         text-align: center;
-        line-height: 300px;
+        line-height: 0;
     }
-    .feed-box-middle img {
-        width:auto;
-        max-width:100%;
-        max-height: 300px;
-        vertical-align: middle;
-    }
-
 
 }
