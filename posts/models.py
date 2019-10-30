@@ -37,6 +37,7 @@ class User(AbstractBaseUser):
     GENDERS = (
         ('M', '남성'),
         ('F', '여성'),
+        ('N', '밝히고싶지 않음'),
     )
 
     email = models.EmailField(verbose_name='email', max_length=255, unique=True)
