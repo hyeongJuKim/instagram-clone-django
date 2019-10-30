@@ -1,5 +1,13 @@
 /* default element */
+@charset "UTF-8";
+
+@font-face {
+    font-family: 'SpoqaHanSansRegular';
+    src: url(/static/font/SpoqaHanSansRegular.ttf) format('truetype');
+}
+
 body {
+    font-family: SpoqaHanSansRegular; !important;
     margin: 0;
     background-color: #fafafa;
 }
