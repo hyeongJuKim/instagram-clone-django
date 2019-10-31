@@ -6,8 +6,9 @@
     src: url(/static/font/SpoqaHanSansRegular.ttf) format('truetype');
 }
 
+* {font-family: SpoqaHanSansRegular;}
 body {
-    font-family: SpoqaHanSansRegular; !important;
+
     margin: 0;
     background-color: #fafafa;
 }
@@ -183,6 +184,7 @@ body {
     margin: 0 auto 60px auto;
     background-color: white;
     border: 1px solid #e6e6e6;
+    font-size: 14px;
 }
 
 .feed-box-top {
@@ -252,8 +254,7 @@ body {
 }
 
 .post-box .textarea {
-    font-family:airal,san-serif;
-    font-size: 20px;
+    font-size: 17px;
     width:100%;
     box-sizing:border-box;
     height: 100px;
