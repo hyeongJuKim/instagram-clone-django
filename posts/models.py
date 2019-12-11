@@ -9,7 +9,7 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 class UserManager(BaseUserManager):
     def create_user(self, email, name, user_name, password=None):
         if not email:
-            raise ValueError('Users must have an email address')
+            raise ValueError('이메일주소를 입력해주세요.')
 
         user = self.model(
             email=self.normalize_email(email),
