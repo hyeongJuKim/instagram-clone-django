@@ -6,7 +6,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 from posts import models
 from posts.module import send_find_password_email
-from .models import Post
+from .models import Post, User
 from .forms import UserCreationForm, UserLoginForm, PostCreateForm, PostUpdateForm, UserUpdateForm
 from django.urls import reverse_lazy
 
@@ -25,6 +25,10 @@ class UserUpdate(LoginRequiredMixin, UpdateView):
     form_class = UserUpdateForm
     template_name = 'users/user_update.html'
     success_url = "/users/profile-update/{id}"
+
+    def get_queryset(self):
+        queryset = models.User.objects.filter(email=self.request.user.email).order_by('-create_dt')
+        return queryset
 
 
 class Posts(LoginRequiredMixin, ListView):
