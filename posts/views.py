@@ -1,10 +1,11 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
-from django.views.generic import ListView, View, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, View, CreateView, UpdateView, DeleteView, FormView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from posts import models
+from posts.mixins import AjaxFormMixin
 from posts.module import send_find_password_email
 from .models import Post, User
 from .forms import UserCreationForm, UserLoginForm, PostCreateForm, PostUpdateForm, UserUpdateForm
@@ -62,16 +63,29 @@ class PostDelete(DeleteView):
         return self.post(*args, **kwargs)
 
 
-class Signup(CreateView):
+# class Signup(CreateView):
+#     form_class = UserCreationForm
+#     success_url = reverse_lazy('login')
+#     template_name = 'registration/signup.html'
+
+class Signup(AjaxFormMixin, FormView):
     form_class = UserCreationForm
-    success_url = reverse_lazy('login')
     template_name = 'registration/signup.html'
+    success_url = reverse_lazy('login')
 
 
 class Login(View):
     form_class = UserLoginForm
     success_url = reverse_lazy('login')
     template_name = 'registration/login.html'
+
+
+def validate_email(request):
+    email = request.GET.get('email', None)
+    data = {
+        'is_taken': models.User.objects.filter(email__iexact=email).exists()
+    }
+    return JsonResponse(data)
 
 
 @csrf_exempt

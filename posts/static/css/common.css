@@ -81,6 +81,11 @@ body {
     position: relative;
 }
 
+.button-disable {
+    background-color: #686f75 !important;
+    border: 1px solid #686f75 !important;
+}
+
 .align-r {text-align: right;}
 .align-l {text-align: left;}
 .float-r {float: right;}
@@ -303,6 +308,8 @@ body {
 .signup-errors {
     padding: 0 40px;
     margin-top: -10px;
+    font-size: 13px;
+    color: red;
 }
 
 .login-box input {
@@ -435,15 +442,6 @@ body {
 
 
 /* django */
-
-.errorlist {
-    text-align: left;
-    list-style: none;
-    margin: 0;
-    padding: 10px 0;
-    font-size: 13px;
-    color: red;
-}
 
 
 @media (max-width:799px){

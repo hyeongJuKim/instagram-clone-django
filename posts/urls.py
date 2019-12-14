@@ -16,6 +16,7 @@ urlpatterns = [
     path('posts/post-create/', views.PostCreate.as_view(), name='post-create'),
     path('posts/post-update/<int:pk>', views.PostUpdate.as_view(), name='post-update'),
     path('posts/post-delete/<int:pk>', views.PostDelete.as_view(), name='post-delete'),
+    path('ajax/validate-email/', views.validate_email, name='ajax-validate-eamil'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -3,21 +3,111 @@
 
 {% block content %}
 
-<form method="post" action="{% url 'signup' %}">
+
+<script>
+    $(document).ready(function(){
+
+        // using jQuery
+        function getCookie(name) {
+            var cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                var cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = jQuery.trim(cookies[i]);
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
+        var csrftoken = getCookie('csrftoken');
+
+        function csrfSafeMethod(method) {
+            return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+        }
+        $.ajaxSetup({
+            beforeSend: function(xhr, settings) {
+                if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                    xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                }
+            }
+        });
+
+        var $signupForm = $('.my-ajax-form');
+        $signupForm.submit(function(event){
+            event.preventDefault();
+            let $formData = $(this).serialize();
+            let $thisURL = $signupForm.attr('data-url');
+            $.ajax({
+                method: "POST",
+                url: $thisURL,
+                data: $formData,
+                success: handleFormSuccess,
+                error: handleFormError,
+             });
+
+        });
+
+        function handleFormSuccess(data, textStatus, jqXHR){
+            $signupForm.reset();
+            $('.signup-errors').html(data);
+        }
+
+        function handleFormError(jqXHR, textStatus, errorThrown){
+            var err = jqXHR.responseJSON;
+
+            $('.signup-errors').html('');
+            $.each(err, function(key, value){
+                $('#err-'+key).html(value);
+            });
+
+        }
+
+        $('#email').change(function(){
+            $.ajax({
+                url: '/ajax/validate-email/',
+                data: {
+                    'email': $('#email').val()
+                },
+                dataType: 'json',
+                success: function (data) {
+                    if (data.is_taken){
+                        $('.button-sign-up').attr('disabled',true);
+                        $('.button-sign-up').addClass('button-disable');
+                        document.createElement("p").append('이미 존재하는 이메일입니다.');
+                        // TODO add to error list class
+                    }else{
+                        $('.button-sign-up').removeClass('button-disable');
+                        $('.button-sign-up').attr('disabled',false);
+                    }
+                }
+            });
+
+         });
+
+    });
+
+</script>
+
+<form class="my-ajax-form" method="post" action="." data-url="{% url 'signup' %}">
   {% csrf_token %}
   <div class="login-box">
     <a href="/"><img src="{% static 'images/nav-logo-text.png' %}" class="nav-log-text-sign" alt="logo-text"/></a>
     <p class="login-box-h2">친구들의 사진과 동영상을 보려면 가입하세요.</p>
     <p>{{ form.email}}</p>
-    <div class="signup-errors">{{ form.email.errors }}</div>
+    <div id="err-email" class="signup-errors"></div>
     <p>{{ form.name}}</p>
-    <div class="signup-errors">{{ form.name.errors }}</div>
+    <div id="err-name" class="signup-errors"></div>
     <p>{{ form.user_name}}</p>
-    <div class="signup-errors">{{ form.user_name.errors }}</div>
+    <div id="err-user_name" class="signup-errors"></div>
     <p>{{ form.password1}}</p>
-    <div class="signup-errors">{{ form.password1.errors }}</div>
+    <div id="err-password1" class="signup-errors"></div>
     <p>{{ form.password2}}</p>
-    <div class="signup-errors">{{ form.password2.errors }}</div>
+    <div id="err-password2" class="signup-errors"></div>
     <p><button type="submit" class="button-sign-up">가입</button></p>
   </div>
     <div class="signup-box">
