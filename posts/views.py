@@ -5,9 +5,10 @@ from django.views.generic import ListView, View, CreateView, UpdateView, DeleteV
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from posts import models
+# from posts.mixins import AjaxFormMixin
 from posts.mixins import AjaxFormMixin
 from posts.module import send_find_password_email
-from .models import Post, User
+from .models import Post, User, UserManager
 from .forms import UserCreationForm, UserLoginForm, PostCreateForm, PostUpdateForm, UserUpdateForm
 from django.urls import reverse_lazy
 
@@ -62,11 +63,6 @@ class PostDelete(DeleteView):
     def get(self, *args, **kwargs):
         return self.post(*args, **kwargs)
 
-
-# class Signup(CreateView):
-#     form_class = UserCreationForm
-#     success_url = reverse_lazy('login')
-#     template_name = 'registration/signup.html'
 
 class Signup(AjaxFormMixin, FormView):
     form_class = UserCreationForm

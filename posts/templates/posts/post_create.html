@@ -40,7 +40,7 @@ function scrollFunction() {
         <div class="post-box-header">
           <span class="post-box-header-title">{% if post.id != null %} 정보 수정 {% else %} 새 게시물 {% endif %} </span>
           <span class="float-r">
-            <a href="#" id="btnShare" class="post-box-header-btnShare" onclick="document.forms[0].submit();" >공유</a>
+            <a href="javascript:void(0);" id="btnShare" class="post-box-header-btnShare" onclick="document.forms[0].submit();" >공유</a>
           </span>
         </div>
         {% csrf_token %}

@@ -41,7 +41,7 @@
         $signupForm.submit(function(event){
             event.preventDefault();
             let $formData = $(this).serialize();
-            let $thisURL = $signupForm.attr('data-url');
+            let $thisURL = $signupForm.attr('data-url') || window.location.href;
             $.ajax({
                 method: "POST",
                 url: $thisURL,
@@ -53,8 +53,8 @@
         });
 
         function handleFormSuccess(data, textStatus, jqXHR){
-            $signupForm.reset();
-            $('.signup-errors').html(data);
+            alert(data.message);
+            location.href = "{% url 'login' %}";
         }
 
         function handleFormError(jqXHR, textStatus, errorThrown){
@@ -68,23 +68,21 @@
         }
 
         $('#email').change(function(){
+            $('#err-email').html('');
             $.ajax({
                 url: '/ajax/validate-email/',
-                data: {
-                    'email': $('#email').val()
-                },
+                data: {'email': $(this).val()},
                 dataType: 'json',
                 success: function (data) {
                     if (data.is_taken){
                         $('.button-sign-up').attr('disabled',true);
                         $('.button-sign-up').addClass('button-disable');
-                        document.createElement("p").append('이미 존재하는 이메일입니다.');
-                        // TODO add to error list class
-                    }else{
+                        $('#err-email').html("이미 존재하는 이메일입니다.");
+                     }else{
                         $('.button-sign-up').removeClass('button-disable');
                         $('.button-sign-up').attr('disabled',false);
-                    }
-                }
+                     }
+                 }
             });
 
          });
@@ -93,7 +91,7 @@
 
 </script>
 
-<form class="my-ajax-form" method="post" action="." data-url="{% url 'signup' %}">
+<form class="my-ajax-form" method="POST" action="." data-url="{{ request.build_absolute_uri|safe }}">
   {% csrf_token %}
   <div class="login-box">
     <a href="/"><img src="{% static 'images/nav-logo-text.png' %}" class="nav-log-text-sign" alt="logo-text"/></a>
