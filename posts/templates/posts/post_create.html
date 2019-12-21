@@ -19,6 +19,20 @@
       $('#take-picture1').click();
     });
 
+      $('#btnShare').on('click', function (e) {
+        $('#feed-more-modal').css('display','block');
+        document.body.style.overflow = 'hidden';
+      });
+
+      $('#feed-more-modal-share').on('click', function (e) {
+        document.forms[0].submit();
+      });
+
+      $('#feed-more-modal-cancel').on('click', function() {
+        $('#feed-more-modal').css('display','none');
+        document.body.style.overflow = '';
+      });
+
 });
 
 function scrollFunction() {
@@ -40,7 +54,7 @@ function scrollFunction() {
         <div class="post-box-header">
           <span class="post-box-header-title">{% if post.id != null %} 정보 수정 {% else %} 새 게시물 {% endif %} </span>
           <span class="float-r">
-            <a href="javascript:void(0);" id="btnShare" class="post-box-header-btnShare" onclick="document.forms[0].submit();" >공유</a>
+            <a href="javascript:void(0);" id="btnShare" class="post-box-header-btnShare" >공유</a>
           </span>
         </div>
         {% csrf_token %}
@@ -58,6 +72,13 @@ function scrollFunction() {
       </form>
     </div>
 
+</div>
+
+<div id="feed-more-modal" class="modal">
+  <div class="modal-content">
+      <a href="javascript:void(0);" id="feed-more-modal-share" class="modal-button share-color modal-button-border-top a-none">공유</a>
+      <a href="javascript:void(0);" id="feed-more-modal-cancel" class="modal-button modal-button-border-top a-none">취소</a>
+  </div>
 </div>
 
 {% endblock %}

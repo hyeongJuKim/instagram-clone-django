@@ -98,6 +98,7 @@ body {
 .a-none:visited { color: black; text-decoration: none;}
 .a-none:hover { color: black; text-decoration: none;}
 .delete-color { color: red !important;}
+.share-color { color: #3897f0 !important;}
 
 .no-drag {
   -webkit-user-drag: none;
