@@ -28,11 +28,11 @@ class UserLoginForm(AuthenticationForm):
 class UserCreationForm(forms.Form):
     email = forms.EmailField(label='email', widget=forms.TextInput(attrs={'id': 'email', 'placeholder': '이메일 주소', 'class': 'input-custom'}))
     name = forms.CharField(label='성명', widget=forms.TextInput(attrs={'placeholder': '성명', 'class': 'input-custom'}))
-    user_name = forms.CharField(label='사용자 이름', widget=forms.TextInput(attrs={'placeholder': '사용자 이름', 'class': 'input-custom'}))
+    user_name = forms.CharField(label='사용자 이름', widget=forms.TextInput(attrs={'placeholder': '사용자 이름', 'class': 'input-custom', 'autocomplete': 'new-password'}))
     password1 = forms.CharField(label='Password',
-                                widget=forms.PasswordInput(attrs={'placeholder': '비밀번호', 'class': 'input-custom'}))
+                                widget=forms.PasswordInput(attrs={'placeholder': '비밀번호', 'class': 'input-custom', 'autocomplete': 'new-password'}))
     password2 = forms.CharField(label='Password confirmation',
-                                widget=forms.PasswordInput(attrs={'placeholder': '비밀번호 재입력', 'class': 'input-custom'}))
+                                widget=forms.PasswordInput(attrs={'placeholder': '비밀번호 재입력', 'class': 'input-custom', 'autocomplete': 'new-password'}))
 
     class Meta:
         model = User
