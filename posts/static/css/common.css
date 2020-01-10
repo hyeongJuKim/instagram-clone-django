@@ -444,6 +444,14 @@ body {
 
 /* django */
 
+.errorlist > li{
+    list-style: none;
+    padding: 0 40px;
+    margin-top: -10px;
+    font-size: 17px;
+    color: red;
+}
+
 
 @media (max-width:799px){
     .main {padding-top: 10px;}
@@ -461,12 +469,6 @@ body {
     .profile-picture{margin-left: 25px;}
     .profile-table-name{width: 30%;}
     .profile-table-input{width:70%;}
-    /*.profile-table-input > input, .profile-table-input > textarea{width: 80%; !important;}*/
-
-    .feed-box {
-        width: auto;
-    }
-
     .feed-box {width: auto;}
     .feed-box-middle {
         height: auto;

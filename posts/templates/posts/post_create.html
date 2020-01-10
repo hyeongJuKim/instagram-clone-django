@@ -24,13 +24,22 @@
         document.body.style.overflow = 'hidden';
       });
 
-      $('#feed-more-modal-share').on('click', function (e) {
+      $('#feed-more-modal-share').on('click', function () {
         document.forms[0].submit();
       });
 
       $('#feed-more-modal-cancel').on('click', function() {
         $('#feed-more-modal').css('display','none');
         document.body.style.overflow = '';
+      });
+
+      // modal click
+      $('#feed-more-modal').on('click', function (e){
+        if(e.target.className == "modal"){
+          $('#feed-more-modal').css('display','none');
+          $('#feed-more-modal-share').attr('href', '');
+          document.body.style.overflow = '';
+        }
       });
 
 });
@@ -76,7 +85,7 @@ function scrollFunction() {
 
 <div id="feed-more-modal" class="modal">
   <div class="modal-content">
-      <a href="javascript:void(0);" id="feed-more-modal-share" class="modal-button share-color modal-button-border-top a-none">공유</a>
+      <a href="javascript:void(0);" id="feed-more-modal-share" class="modal-button share-color a-none">공유</a>
       <a href="javascript:void(0);" id="feed-more-modal-cancel" class="modal-button modal-button-border-top a-none">취소</a>
   </div>
 </div>
