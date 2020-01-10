@@ -453,7 +453,6 @@ body {
     .nav-logo-text {padding-left:0;float: right;width: 100%;max-width: 103px;padding-left: 10px;}
     .nav-right > a {margin-left:8%;}
     .nav-icon {margin-left:0;}
-
     .post-box-header, .post-box {font-size:18px;}
     .show-picture {width:100% !important; max-width:600px; height:auto !important;}
     .feed-box {margin: 0 auto 15px auto;}
@@ -468,6 +467,7 @@ body {
         width: auto;
     }
 
+    .feed-box {width: auto;}
     .feed-box-middle {
         height: auto;
         text-align: center;

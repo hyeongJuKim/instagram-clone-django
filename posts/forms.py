@@ -61,8 +61,6 @@ class UserUpdateForm(forms.ModelForm):
 
 
 class PostCreateForm(forms.ModelForm):
-    content = forms.CharField(
-        widget=forms.Textarea(attrs={'placeholder': '문구 입력..'}), label="")
 
     class Meta:
         model = Post
