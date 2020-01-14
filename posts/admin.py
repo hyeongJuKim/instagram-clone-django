@@ -26,8 +26,17 @@ class UserAdmin(BaseUserAdmin):
     filter_horizontal = ()
 
 
-admin.site.register(User)
-
-admin.site.register(Post)
+# admin.site.register(User)
 
 
+@admin.register(User)
+class PostAdmin(admin.ModelAdmin):
+    list_display = ['id', 'email', 'name', 'user_name', 'comment', 'web_site', 'profile_image', 'phone_number',
+                    'gender', 'is_active', 'is_admin', 'last_login']
+    list_display_links = ['email']
+
+
+@admin.register(Post)
+class PostAdmin(admin.ModelAdmin):
+    list_display = ['id', 'user', 'content', 'image']
+    list_display_links = ['content']
