@@ -115,6 +115,7 @@ body {
     width: 100%;
     z-index: 1;
     transition: height .2s ease-in-out;
+    padding: 20px 20px;
 }
 
 .nav-scroll-down {
@@ -124,8 +125,8 @@ body {
 .nav-inner {
     max-width: 1010px;
     width: 100%;
-    padding:26px 20px;
     margin: 0 auto;
+    padding:0 20px;
     text-align:center;
     box-sizing:border-box;
 }
