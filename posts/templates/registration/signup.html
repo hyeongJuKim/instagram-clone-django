@@ -94,7 +94,7 @@
 <form class="my-ajax-form" method="POST" action="." data-url="{{ request.build_absolute_uri|safe }}">
   {% csrf_token %}
   <div class="login-box">
-    <a href="/"><img src="{% static 'images/nav-logo-text.png' %}" class="nav-log-text-sign" alt="logo-text"/></a>
+    <a href="/"><img src="{% static 'images/nav-logo-text.png' %}" class="nav-log-text-sign logo-text" alt="logo-text"/></a>
     <p class="login-box-h2">친구들의 사진과 동영상을 보려면 가입하세요.</p>
     <p>{{ form.email}}</p>
     <div id="err-email" class="signup-errors"></div>
@@ -112,5 +112,7 @@
       <p>계정이 있으신가요? <a href="{% url 'login' %}" class="button-blue underline-none">로그인</a></p>
     </div>
 </form>
+
+{% include "posts/footer.html" %}
 
 {% endblock %}

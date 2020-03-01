@@ -437,6 +437,35 @@ body {
 .profile-edit-div {margin: auto;}
 
 
+/* footer */
+footer {
+    margin: 70px 12px 35px 23px;
+    text-align: center;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    color: white;
+    position: absolute;
+    font-weight: bolder;
+}
+
+footer ul,ol {list-style: none;}
+footer ul li {
+    display: inline-block;
+    margin-right: 16px;
+}
+footer ul,ol li a {
+    color: #003569;
+    font-size: 12px;
+    cursor: pointer;
+    text-decoration: none;
+}
+footer .footer-title {
+    color: #999;
+    font-size: 12px;
+}
+
+
 /* django */
 
 .errorlist > li{
