@@ -137,6 +137,10 @@ body {
     border-right: 1px solid black;
 }
 
+.logo-text {
+    height: 51px;
+}
+
 .nav-logo-text {
     height: 36px;
     padding-left: 15px;
