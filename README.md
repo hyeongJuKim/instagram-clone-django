@@ -5,7 +5,7 @@
 ![](./preview-profile.png)
 
 - [진행상황 보기](https://trello.com/b/0S9XNYLa)
-- [demo site](http://welove.hopto.org:10080)
+- [demo site](http://52.79.112.138)
 
 ## 기술스택
   - 서버 - AWS EC2
