@@ -4,9 +4,6 @@
 
 ![](./preview-profile.png)
 
-- [진행상황 보기](https://trello.com/b/0S9XNYLa)
-- [demo site](http://52.79.112.138)
-
 ## 기술스택
   - 서버 - AWS EC2
   - 형상관리 - GIT
@@ -16,14 +13,11 @@
 
 ## 기능
   - 회원
-    - [x] 가입, 로그인, 로그아웃
-    - [ ] 비밀번호찾기
-      - [ ] email token 인증
+    - 가입, 로그인, 로그아웃
   - 게시글
-    - [x] 조회, 등록, 수정, 삭제
-      - [ ] 게시글 상세보기 modal 
-    - [x] 이미지 업로드
-    - [x] my profile
+    - 조회, 등록, 수정, 삭제
+    - 이미지 업로드
+    - my profile
   - follower, following
   - like
   - book mark
