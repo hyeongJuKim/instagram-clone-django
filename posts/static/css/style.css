@@ -109,7 +109,8 @@ main>img{
     border: 0.1rem solid #dbdbdb;
     border-radius: 0.3rem;
     padding: 0 0.9rem;
-    margin-left: 2rem;
+    margin: auto 2rem;
+
 }
 
 .profile-settings-btn {
@@ -265,6 +266,7 @@ main>img{
 
     .profile-edit-btn {
         margin-left: 0;
+        margin-left: 10px;
     }
 
     .profile-bio {
