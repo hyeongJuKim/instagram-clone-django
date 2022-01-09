@@ -360,21 +360,7 @@ body {
     text-align: center;
 }
 
-/* Modal Content */
-.modal-content {
-    z-index: 2;
-    background-color: #fefefe;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-    border-radius: 12px;
-    text-align: center;
-}
-
-
 /* modal */
-/* The Modal (background) */
 .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
@@ -391,17 +377,38 @@ body {
 
 /* Modal Content */
 .modal-content {
+    border: 1px solid #888;
+    border-radius: 12px;
+    text-align: center;
     z-index: 999;
     background-color: #fefefe;
     padding: 0;
-    border: 1px solid #888;
-    width:400px;
     min-width: 400px;
     position: fixed;
-    left: 50%;
     top: 50%;
-    margin-left: -200px;
-    border-radius: 12px;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.profile-modal-content {
+    text-align: center;
+    z-index: 999;
+    background-color: #fefefe;
+    padding: 0;
+    /*min-width: 400px;*/
+    /*max-height: 600px;*/
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
 }
 
 
@@ -416,6 +423,14 @@ body {
 
 .modal-button-border-top {
     border-top: 1px solid #efefef;
+}
+
+.modal-profile-container {
+    display: flex;
+}
+
+.profile-content-area {
+    width: 400px;
 }
 
 .show-picture {

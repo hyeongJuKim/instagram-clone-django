@@ -13,10 +13,15 @@
 ## service
   - [X] user
   - [X] post
-  - [X] profile
+  - [ ] profile
+    - [X] profile list
+    - [ ] profile modal
   - [ ] follower, following
   - [ ] like, unlike
   - [ ] book mark
   - [ ] comment
   - [ ] search
   - [ ] activity history
+
+## code
+  - [ ] jQuery 종속성 제거 리팩토링

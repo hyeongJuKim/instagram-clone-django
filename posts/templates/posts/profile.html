@@ -6,8 +6,29 @@
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
 <script type="text/javascript">
+
     // nav scroll resize
     window.onscroll = function() {scrollFunction()};
+
+    $(document).ready(function(){
+
+        $('.gallery-item').on('click', function() {
+            $('#gallery-item-modal').css('display','block');
+            document.body.style.overflow = 'hidden';
+        });
+
+        $('#gallery-item-modal').on('click', function (e){
+            if(e.target.className == "modal"){
+                $('#gallery-item-modal').css('display','none');
+                document.body.style.overflow = '';
+            }
+        });
+        $('#gallery-item-modal-cancel').on('click', function() {
+            $('#gallery-item-modal').css('display','none');
+            document.body.style.overflow = '';
+        });
+
+    });
 
     function scrollFunction() {
       if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
@@ -26,8 +47,7 @@
   <header>
 	<div class="container">
 
-		<div class="profile">
-
+        <div class="profile">
 			<div class="profile-image">
 				<img class="userImgLarge no-drag float-l" src="{%if user.profile_image != '' %} {{user.profile_image.url}} {% endif %}">
 			</div>
@@ -69,33 +89,48 @@
 
 <main>
 
+
 	<div class="container">
-
 		<div class="gallery">
+          {% for post in object_list %}
+            <div class="gallery-item" tabindex="0">
+              <img src="{{post.image.url}}" class="gallery-image" alt="">
+              <div class="gallery-item-info">
+                {# TODO: click event -> modal 에 값 셋팅                  #}
+                  {{ post.image.url }}
+                  {{ post.content }}
+                <ul>
+    {#              <li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 56</li>#}
+    {#              <li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 2</li>#}
+                </ul>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+    </div>
 
-      {% for post in object_list %}
-        <div class="gallery-item" tabindex="0">
-
-          <img src="{{post.image.url}}" class="gallery-image" alt="">
-
-          <div class="gallery-item-info">
-
-            <ul>
-{#              <li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 56</li>#}
-{#              <li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 2</li>#}
-            </ul>
-
-          </div>
+    <div id="gallery-item-modal" class="modal">
+        <div class="profile-modal-content">
+            <div class="modal-profile-container">
+                <div class="profile-image-area">
+                    <img src="https://picsum.photos/600">
+                </div>
+                <div class="profile-content-area">
+                    {% if user.profile_image %}
+                        <img class="userImg no-drag float-l" src="{{user.profile_image.url}}" alt="user" />
+                    {% endif %}
+                    <span class="userName">{{user.user_name}}</span>
+                    <div></div>
+                </div>
+            </div>
 
         </div>
-      {% endfor %}
+    </div>
 
-			</div>
-
-		</div>
 		<!-- End of gallery -->
-
 {#		<div class="loader"></div>#}
+
+
 
 	</div>
 	<!-- End of container -->
