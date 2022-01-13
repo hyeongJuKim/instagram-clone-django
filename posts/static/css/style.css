@@ -10,9 +10,9 @@ Flexbox and floats are used as a fallback so that browsers which don't support g
 
 /* Base Styles */
 
-:root {
-    font-size: 10px;
-}
+/*:root {*/
+/*    font-size: 10px;*/
+/*}*/
 
 /**,*/
 /**::before,*/
@@ -21,11 +21,11 @@ Flexbox and floats are used as a fallback so that browsers which don't support g
 /*}*/
 
 body {
-    font-family: "Open Sans", Arial, sans-serif;
+    /*font-family: "Open Sans", Arial, sans-serif;*/
     min-height: 100vh;
     background-color: #fafafa;
     color: #262626;
-    padding-bottom: 3rem;
+    padding-bottom: 30px;
 }
 
 header>img,
@@ -34,9 +34,10 @@ main>img{
 }
 
 .container {
-    max-width: 93.5rem;
+    /*font-size: 10px;*/
+    max-width: 935px;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0 20px;
 }
 
 .btn {
@@ -50,7 +51,7 @@ main>img{
 }
 
 .btn:focus {
-    outline: 0.5rem auto #4d90fe;
+    outline: 5px auto #4d90fe;
 }
 
 .visually-hidden {
@@ -64,7 +65,7 @@ main>img{
 /* Profile Section */
 
 .profile {
-    padding: 0 0 5rem 0 ;
+    padding: 0 0 50px 0 ;
 }
 
 .profile::after {
@@ -75,11 +76,11 @@ main>img{
 
 .profile-image {
     float: left;
-    width: calc(33.333% - 1rem);
+    width: calc(33.333% - -10px);
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-right: 3rem;
+    margin-right: 30px;
 }
 
 .profile-image img {
@@ -90,43 +91,43 @@ main>img{
 .profile-stats,
 .profile-bio {
     float: left;
-    width: calc(66.666% - 2rem);
+    width: calc(66.666% - 20px);
 }
 
 .profile-user-settings {
-    margin-top: 1.1rem;
+    margin-top: 11px;
 }
 
 .profile-user-name {
     display: inline-block;
-    font-size: 3.2rem;
+    font-size: 32px;
     font-weight: 300;
 }
 
 .profile-edit-btn {
-    font-size: 1.4rem;
+    font-size: 14px;
     line-height: 1.8;
-    border: 0.1rem solid #dbdbdb;
-    border-radius: 0.3rem;
-    padding: 0 0.9rem;
-    margin: auto 2rem;
+    border: 01px solid #dbdbdb;
+    border-radius: 03px;
+    padding: 0 9px;
+    margin: auto 20px;
 
 }
 
 .profile-settings-btn {
-    font-size: 2rem;
-    margin-left: 1rem;
+    font-size: 20px;
+    margin-left: 10px;
 }
 
 .profile-stats {
-    margin-top: 2.3rem;
+    margin-top: 23px;
 }
 
 .profile-stats li {
     display: inline-block;
-    font-size: 1.6rem;
+    font-size: 16px;
     line-height: 1.5;
-    margin-right: 4rem;
+    margin-right: 40px;
     cursor: pointer;
 }
 
@@ -135,10 +136,10 @@ main>img{
 }
 
 .profile-bio {
-    font-size: 1.6rem;
+    font-size: 16px;
     font-weight: 400;
     line-height: 1.5;
-    margin-top: 2.3rem;
+    margin-top: 23px;
 }
 
 .profile-real-name,
@@ -152,14 +153,14 @@ main>img{
 .gallery {
     display: flex;
     flex-wrap: wrap;
-    margin: -1rem -1rem;
-    padding-bottom: 3rem;
+    margin: -10px -10px;
+    padding-bottom: 30px;
 }
 
 .gallery-item {
     position: relative;
-    flex: 1 0 22rem;
-    margin: 1rem;
+    flex: 1 0 220px;
+    margin: 10px;
     color: #fff;
     cursor: pointer;
 }
@@ -182,20 +183,20 @@ main>img{
 
 .gallery-item-info li {
     display: inline-block;
-    font-size: 1.7rem;
+    font-size: 17px;
     font-weight: 600;
 }
 
 .gallery-item-likes {
-    margin-right: 2.2rem;
+    margin-right: 22px;
 }
 
 .gallery-item-type {
     position: absolute;
-    top: 1rem;
-    right: 1rem;
-    font-size: 2.5rem;
-    text-shadow: 0.2rem 0.2rem 0.2rem rgba(0, 0, 0, 0.1);
+    top: 10px;
+    right: 10px;
+    font-size: 25px;
+    text-shadow: 02px 02px 02px rgba(0, 0, 0, 0.1);
 }
 
 .fa-clone,
@@ -212,9 +213,9 @@ main>img{
 /* Loader */
 
 .loader {
-    width: 5rem;
-    height: 5rem;
-    border: 0.6rem solid #999;
+    width: 50px;
+    height: 50px;
+    border: 06px solid #999;
     border-bottom-color: transparent;
     border-radius: 50%;
     margin: 0 auto;
@@ -223,11 +224,11 @@ main>img{
 
 /* Media Query */
 
-@media screen and (max-width: 40rem) {
+@media screen and (max-width: 400px) {
     .profile {
         display: flex;
         flex-wrap: wrap;
-        padding: 4rem 0;
+        padding: 40px 0;
     }
 
     .profile::after {
@@ -243,25 +244,25 @@ main>img{
     }
 
     .profile-image img {
-        width: 7.7rem;
+        width: 77px;
     }
 
     .profile-user-settings {
-        flex-basis: calc(100% - 10.7rem);
+        flex-basis: calc(100% - 107px);
         display: flex;
         flex-wrap: wrap;
-        margin-top: 1rem;
+        margin-top: 10px;
     }
 
     .profile-user-name {
-        font-size: 2.2rem;
+        font-size: 22px;
     }
 
     .profile-edit-btn {
         order: 1;
         padding: 0;
         text-align: center;
-        margin-top: 1rem;
+        margin-top: 10px;
     }
 
     .profile-edit-btn {
@@ -270,8 +271,8 @@ main>img{
     }
 
     .profile-bio {
-        font-size: 1.4rem;
-        margin-top: 1.5rem;
+        font-size: 14px;
+        margin-top: 15px;
     }
 
     .profile-edit-btn,
@@ -282,19 +283,19 @@ main>img{
 
     .profile-stats {
         order: 1;
-        margin-top: 1.5rem;
+        margin-top: 15px;
     }
 
     .profile-stats ul {
         display: flex;
         text-align: center;
-        padding: 1.2rem 0;
-        border-top: 0.1rem solid #dadada;
-        border-bottom: 0.1rem solid #dadada;
+        padding: 12px 0;
+        border-top: 1px solid #dadada;
+        border-bottom: 1px solid #dadada;
     }
 
     .profile-stats li {
-        font-size: 1.4rem;
+        font-size: 14px;
         flex: 1;
         margin: 0;
     }
@@ -312,20 +313,12 @@ main>img{
     }
 }
 
-/*
-
-The following code will only run if your browser supports CSS grid.
-
-Remove or comment-out the code block below to see how the browser will fall-back to flexbox & floated styling. 
-
-*/
-
 @supports (display: grid) {
     .profile {
         display: grid;
         grid-template-columns: 1fr 2fr;
         grid-template-rows: repeat(3, auto);
-        grid-column-gap: 3rem;
+        grid-column-gap: 30px;
         align-items: center;
     }
 
@@ -335,8 +328,8 @@ Remove or comment-out the code block below to see how the browser will fall-back
 
     .gallery {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr));
-        grid-gap: 2rem;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        grid-gap: 20px;
     }
 
     .profile-image,
@@ -349,10 +342,10 @@ Remove or comment-out the code block below to see how the browser will fall-back
         margin: 0;
     }
 
-    @media (max-width: 40rem) {
+    @media (max-width: 400px) {
         .profile {
             grid-template-columns: auto 1fr;
-            grid-row-gap: 1.5rem;
+            grid-row-gap: 15px;
         }
 
         .profile-image {
@@ -362,7 +355,7 @@ Remove or comment-out the code block below to see how the browser will fall-back
         .profile-user-settings {
             display: grid;
             grid-template-columns: auto 1fr;
-            grid-gap: 1rem;
+            grid-gap: 10px;
         }
 
         .profile-edit-btn,
@@ -380,7 +373,7 @@ Remove or comment-out the code block below to see how the browser will fall-back
         }
     }
 
-    @media (max-width: 25rem) {
+    @media (max-width: 250px) {
         .profile-user-settings {
             display: block;
         }

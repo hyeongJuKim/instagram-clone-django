@@ -197,8 +197,11 @@ body {
 .feed-box-top {
     height: 32px;
     padding: 16px;
-    align-items: center;
     font-weight: 600;
+}
+
+.border-bottom {
+    border-bottom: 1px solid #efefef;
 }
 
 .userImg {
@@ -215,7 +218,7 @@ body {
 }
 
 .feed-box-top > .userName {
-    padding-left: 15px;
+    margin: 0 0 0 14px;
     line-height: 32px !important;
 }
 .feed-box-top > .hamburger {
@@ -395,7 +398,7 @@ body {
 }
 
 .profile-modal-content {
-    text-align: center;
+    /*text-align: center;*/
     z-index: 999;
     background-color: #fefefe;
     padding: 0;
@@ -411,6 +414,10 @@ body {
     transform: translate(-50%, -50%);
 }
 
+#profile-image {
+    max-width: 600px;
+    max-height: 600px;
+}
 
 .modal-button {
     font-size: 14px;
@@ -431,6 +438,7 @@ body {
 
 .profile-content-area {
     width: 400px;
+    font-size: 14px;
 }
 
 .show-picture {

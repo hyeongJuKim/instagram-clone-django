@@ -1,8 +1,10 @@
+from django.core import serializers
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import ListView, View, CreateView, UpdateView, DeleteView, FormView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from rest_framework.renderers import JSONRenderer
 
 from posts import models
 # from posts.mixins import AjaxFormMixin
@@ -11,6 +13,8 @@ from posts.module import send_find_password_email
 from .models import Post, User, UserManager
 from .forms import UserCreationForm, UserLoginForm, PostCreateForm, PostUpdateForm, UserUpdateForm
 from django.urls import reverse_lazy
+
+from .serialize import PostUserSerializer
 
 
 class User(LoginRequiredMixin, ListView):
@@ -40,6 +44,15 @@ class Posts(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         return Post.objects.filter(user=self.request.user).order_by('-create_dt')
+
+
+def post(request, pk):
+    if request.method == 'GET':
+        post = models.Post.objects.get(pk=pk)
+        serializer = PostUserSerializer(post)
+        render = JSONRenderer().render(serializer.data)
+
+        return HttpResponse(render, content_type="text/json-comment-filtered")
 
 
 class PostCreate(LoginRequiredMixin, CreateView):
@@ -98,6 +111,5 @@ def password_reset_request(request):
 
 
 def password_reset_response(request, key):
-
     if request.method == 'GET':
         return render(request, 'users/password_reset.html')

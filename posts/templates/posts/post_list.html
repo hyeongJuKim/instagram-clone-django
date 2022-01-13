@@ -7,16 +7,14 @@
 
     $(document).ready(function(){
 
-      // modal open
-      $('.feed-more-icon').on('click', function (e) {
-        let updateUrl = $(this).data('updateUrl');
-        let deleteUrl = $(this).data('deleteUrl');
-
-        $('#feed-more-modal').css('display','block');
-        $('#feed-more-modal-delete').attr('href', deleteUrl);
-        $('#feed-more-modal-update').attr('href', updateUrl);
-        document.body.style.overflow = 'hidden';
-
+        // modal open
+        $('.feed-more-icon').on('click', function (e) {
+            let updateUrl = $(this).data('updateUrl');
+            let deleteUrl = $(this).data('deleteUrl');
+            $('#feed-more-modal').css('display','block');
+            $('#feed-more-modal-delete').attr('href', deleteUrl);
+            $('#feed-more-modal-update').attr('href', updateUrl);
+            document.body.style.overflow = 'hidden';
       });
 
       // modal click
