@@ -1,3 +1,4 @@
+
 # instagram-clone-django
 
 > 취미로 만든 인스타그램 클론 코딩입니다 :)  
@@ -13,9 +14,15 @@
 ## service
   - [X] user
   - [X] post
+    - [X] post list
+    - [ ] post list paging scroll
+    - [X] post detail
+    - [ ] post detail reply(regist time)
   - [ ] profile
     - [X] profile list
-    - [ ] profile modal
+    - [ ] profile list paging scroll
+    - [X] profile detail
+    - [ ] profile detail reply(regist time)
   - [ ] follower, following
   - [ ] like, unlike
   - [ ] book mark
