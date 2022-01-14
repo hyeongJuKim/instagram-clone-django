@@ -20,8 +20,16 @@
                 dataType: "json",
                 success : function(res){
                     let post = res;
+                    console.log(post);
                     $('#profile-image').attr('src', post.image);
                     $('#userName').html(post.user.user_name);
+                    $('#userNameReply').html(post.user.user_name);
+                    $('.content-reply').first().html(post.content);
+
+                    {#$('.feed-more-icon').data('postId', postId);#}
+                    $('#feed-more-modal-update').attr('href', "/posts/post-update/"+postId);
+                    $('#feed-more-modal-delete').attr('href', "/posts/post-delete/"+postId);
+
                 },
                 error : function(xhr, status, error){
                     console.log(status);                // 'error'
@@ -36,14 +44,34 @@
         $('#gallery-item-modal').on('click', function (e){
             if(e.target.className == "modal"){
                 $('#gallery-item-modal').css('display','none');
+                $('.profile-image').attr('src', '');
+                $('#userName').html('');
+                $('#userNameReply').html('');
+                $('.content-reply').html('');
                 document.body.style.overflow = '';
             }
         });
-        $('#gallery-item-modal-cancel').on('click', function() {
-            $('#gallery-item-modal').css('display','none');
-            document.body.style.overflow = '';
+
+        $('#feed-more-modal').on('click', function (e){
+            console.log('feed-more-modal');
+            if(e.target.className == "modal"){
+                $('#feed-more-modal').css('display','none');
+                $('#feed-more-modal-delete').attr('href', '');
+                $('#feed-more-modal-update').attr('href', '');
+                document.body.style.overflow = '';
+            }
         });
 
+        $('.feed-more-icon').on('click', function (e) {
+            console.log('feed-more-icon');
+            $('#feed-more-modal').css('display','block');
+            document.body.style.overflow = 'hidden';
+        });
+
+        $('#feed-more-modal-cancel').on('click', function() {
+            $('#feed-more-modal').css('display','none');
+            document.body.style.overflow = '';
+        });
     });
 
     function scrollFunction() {
@@ -134,15 +162,38 @@
                             <img class="userImg no-drag float-l" src="{{user.profile_image.url}}" alt="user" />
                         {% endif %}
                         <span id="userName" class="userName"></span>
-                        <span id="hamburger" class="hamburger">
-                            <a class="feed-more-icon">
+                        <span class="hamburger">
+                            <a class="feed-more-icon"
+                               data-post-id=""
+                               data-update-url=""
+                               data-delete-url=""
+                            >
                                 <img class="feed-more no-drag" src="{% static 'images/more.png' %}" alt="more" />
                             </a>
                         </span>
                     </div>
+                    <div class="feed-box-content">
+                        <div class="feed-box-content-reply">
+                            <img class="userImg no-drag float-l" src="{{user.profile_image.url}}" alt="user" />
+                            <span id="userNameReply" class="userName"></span>
+                            <span class="content-reply"></span>
+                        </div>
+                        <!-- TODO: for loop reply
+                        <div class="feed-box-content-reply">
+                        </div>
+                        -->
+                    </div>
                 </div>
             </div>
 
+        </div>
+    </div>
+
+    <div id="feed-more-modal" class="modal">
+        <div class="modal-content">
+            <a href="" id="feed-more-modal-delete" class="modal-button delete-color a-none">삭제</a>
+            <a href="" id="feed-more-modal-update" class="modal-button modal-button-border-top a-none">수정</a>
+            <a href="javascript:void(0);" id="feed-more-modal-cancel" class="modal-button modal-button-border-top a-none">취소</a>
         </div>
     </div>
 

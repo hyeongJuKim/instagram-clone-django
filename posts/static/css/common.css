@@ -223,9 +223,10 @@ body {
     border-radius: 50%;
 }
 
-.feed-box-top > .userName {
+.userName {
     margin: 0 0 0 14px;
     line-height: 32px !important;
+    font-weight: 600;
 }
 .feed-box-top > .hamburger {
     float:right;
@@ -240,6 +241,17 @@ body {
     max-width:100%;
     max-height: 600px;
     vertical-align: middle;
+}
+
+.feed-box-content {
+    padding: 16px;
+}
+
+.feed-box-content-reply {
+
+}
+.content-reply {
+    font-weight: 300;
 }
 
 .feed-box-bottom {
