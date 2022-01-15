@@ -258,10 +258,24 @@ body {
     padding: 0 16px 16px 16px;
 }
 
+.feed-box-write-content {
+    margin: 12px 0;
+}
+
+.feed-box-content-reply-right, .feed-box-content-reply-left {
+    display: inline;
+    float: left;
+}
+
 .feed-box-write-time {
     font-size: 10px;
     letter-spacing: .2px;
     color: #999;
+    margin: 0;
+}
+
+.feed-box-content-reply-left > .feed-box-write-time {
+    margin-left: 14px;
 }
 
 .feed-more-icon {

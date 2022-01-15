@@ -10,12 +10,12 @@ class UserSerializer(serializers.ModelSerializer):
 
 class PostUserSerializer(serializers.ModelSerializer):
     user = UserSerializer(read_only=True)
+    create_dt_timesince = serializers.ReadOnlyField(source='timesince_format')
 
     class Meta:
         model = Post
-        fields = ('id', 'user', 'content', 'create_dt', 'updated_at', 'image', 'user')
+        fields = ('id', 'user', 'content', 'create_dt', 'create_dt_timesince', 'updated_at', 'image', 'user')
 
     @classmethod
     def setup_prepending(cls, queryset):
         return queryset.select_related('user')
-

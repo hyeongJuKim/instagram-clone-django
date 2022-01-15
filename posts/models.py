@@ -82,6 +82,10 @@ class Post(models.Model):
     def __str__(self):
         return self.content
 
+    def timesince_format(self):
+        from django.utils.timesince import timesince
+        return timesince(self.create_dt)
+
     class Meta:
         ordering = ['-create_dt']
 
