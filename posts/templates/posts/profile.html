@@ -26,8 +26,8 @@
                     $('#userName').html(post.user.user_name);
                     $('#userNameReply').html(post.user.user_name);
                     $('.content-reply').first().html(post.content);
-                    $('#feed-more-modal-update').attr('href', "/posts/post-update/"+postId);
-                    $('#feed-more-modal-delete').attr('href', "/posts/post-delete/"+postId);
+                    $('#feed-more-modal-update').attr('href', "{% url 'post-update' pk="000" %}".replace(/000/, postId));
+                    $('#feed-more-modal-delete').attr('href', "{% url 'post-delete' pk="000" %}".replace(/000/, postId));
                     $('.feed-box-write-time').first().html(post.create_dt_timesince + ' 전');
 
                 },
