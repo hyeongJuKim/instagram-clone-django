@@ -50,9 +50,9 @@ def post(request, pk):
     if request.method == 'GET':
         post = models.Post.objects.get(pk=pk)
         serializer = PostUserSerializer(post)
-        render = JSONRenderer().render(serializer.data)
+        content = JSONRenderer().render(serializer.data)
 
-        return HttpResponse(render, content_type="text/json-comment-filtered")
+        return HttpResponse(content, content_type="text/json-comment-filtered")
 
 
 class PostCreate(LoginRequiredMixin, CreateView):
