@@ -15,7 +15,7 @@
   - [X] user
   - [X] post
     - [X] post list
-    - [ ] post list paging scroll
+    - [X] post list paging scroll
     - [X] post detail
     - [ ] post detail reply(regist time)
   - [ ] profile
