@@ -5,7 +5,96 @@
 
 <script type="text/javascript">
 
+    let feedCount = 0;
+    let pageEnd = false;
+
     $(document).ready(function(){
+
+        (() => {
+            const feedBoxList = document.querySelector('.feed-box-list');
+            let lastFeed = document.querySelector('.feed-box:last-child')
+            feedCount = feedBoxList.children.length;
+
+            // 인터섹션 옵저버 생성
+            const io = new IntersectionObserver((entry, observer) => {
+
+                if(pageEnd){
+                    io.unobserve(lastFeed);
+                    return;
+                }
+
+                // 현재 보이는 target
+                const ioTarget = entry[0].target;
+
+                // viewport에 target이 보이면
+                if (entry[0].isIntersecting){
+
+                    // 현재 보이는 target 감시 취소
+                    io.unobserve(lastFeed);
+
+                    // generate feed
+                    let cloneNode = document.querySelector('.feed-box-dummy').cloneNode(true);
+                    cloneNode.setAttribute('class', 'feed-box');
+                    cloneNode.style.display = 'block';
+                    lastFeed = cloneNode;
+
+                    // ajax get data
+                    let page = document.querySelector('#page');
+                    page.value = Number(page.value)+1;
+
+                    $.ajax({
+                        url: "{% url 'posts-page' %}",
+                        method: "GET",
+                        data : {page: Number(page.value)+1},
+                        dataType: "json",
+                        success : function(res){
+                            let post = res[0];
+
+                            // 더이상 조히할 데이터가 없으면 feedbox dummy를 삭제한다.
+                            if(res.length === 0){
+                                pageEnd = true;
+                                lastFeed.remove();
+                                return;
+                            }
+
+                            // post
+                            lastFeed.querySelector('.userImg').setAttribute('src', post.user.profile_image);
+                            lastFeed.querySelector('.userName').innerHTML = post.user.user_name;
+                            lastFeed.querySelector('.feed-more-icon').dataset.postId = post.id;
+                            lastFeed.querySelector('.feed-more-icon').dataset.updateUrl = "{% url 'post-update' pk="000" %}".replace(/000/, post.id);
+                            lastFeed.querySelector('.feed-more-icon').dataset.deleteUrl = "{% url 'post-delete' pk="000" %}".replace(/000/, post.id);
+                            lastFeed.querySelector('.feed-box-middle-img').setAttribute('src', post.image);
+                            lastFeed.querySelector('.feed-box-write-content').innerHTML = post.content;
+                            lastFeed.querySelector('.feed-box-write-time').innerHTML = post.create_dt_timesince;
+
+                            // TODO: reload 한 hambuger button event 동작시키기
+                        },
+                        error : function(xhr, status, error){
+                            console.log(status);                // 'error'
+                            console.log(error);                 // 'Not Found'
+                        }
+                    });
+
+                    // append new feed
+                    feedBoxList.appendChild(lastFeed);
+
+                    // feed 갯수 증가
+                    ++feedCount;
+
+                    // 새로운 feed 감시
+                    io.observe(lastFeed);
+
+                }
+
+            }, {
+                // target이 50%이상 보이면 감시
+                threshold: 0.5
+            });
+
+            // feed 감시
+            io.observe(lastFeed);
+
+        })();
 
         // modal open
         $('.feed-more-icon').on('click', function (e) {
@@ -36,7 +125,7 @@
 
     // nav scroll resize
     window.onscroll = function() {scrollFunction()};
-    
+
     function scrollFunction() {
       if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
           $('.nav').css('padding', '10px 0');
@@ -49,7 +138,7 @@
 
 </script>
 <div class="main">
-
+    <input id="page" type="hidden" value="2">
     <div class="feed-box-list">
 
         {% if object_list %}
@@ -80,7 +169,6 @@
                         <p class="feed-box-write-content">{{post.content}}</p>
                         <p class="feed-box-write-time">{{post.create_dt|timesince}} 전</p>
                     </div>
-                    <div></div>
                 </div>
             </div>
             {% endfor%}
@@ -98,6 +186,28 @@
       <a href="" id="feed-more-modal-update" class="modal-button modal-button-border-top a-none">수정</a>
       <a href="javascript:void(0);" id="feed-more-modal-cancel" class="modal-button modal-button-border-top a-none">취소</a>
   </div>
+</div>
+
+
+<div class="feed-box-dummy" style="display: none;">
+    <div class="feed-box-top">
+        <img class="userImg no-drag float-l" src="" alt="user">
+        <span class="userName"></span>
+        <span id="hamburger" class="hamburger">
+            <a class="feed-more-icon" data-post-id="" data-update-url="" data-delete-url="">
+                <img class="feed-more no-drag" src="{% static 'images/more.png' %}" alt="more">
+            </a>
+        </span>
+    </div>
+    <div class="feed-box-middle">
+        <img class="feed-box-middle-img no-drag" src="" alt="feedImage">
+    </div>
+    <div class="feed-box-bottom">
+        <div>
+            <p class="feed-box-write-content"></p>
+            <p class="feed-box-write-time"></p>
+        </div>
+    </div>
 </div>
 
 {% endblock %}

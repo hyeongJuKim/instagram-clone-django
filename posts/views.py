@@ -1,4 +1,5 @@
 from django.core import serializers
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
@@ -41,9 +42,29 @@ class Posts(LoginRequiredMixin, ListView):
     model = Post
     context_object_name = "object_list"
     template_name = 'posts/post_list.html'
+    paginate_by = 3
 
     def get_queryset(self):
         return Post.objects.filter(user=self.request.user).order_by('-create_dt')
+
+
+def posts_page(request):
+    if request.method == 'GET':
+        posts = models.Post.objects.filter(user=request.user)
+        paginator = Paginator(posts, 1)
+        page = request.GET.get('page')
+
+        try:
+            posts = paginator.page(page)
+        except PageNotAnInteger:
+            posts = paginator.page(paginator.page(1))
+        except EmptyPage:
+            posts = None
+
+        serializer = PostUserSerializer(posts, many=True)
+
+        content = JSONRenderer().render(serializer.data)
+        return HttpResponse(content, content_type="text/json-comment-filtered")
 
 
 def post(request, pk):

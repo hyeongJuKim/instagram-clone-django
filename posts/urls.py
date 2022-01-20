@@ -13,6 +13,7 @@ urlpatterns = [
     path('users/reset-password/', views.password_reset_response, name='reset-password'),
     path('users/', include('django.contrib.auth.urls')),
     path('posts/post-list/', views.Posts.as_view(), name='posts'),
+    path('posts/posts-page/', views.posts_page, name='posts-page'),
     path('posts/<int:pk>', views.post, name='post'),
     path('posts/post-create/', views.PostCreate.as_view(), name='post-create'),
     path('posts/post-update/<int:pk>', views.PostUpdate.as_view(), name='post-update'),
