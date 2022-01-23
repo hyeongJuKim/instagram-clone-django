@@ -97,7 +97,8 @@
         })();
 
         // modal open
-        $('.feed-more-icon').on('click', function (e) {
+        $(document).on('click', '.feed-more-icon', function () {
+            console.log('feed-more-icon');
             let updateUrl = $(this).data('updateUrl');
             let deleteUrl = $(this).data('deleteUrl');
             $('#feed-more-modal').css('display','block');
@@ -107,16 +108,14 @@
       });
 
       // modal click
-      $('#feed-more-modal').on('click', function (e){
+        $(document).on('click', '#feed-more-modal', function (e){
         if(e.target.className == "modal"){
           $('#feed-more-modal').css('display','none');
           $('#feed-more-modal-delete').attr('href', '');
           $('#feed-more-modal-update').attr('href', '');
           document.body.style.overflow = '';
-        }
-      });
 
-      $('#feed-more-modal-cancel').on('click', function() {
+      $(document).on('click', '#feed-more-modal-cancel', function (e){
         $('#feed-more-modal').css('display','none');
         document.body.style.overflow = '';
       });
