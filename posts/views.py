@@ -21,10 +21,30 @@ from .serialize import PostUserSerializer
 class User(LoginRequiredMixin, ListView):
     model = Post
     template_name = 'posts/profile.html'
+    paginate_by = 9
 
     def get_queryset(self):
         queryset = Post.objects.filter(user=self.request.user).order_by('-create_dt')
         return queryset
+
+
+def user_page(request):
+    if request.method == 'GET':
+        posts = models.Post.objects.filter(user=request.user)
+        paginator = Paginator(posts, 1)
+        page = request.GET.get('page')
+
+        try:
+            posts = paginator.page(page)
+        except PageNotAnInteger:
+            posts = paginator.page(page)
+        except EmptyPage:
+            posts = None
+
+        serializer = PostUserSerializer(posts, many=True)
+
+        content = JSONRenderer().render(serializer.data)
+        return HttpResponse(content, content_type="text/json-comment-filtered")
 
 
 class UserUpdate(LoginRequiredMixin, UpdateView):

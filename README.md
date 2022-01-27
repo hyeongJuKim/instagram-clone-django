@@ -20,15 +20,16 @@
     - [ ] post detail reply(regist time)
   - [ ] profile
     - [X] profile list
-    - [ ] profile list paging scroll
+    - [X] profile list paging scroll
     - [X] profile detail
     - [ ] profile detail reply(regist time)
   - [ ] follower, following
   - [ ] like, unlike
-  - [ ] book mark
+  - [ ] bookmark
   - [ ] comment
   - [ ] search
   - [ ] activity history
 
 ## code
   - [ ] jQuery 종속성 제거 리팩토링
+  - [ ] 변수명 리팩토링

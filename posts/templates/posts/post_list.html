@@ -53,6 +53,9 @@
       }
     }
 
+    /**
+     * 피드 무한스크롤 로딩
+     */
     function feedToInfiniteScroll(){
 
         const feedBoxList = document.querySelector('.feed-box-list');
@@ -111,7 +114,6 @@
                         lastFeed.querySelector('.feed-box-write-content').innerHTML = post.content;
                         lastFeed.querySelector('.feed-box-write-time').innerHTML = post.create_dt_timesince;
 
-                        // TODO: reload 한 hambuger button event 동작시키기
                     },
                     error : function(xhr, status, error){
                         console.log(status);                // 'error'
