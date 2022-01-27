@@ -50,7 +50,7 @@ class Posts(LoginRequiredMixin, ListView):
 
 def posts_page(request):
     if request.method == 'GET':
-        posts = models.Post.objects.filter(user=request.user)
+        posts = models.Post.objects.filter(user=request.user).order_by('-create_dt')
         paginator = Paginator(posts, 1)
         page = request.GET.get('page')
 
