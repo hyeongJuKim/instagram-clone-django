@@ -237,7 +237,7 @@ body {
     line-height: 600px;
 }
 .feed-box-middle img {
-    width:auto;
+    width: -webkit-fill-available;
     max-width:100%;
     max-height: 600px;
     vertical-align: middle;
