@@ -1,4 +1,4 @@
-asgiref==3.2.2
+asgiref==3.5.0
 awscli==1.16.255
 awsebcli==3.15.3
 blessed==1.15.0
@@ -8,7 +8,7 @@ cement==2.8.2
 certifi==2019.9.11
 chardet==3.0.4
 colorama==0.3.9
-Django==2.2.6
+Django==4.0.1
 djangorestframework==3.11.2
 docker==3.7.3
 docker-compose==1.23.2
@@ -34,6 +34,7 @@ six==1.11.0
 sqlparse==0.3.0
 termcolor==1.1.0
 texttable==0.9.1
+UNKNOWN==0.0.0
 urllib3==1.26.5
 wcwidth==0.1.7
 websocket-client==0.56.0
