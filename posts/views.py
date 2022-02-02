@@ -118,6 +118,33 @@ class PostDelete(DeleteView):
         return self.post(*args, **kwargs)
 
 
+class Explore(LoginRequiredMixin, ListView):
+    model = Post
+    context_object_name = "object_list"
+    template_name = 'posts/explore.html'
+    ordering = '-create_dt'
+    paginate_by = 3
+
+
+def explore_page(request):
+    if request.method == 'GET':
+        posts = models.Post.objects.filter().order_by('-create_dt')
+        paginator = Paginator(posts, 1)
+        page = request.GET.get('page')
+
+        try:
+            posts = paginator.page(page)
+        except PageNotAnInteger:
+            posts = paginator.page(paginator.page(1))
+        except EmptyPage:
+            posts = None
+
+        serializer = PostUserSerializer(posts, many=True)
+
+        content = JSONRenderer().render(serializer.data)
+        return HttpResponse(content, content_type="text/json-comment-filtered")
+
+
 class Signup(AjaxFormMixin, FormView):
     form_class = UserCreationForm
     template_name = 'registration/signup.html'

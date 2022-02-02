@@ -18,8 +18,14 @@
 {#                <a href="{% url 'profile' pk=user.id %}" class="underline-none">#}
 {#                    <img src="{% static 'images/heart_white.png' %}" class="nav-icon icon-medium" alt="new feed"/>#}
 {#                </a>#}
+                <a href="/" class="underline-none">
+                    <img src="{% static 'images/home.png' %}" class="nav-icon icon-medium no-drag" alt="profile"/>
+                </a>
                 <a href="{% url 'profile' pk=user.id %}" class="underline-none">
                     <img src="{% static 'images/profile.png' %}" class="nav-icon icon-medium no-drag" alt="profile"/>
+                </a>
+                <a href="/explore" class="underline-none">
+                    <img src="{% static 'images/explore.png' %}" class="nav-icon icon-medium no-drag" alt="profile"/>
                 </a>
                 <a href="{% url 'logout' %}">
                     <img src="{% static 'images/logout.png' %}" class="nav-icon icon-medium no-drag" alt="logout"/>

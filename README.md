@@ -22,6 +22,8 @@
     - [X] post list paging scroll
     - [X] post detail
     - [ ] post detail reply(regist time)
+  - [ ] explore
+    - [] explore list
   - [ ] profile
     - [X] profile list
     - [X] profile list paging scroll
@@ -39,5 +41,3 @@
   - [ ] jQuery 종속성 제거 리팩토링
   - [ ] 변수명 리팩토링
   - [ ] 무한스크롤 호출 코드, 백엔드 코드 리팩토링
-  - 
-  - 

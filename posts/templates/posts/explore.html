@@ -1,0 +1,266 @@
+{% extends "posts/base-inner.html" %}
+{% load static %}
+{% block title %}{{ user.name }}({{ user.user_name }}) • Instagram 사진 및 동영상{% endblock %}
+
+{% block page_content %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <script type="text/javascript">
+
+        let feedCount = 0;
+        let pageEnd = false;
+
+        // nav scroll resize
+        window.onscroll = function() {scrollFunction()};
+
+        $(document).ready(function(){
+
+            profileToInfiniteScroll();
+
+            $('.gallery-item').on('click', function() {
+                let postId = $(this).data('postId');
+                $.ajax({
+                    url: "/posts/"+postId,
+                    method: "GET",
+                    dataType: "json",
+                    success : function(res){
+                        let post = res;
+
+                        // post
+                        $('#profile-image').attr('src', post.image);
+                        $('#userName').html(post.user.user_name);
+                        $('#userNameReply').html(post.user.user_name);
+                        $('.content-reply').first().html(post.content);
+                        {#$('#feed-more-modal-update').attr('href', "{% url 'post-update' pk="000" %}".replace(/000/, postId));#}
+                        {#$('#feed-more-modal-delete').attr('href', "{% url 'post-delete' pk="000" %}".replace(/000/, postId));#}
+                        $('.feed-box-write-time').first().html(post.create_dt_timesince + ' 전');
+
+                    },
+                    error : function(xhr, status, error){
+                        console.log(status);                // 'error'
+                        console.log(error);                 // 'Not Found'
+                    }
+                });
+
+                $('#gallery-item-modal').css('display','block');
+                document.body.style.overflow = 'hidden';
+            });
+
+            $('#gallery-item-modal').on('click', function (e){
+                if(e.target.className == "modal"){
+                    $('#gallery-item-modal').css('display','none');
+                    $('.profile-image').attr('src', '');
+                    $('#userName').html('');
+                    $('#userNameReply').html('');
+                    $('.content-reply').html('');
+                    document.body.style.overflow = '';
+                }
+            });
+
+            $('#feed-more-modal').on('click', function (e){
+                if(e.target.className == "modal"){
+                    $('#feed-more-modal').css('display','none');
+                    $('#feed-more-modal-delete').attr('href', '');
+                    $('#feed-more-modal-update').attr('href', '');
+                    document.body.style.overflow = '';
+                }
+            });
+
+            $('.feed-more-icon').on('click', function (e) {
+                $('#feed-more-modal').css('display','block');
+                document.body.style.overflow = 'hidden';
+            });
+
+            $('#feed-more-modal-cancel').on('click', function() {
+                $('#feed-more-modal').css('display','none');
+                document.body.style.overflow = '';
+            });
+        });
+
+        /**
+         * 프로파일 무한스크롤 로딩
+         */
+        function profileToInfiniteScroll(){
+
+            const feedBoxList = document.querySelector('.gallery');
+            let lastFeed = document.querySelector('.gallery:last-child')
+            feedCount = feedBoxList.children.length;
+
+            // 인터섹션 옵저버 생성
+            const io = new IntersectionObserver((entry, observer) => {
+
+                if(pageEnd){
+                    io.unobserve(lastFeed);
+                    return;
+                }
+
+                // 현재 보이는 target
+                const ioTarget = entry[0].target;
+
+                // viewport에 target이 보이면
+                if (entry[0].isIntersecting){
+
+                    // 현재 보이는 target 감시 취소
+                    io.unobserve(lastFeed);
+
+                    // generate feed
+                    let cloneNode = document.querySelector('.gallery-item-dummy').cloneNode(true);
+                    cloneNode.setAttribute('class', 'gallery-item');
+                    cloneNode.style.display = 'block';
+                    lastFeed = cloneNode;
+
+                    // ajax get data
+                    let page = document.querySelector('#page');
+                    page.value = Number(page.value)+1;
+
+                    $.ajax({
+                        url: "{% url 'explore-page' %}",
+                        method: "GET",
+                        data : {page: Number(page.value)+1},
+                        dataType: "json",
+                        success : function(res){
+                            let post = res[0];
+
+                            // 더이상 조히할 데이터가 없으면 gallery-image dummy를 삭제한다.
+                            if(res.length === 0){
+                                pageEnd = true;
+                                lastFeed.remove();
+                                return;
+                            }
+
+                            // post
+                            lastFeed.dataset.postId = post.id;
+                            lastFeed.querySelector('.gallery-image').setAttribute('src', post.image);
+
+                        },
+                        error : function(xhr, status, error){
+                            console.log(status);                // 'error'
+                            console.log(error);                 // 'Not Found'
+                        }
+                    });
+
+                    // append new feed
+                    feedBoxList.appendChild(lastFeed);
+
+                    // feed 갯수 증가
+                    ++feedCount;
+
+                    // 새로운 feed 감시
+                    io.observe(lastFeed);
+
+                }
+
+            }, {
+                // target이 50%이상 보이면 감시
+                threshold: 0.3
+            });
+
+            // feed 감시
+            io.observe(lastFeed);
+        }
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+                $('.nav').css('padding', '10px 0');
+                $('.scrolldown-hide').fadeOut(200);
+            } else {
+                $('.nav').css('padding', '20px 0');
+                $('.scrolldown-hide').fadeIn(200);
+            }
+        }
+    </script>
+
+    <div class="main">
+    </div>
+
+    <main>
+        <input id="page" type="hidden" value="9">
+        <div class="container">
+            <div class="gallery">
+                {% for post in object_list %}
+                    <div class="gallery-item" tabindex="0" data-post-id="{{ post.id }}">
+                        <img src="{{post.image.url}}" class="gallery-image" alt="">
+                        <div class="gallery-item-info">
+                            <ul>
+                                {#              <li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 56</li>#}
+                                {#              <li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 2</li>#}
+                            </ul>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div id="gallery-item-modal" class="modal">
+            <div class="profile-modal-content">
+                <div class="modal-profile-container">
+                    <div class="profile-image-area">
+                        <img id="profile-image" class="profile-image" src="">
+                    </div>
+                    <div class="profile-content-area">
+                        <div class="feed-box-top border-bottom">
+                            {% if user.profile_image %}
+                                <img class="userImg no-drag float-l" src="{{user.profile_image.url}}" alt="user" />
+                            {% endif %}
+                            <span id="userName" class="userName"></span>
+                            <span class="hamburger">
+                            <a class="feed-more-icon"
+                               data-post-id=""
+                               data-update-url=""
+                               data-delete-url=""
+                            >
+                                <img class="feed-more no-drag" src="{% static 'images/more.png' %}" alt="more" />
+                            </a>
+                        </span>
+                        </div>
+                        <div class="feed-box-content">
+                            <div class="feed-box-content-reply">
+                                <div class="feed-box-content-reply-right">
+                                    <img class="userImg no-drag float-l" src="{{user.profile_image.url}}" alt="user" />
+                                </div>
+                                <div class="feed-box-content-reply-left">
+                                    <span id="userNameReply" class="userName"></span>
+                                    <span class="content-reply "></span>
+                                    <p class="feed-box-write-content"></p>
+                                    <p class="feed-box-write-time"></p>
+                                </div>
+
+                            </div>
+                            <!-- TODO: for loop reply
+                            <div class="feed-box-content-reply">
+                            </div>
+                            -->
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="feed-more-modal" class="modal">
+            <div class="modal-content">
+{#                <a href="" id="feed-more-modal-delete" class="modal-button delete-color a-none">삭제</a>#}
+{#                <a href="" id="feed-more-modal-update" class="modal-button modal-button-border-top a-none">수정</a>#}
+                <a href="javascript:void(0);" id="feed-more-modal-cancel" class="modal-button modal-button-border-top a-none">취소</a>
+            </div>
+        </div>
+        <!-- End of gallery -->
+        {#		<div class="loader"></div>#}
+
+        </div>
+
+        <div class="gallery-item-dummy" tabindex="0" data-post-id="" style="display: none;">
+            <img src="" class="gallery-image" alt="">
+            <div class="gallery-item-info">
+                <ul>
+                    {#              <li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 56</li>#}
+                    {#              <li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 2</li>#}
+                </ul>
+            </div>
+        </div>
+
+        <!-- End of container -->
+
+    </main>
+
+{% endblock %}
