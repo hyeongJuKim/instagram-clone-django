@@ -1,0 +1,126 @@
+{% extends "posts/base-inner.html" %}
+{% load static %}
+{% block title %}{{ user.name }}({{ user.user_name }}) • Instagram 사진 및 동영상{% endblock %}
+
+{% block page_content %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <script type="text/javascript">
+
+        $(document).ready(function(){
+
+            $(document).on('click', '.gallery-item', function () {
+                let postId = $(this).data('postId');
+                $.ajax({
+                    url: "/posts/"+postId,
+                    method: "POST",
+                    dataType: "json",
+                    success : function(res){
+                        let post = res;
+
+                        // post
+                        $('#profile-image').attr('src', post.image);
+                        $('#userName').html(post.user.user_name);
+                        $('#userNameReply').html(post.user.user_name);
+                        $('.content-reply').first().html(post.content);
+                        $('.feed-box-write-time').first().html(post.create_dt_timesince + ' 전');
+
+                    },
+                    error : function(xhr, status, error){
+                        console.log(status);                // 'error'
+                        console.log(error);                 // 'Not Found'
+                    }
+                });
+
+                $('#gallery-item-modal').css('display','block');
+                document.body.style.overflow = 'hidden';
+            });
+
+            $('#gallery-item-modal').on('click', function (e){
+                if(e.target.className == "modal"){
+                    $('#gallery-item-modal').css('display','none');
+                    $('.profile-image').attr('src', '');
+                    $('#userName').html('');
+                    $('#userNameReply').html('');
+                    $('.content-reply').html('');
+                    document.body.style.overflow = '';
+                }
+            });
+
+            $('#feed-more-modal').on('click', function (e){
+                if(e.target.className == "modal"){
+                    $('#feed-more-modal').css('display','none');
+                    document.body.style.overflow = '';
+                }
+            });
+
+            $('.feed-more-icon').on('click', function (e) {
+                $('#feed-more-modal').css('display','block');
+                document.body.style.overflow = 'hidden';
+            });
+
+            $('#feed-more-modal-cancel').on('click', function() {
+                $('#feed-more-modal').css('display','none');
+                document.body.style.overflow = '';
+            });
+        });
+
+    </script>
+
+    <main>
+        <div id="gallery-item-modal" class="modal?">
+            <div class="post-modal-content">
+                <div class="modal-profile-container">
+                    <div class="profile-image-area">
+                        <img id="profile-image" class="profile-image" src="{{ post.image.url }}">
+                    </div>
+                    <div class="profile-content-area">
+                        <div class="feed-box-top border-bottom">
+                            {% if user.profile_image %}
+                                <img class="userImg no-drag float-l" src="{{user.profile_image.url}}" alt="user" />
+                            {% endif %}
+                            <span id="userName" class="userName">{{ user.user_name }}</span>
+                            <span class="hamburger">
+                            <a class="feed-more-icon" data-post-id="">
+                                <img class="feed-more no-drag" src="{% static 'images/more.png' %}" alt="more" />
+                            </a>
+                        </span>
+                        </div>
+                        <div class="feed-box-content">
+                            <div class="feed-box-content-reply">
+                                <div class="feed-box-content-reply-right">
+                                    <img class="userImg no-drag float-l" src="{{user.profile_image.url}}" alt="user" />
+                                </div>
+                                <div class="feed-box-content-reply-left">
+                                    <span id="userNameReply" class="userName">{{ user.user_name }}</span>
+                                    <span class="content-reply"></span>
+                                    <p class="feed-box-write-content">{{ post.content }}</p>
+                                    <p class="feed-box-write-time">{{ post.create_dt_timesince }}</p>
+                                </div>
+
+                            </div>
+                            <!-- TODO: for loop reply
+                            <div class="feed-box-content-reply">
+                            </div>
+                            -->
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="feed-more-modal" class="modal">
+            <div class="modal-content">
+                <a href="" id="feed-more-modal-delete" class="modal-button delete-color a-none">삭제</a>
+                <a href="" id="feed-more-modal-update" class="modal-button modal-button-border-top a-none">수정</a>
+                <a href="javascript:void(0);" id="feed-more-modal-cancel" class="modal-button modal-button-border-top a-none">취소</a>
+            </div>
+        </div>
+        {#		<div class="loader"></div>#}
+
+        </div>
+
+    </main>
+
+{% endblock %}

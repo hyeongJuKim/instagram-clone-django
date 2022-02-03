@@ -430,14 +430,26 @@ body {
 }
 
 .profile-modal-content {
-    /*text-align: center;*/
     z-index: 999;
     background-color: #fefefe;
     padding: 0;
-    /*min-width: 400px;*/
-    /*max-height: 600px;*/
     position: fixed;
     top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+/*상세페이지 모달*/
+.post-modal-content {
+    z-index: 999;
+    background-color: #fefefe;
+    padding: 0;
+    position: fixed;
+    top: 400px;
     left: 50%;
     -webkit-transform: translate(-50%, -50%);
     -moz-transform: translate(-50%, -50%);

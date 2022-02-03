@@ -87,9 +87,16 @@ def posts_page(request):
         return HttpResponse(content, content_type="text/json-comment-filtered")
 
 
+@csrf_exempt
 def post(request, pk):
+    post = models.Post.objects.get(pk=pk)
+
+    # 단일 페이지
     if request.method == 'GET':
-        post = models.Post.objects.get(pk=pk)
+        return render(request, 'posts/post.html', {'post': post})
+
+    # 포스트 내용 조회
+    if request.method == 'POST':
         serializer = PostUserSerializer(post)
         content = JSONRenderer().render(serializer.data)
 

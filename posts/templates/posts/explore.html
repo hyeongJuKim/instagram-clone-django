@@ -1,7 +1,6 @@
 {% extends "posts/base-inner.html" %}
 {% load static %}
 {% block title %}{{ user.name }}({{ user.user_name }}) • Instagram 사진 및 동영상{% endblock %}
-
 {% block page_content %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
@@ -17,11 +16,14 @@
 
             profileToInfiniteScroll();
 
-            $('.gallery-item').on('click', function() {
+            /**
+             * 게시물 클릭 이벤트
+              */
+            $(document).on('click', '.gallery-item', function () {
                 let postId = $(this).data('postId');
                 $.ajax({
                     url: "/posts/"+postId,
-                    method: "GET",
+                    method: "POST",
                     dataType: "json",
                     success : function(res){
                         let post = res;
@@ -31,7 +33,6 @@
                         $('#userName').html(post.user.user_name);
                         $('#userNameReply').html(post.user.user_name);
                         $('.content-reply').first().html(post.content);
-                        {#$('#feed-more-modal-update').attr('href', "{% url 'post-update' pk="000" %}".replace(/000/, postId));#}
                         {#$('#feed-more-modal-delete').attr('href', "{% url 'post-delete' pk="000" %}".replace(/000/, postId));#}
                         $('.feed-box-write-time').first().html(post.create_dt_timesince + ' 전');
 
@@ -61,7 +62,7 @@
                 if(e.target.className == "modal"){
                     $('#feed-more-modal').css('display','none');
                     $('#feed-more-modal-delete').attr('href', '');
-                    $('#feed-more-modal-update').attr('href', '');
+                    $('#feed-more-modal-link').attr('href', '');
                     document.body.style.overflow = '';
                 }
             });
@@ -75,6 +76,23 @@
                 $('#feed-more-modal').css('display','none');
                 document.body.style.overflow = '';
             });
+
+            /**
+             * 피드 링크 url 복사
+             */
+            $(document).on('click', '#feed-more-modal-link', function () {
+                let domain = '{{ request.get_host }}';
+                let postId = document.getElementsByClassName('gallery-item')[0].dataset.postId;
+                let tmpEl = document.createElement('input');
+                document.body.appendChild(tmpEl);
+                tmpEl.value = domain+"{% url 'post' pk="000" %}".replace(/000/, postId);
+                tmpEl.select();
+                document.execCommand('copy');
+                document.body.removeChild(tmpEl);
+                alert('링크가 복사되었습니다.');
+
+            });
+
         });
 
         /**
@@ -168,6 +186,7 @@
                 $('.scrolldown-hide').fadeIn(200);
             }
         }
+
     </script>
 
     <div class="main">
@@ -240,7 +259,7 @@
         <div id="feed-more-modal" class="modal">
             <div class="modal-content">
 {#                <a href="" id="feed-more-modal-delete" class="modal-button delete-color a-none">삭제</a>#}
-{#                <a href="" id="feed-more-modal-update" class="modal-button modal-button-border-top a-none">수정</a>#}
+                <span id="feed-more-modal-link" class="modal-button modal-button-border-top a-none">링크복사</span>
                 <a href="javascript:void(0);" id="feed-more-modal-cancel" class="modal-button modal-button-border-top a-none">취소</a>
             </div>
         </div>

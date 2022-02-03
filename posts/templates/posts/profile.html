@@ -17,11 +17,11 @@
 
         profileToInfiniteScroll();
 
-        $('.gallery-item').on('click', function() {
+        $(document).on('click', '.gallery-item', function () {
             let postId = $(this).data('postId');
             $.ajax({
                 url: "/posts/"+postId,
-                method: "GET",
+                method: "POST",
                 dataType: "json",
                 success : function(res){
                     let post = res;
