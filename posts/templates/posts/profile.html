@@ -14,8 +14,13 @@
 
         profileToInfiniteScroll();
 
+        /**
+         * 게시물 클릭 이벤트
+         */
         $(document).on('click', '.gallery-item', function () {
             let postId = $(this).data('postId');
+
+            // 게시물 조회
             $.ajax({
                 url: "/posts/"+postId,
                 method: "POST",
@@ -43,7 +48,12 @@
             document.body.style.overflow = 'hidden';
         });
 
+        /**
+         * 게시물 조회 모달 영역 클릭 이벤트
+         */
         $('#gallery-item-modal').on('click', function (e){
+
+            // 게시물 상세 모달 버튼이 아닌 영역 클릭 할 경우
             if(e.target.className == "modal"){
                 $('#gallery-item-modal').css('display','none');
                 $('.profile-image').attr('src', '');
@@ -54,8 +64,23 @@
             }
         });
 
-        $('#feed-more-modal').on('click', function (e){
+        /**
+         * hamburger 모달 아이콘 클릭 이벤트
+         */
+        $(document).on('click', '.feed-more-icon', function () {
+            $('#feed-more-modal').css('display','block');
+            document.body.style.overflow = 'hidden';
+        });
+
+        /**
+         * hamburger 모달 영역 클릭 이벤트
+         */
+        $(document).on('click', '#feed-more-modal', function (e){
+
+            // hamburger 모달 버튼이 아닌 영역 클릭 할 경우
             if(e.target.className == "modal"){
+
+                // hamburger 모달 닫기 처리
                 $('#feed-more-modal').css('display','none');
                 $('#feed-more-modal-delete').attr('href', '');
                 $('#feed-more-modal-update').attr('href', '');
@@ -63,19 +88,18 @@
             }
         });
 
-        $('.feed-more-icon').on('click', function (e) {
-            $('#feed-more-modal').css('display','block');
-            document.body.style.overflow = 'hidden';
-        });
-
-        $('#feed-more-modal-cancel').on('click', function() {
+        /**
+         * hamburger 취소 버튼 클릭 이벤트
+         */
+        $(document).on('click', '#feed-more-modal-cancel', function (e){
             $('#feed-more-modal').css('display','none');
             document.body.style.overflow = '';
         });
+
     });
 
     /**
-     * 프로파일 무한스크롤 로딩
+     * 프로파일 무한 스크롤 로딩
      */
     function profileToInfiniteScroll(){
 
@@ -206,7 +230,7 @@
 
 </header>
 
-<main>
+{#<main>#}
 
 
 	<div class="container">
@@ -295,6 +319,6 @@
 
 	<!-- End of container -->
 
-</main>
+{#</main>#}
 
 {% endblock %}

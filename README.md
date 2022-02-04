@@ -1,4 +1,5 @@
 
+
 # instagram-clone-django
 
 > 취미로 만든 인스타그램 클론 코딩입니다 :)  
@@ -22,8 +23,9 @@
     - [X] post list paging scroll
     - [X] post detail
     - [ ] post detail reply(regist time)
+    - [ ] hash tag search
   - [ ] explore
-    - [] explore list
+    - [X] explore list
   - [ ] profile
     - [X] profile list
     - [X] profile list paging scroll

@@ -18,10 +18,13 @@ body {
     background-color: #fafafa;
 }
 
+h1 {
+    margin: 10px 0;
+}
+
 .main {
     line-height: 18px;
-    margin-top: 87px;
-    padding-top: 60px;
+    margin-top: 90px;
     background-color: #fafafa;
 }
 
@@ -509,7 +512,10 @@ body {
 }
 .profile-submit-div {margin-bottom: 32px;}
 .profile-table-input > input, .profile-table-input > textarea{width: 80%; !important;}
-.profile-edit-div {margin: auto;}
+.profile-edit-div {
+    margin: auto;
+    display: inline;
+}
 
 
 /* footer */
@@ -551,6 +557,10 @@ footer .footer-title {
     color: red;
 }
 
+.profile-stats > ul {
+    margin: 5px 0;
+    padding: 0;
+}
 
 @media (max-width:799px){
     .main {padding-top: 10px;}
