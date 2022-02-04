@@ -9,8 +9,13 @@
 
         $(document).ready(function(){
 
+            /**
+             * 게시물 클릭 이벤트
+             */
             $(document).on('click', '.gallery-item', function () {
                 let postId = $(this).data('postId');
+
+                // 게시물 조회
                 $.ajax({
                     url: "/posts/"+postId,
                     method: "POST",
@@ -47,22 +52,36 @@
                 }
             });
 
-            $('#feed-more-modal').on('click', function (e){
+            /**
+             * hamburger 모달 영역 클릭 이벤트
+             */
+            $(document).on('click', '#feed-more-modal', function (e){
+
+                // // hamburger 모달 버튼이 아닌 영역 클릭 할 경우
                 if(e.target.className == "modal"){
+
+                    // hamburger 모달 닫기 처리
                     $('#feed-more-modal').css('display','none');
                     document.body.style.overflow = '';
                 }
             });
 
-            $('.feed-more-icon').on('click', function (e) {
+            /**
+             * hamburger 모달 아이콘 클릭 이벤트
+             */
+            $(document).on('click', '.feed-more-icon', function () {
                 $('#feed-more-modal').css('display','block');
                 document.body.style.overflow = 'hidden';
             });
 
-            $('#feed-more-modal-cancel').on('click', function() {
+            /**
+             *  hamburger 취소버튼 클릭 이벤트
+             */
+            $(document).on('click', '#feed-more-modal-cancel', function (e){
                 $('#feed-more-modal').css('display','none');
                 document.body.style.overflow = '';
             });
+
         });
 
     </script>

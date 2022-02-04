@@ -46,7 +46,12 @@
                 document.body.style.overflow = 'hidden';
             });
 
+            /**
+             * 게시물 상세 모달 영역 클릭 에빈트
+             */
             $('#gallery-item-modal').on('click', function (e){
+
+                // 게시물 상세 모달 버튼이 아닌 영역 클릭 할 경우
                 if(e.target.className == "modal"){
                     $('#gallery-item-modal').css('display','none');
                     $('.profile-image').attr('src', '');
@@ -57,27 +62,33 @@
                 }
             });
 
-            $('#feed-more-modal').on('click', function (e){
-                if(e.target.className == "modal"){
-                    $('#feed-more-modal').css('display','none');
-                    $('#feed-more-modal-delete').attr('href', '');
-                    $('#feed-more-modal-link').attr('href', '');
-                    document.body.style.overflow = '';
-                }
-            });
-
+            /**
+             * hamburger 아이콘 클릭 이벤트
+             */
             $('.feed-more-icon').on('click', function (e) {
+
+                // 더보기 모달 호출
                 $('#feed-more-modal').css('display','block');
                 document.body.style.overflow = 'hidden';
             });
 
-            $('#feed-more-modal-cancel').on('click', function() {
-                $('#feed-more-modal').css('display','none');
-                document.body.style.overflow = '';
+            /**
+             * hamburger 모달 영역 클릭 이벤트
+             */
+            $('#feed-more-modal').on('click', function (e){
+
+                // hamburger 모달의 버튼이 아닌 영역 클릭 할 경우
+                if(e.target.className == "modal"){
+
+                    // hamburger 모달 닫기 처리
+                    $('#feed-more-modal').css('display','none');
+                    $('#feed-more-modal-visit-link').attr('href', '');
+                    document.body.style.overflow = '';
+                }
             });
 
             /**
-             * 피드 링크 url 복사
+             * 링크복사 버튼 클릭 이벤트
              */
             $(document).on('click', '#feed-more-modal-link', function () {
                 let domain = '{{ request.get_host }}';
@@ -88,14 +99,23 @@
                 tmpEl.select();
                 document.execCommand('copy');
                 document.body.removeChild(tmpEl);
-                alert('링크가 복사되었습니다.');
+                alert('링크를 클립보드에 복사했습니다.');
 
+            });
+
+            /**
+             *  hamburger 취소버튼 클릭 이벤트
+             */
+            $('#feed-more-modal-cancel').on('click', function() {
+                $('#feed-more-modal').css('display','none');
+                $('#feed-more-modal-visit-link').attr('href', '');
+                document.body.style.overflow = '';
             });
 
         });
 
         /**
-         * 프로파일 무한스크롤 로딩
+         * 게시물 무한 스크롤 로딩
          */
         function profileToInfiniteScroll(){
 
@@ -129,7 +149,6 @@
                     // ajax get data
                     let page = document.querySelector('#page');
                     page.value = Number(page.value)+1;
-                    console.log(page.value);
 
                     $.ajax({
                         url: "{% url 'explore-page' %}",

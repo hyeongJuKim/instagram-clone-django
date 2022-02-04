@@ -5,33 +5,47 @@
 <script type="text/javascript">
     $( document ).ready(function() {
 
+        // init event
         $('#take-picture1').hide();
+        $('#id_content').focus();
 
-        {% if post.id != null %}
-            $('#id_content').focus();
-        {% endif %}
-
+        /**
+         * 이미지 업로드 아이콘 클릭 이벤트
+         */
         $('#show-picture1').on('click', function (e) {
             e.preventDefault();
             $('#take-picture1').click();
         });
 
+        /**
+         * 공유 모달 호출 이벤트
+         */
         $('#btnShare').on('click', function (e) {
             $('#feed-more-modal').css('display','block');
             document.body.style.overflow = 'hidden';
         });
 
+        /**
+         * 게시물 공유 버튼 클릭 이벤트
+         */
         $('#feed-more-modal-share').on('click', function () {
             document.forms[0].submit();
         });
 
+        /**
+         * hamburger 취소 버튼 클릭 이벤트
+         */
         $('#feed-more-modal-cancel').on('click', function() {
             $('#feed-more-modal').css('display','none');
             document.body.style.overflow = '';
         });
 
-        // modal click
+        /**
+         * hamburger 모달 영역 클릭 이벤트
+         */
         $('#feed-more-modal').on('click', function (e){
+
+            // hamburger 모달 버튼이 아닌 영역 클릭 할 경우
             if(e.target.className == "modal"){
                 $('#feed-more-modal').css('display','none');
                 $('#feed-more-modal-share').attr('href', '');

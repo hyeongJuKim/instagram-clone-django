@@ -12,36 +12,46 @@
 
         feedToInfiniteScroll();
 
-        // modal open
+        /**
+         * hamburger 모달 아이콘 클릭 이벤트
+         */
         $(document).on('click', '.feed-more-icon', function () {
-            console.log('feed-more-icon');
             let updateUrl = $(this).data('updateUrl');
             let deleteUrl = $(this).data('deleteUrl');
             $('#feed-more-modal').css('display','block');
             $('#feed-more-modal-delete').attr('href', deleteUrl);
             $('#feed-more-modal-update').attr('href', updateUrl);
             document.body.style.overflow = 'hidden';
-      });
+        });
 
-      // modal click
+        /**
+         * hamburger 모달 영역 클릭 이벤트
+         */
         $(document).on('click', '#feed-more-modal', function (e){
-        if(e.target.className == "modal"){
-          $('#feed-more-modal').css('display','none');
-          $('#feed-more-modal-delete').attr('href', '');
-          $('#feed-more-modal-update').attr('href', '');
-          document.body.style.overflow = '';
-        }
-      });
 
-      $(document).on('click', '#feed-more-modal-cancel', function (e){
-        $('#feed-more-modal').css('display','none');
-        document.body.style.overflow = '';
-      });
+            // hamburger 모달 버튼이 아닌 영역 클릭 할 경우
+            if(e.target.className == "modal"){
+
+                // hamburger 모달 닫기 처리
+                $('#feed-more-modal').css('display','none');
+                $('#feed-more-modal-delete').attr('href', '');
+                $('#feed-more-modal-update').attr('href', '');
+                document.body.style.overflow = '';
+            }
+        });
+
+        /**
+         *  hamburger 취소버튼 클릭 이벤트
+         */
+        $(document).on('click', '#feed-more-modal-cancel', function (e){
+            $('#feed-more-modal').css('display','none');
+            document.body.style.overflow = '';
+        });
 
     });
 
     /**
-     * 피드 무한스크롤 로딩
+     * 피드 무한 스크롤 로딩
      */
     function feedToInfiniteScroll(){
 
@@ -74,7 +84,9 @@
 
                 // ajax get data
                 let page = document.querySelector('#page');
+                {#console.log(page.value);#}
                 page.value = Number(page.value)+1;
+                console.log(page.value);
 
                 $.ajax({
                     url: "{% url 'posts-page' %}",
