@@ -1,4 +1,3 @@
-from django.core import serializers
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
@@ -6,15 +5,12 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import ListView, View, CreateView, UpdateView, DeleteView, FormView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from rest_framework.renderers import JSONRenderer
-
 from posts import models
-# from posts.mixins import AjaxFormMixin
 from posts.mixins import AjaxFormMixin
 from posts.module import send_find_password_email
-from .models import Post, User, UserManager
+from .models import Post
 from .forms import UserCreationForm, UserLoginForm, PostCreateForm, PostUpdateForm, UserUpdateForm
 from django.urls import reverse_lazy
-
 from .serialize import PostUserSerializer
 
 
@@ -59,6 +55,8 @@ class UserUpdate(LoginRequiredMixin, UpdateView):
 
 
 class Posts(LoginRequiredMixin, ListView):
+    """ 게시글 목록 화면 """
+
     model = Post
     context_object_name = "object_list"
     template_name = 'posts/post_list.html'
@@ -69,6 +67,8 @@ class Posts(LoginRequiredMixin, ListView):
 
 
 def posts_page(request):
+    """ 게시글 목록 조회 """
+
     if request.method == 'GET':
         posts = models.Post.objects.filter(user=request.user).order_by('-create_dt')
         paginator = Paginator(posts, 1)
@@ -89,6 +89,8 @@ def posts_page(request):
 
 @csrf_exempt
 def post(request, pk):
+    """ 게시글 조회 """
+
     post = models.Post.objects.get(pk=pk)
 
     # 단일 페이지
@@ -104,6 +106,8 @@ def post(request, pk):
 
 
 class PostCreate(LoginRequiredMixin, CreateView):
+    """ 게시글 생성 """
+
     model = Post
     form_class = PostCreateForm
     template_name = 'posts/post_create.html'
@@ -111,6 +115,8 @@ class PostCreate(LoginRequiredMixin, CreateView):
 
 
 class PostUpdate(LoginRequiredMixin, UpdateView):
+    """ 게시글 수정 """
+
     model = Post
     form_class = PostUpdateForm
     template_name = 'posts/post_create.html'
@@ -118,6 +124,8 @@ class PostUpdate(LoginRequiredMixin, UpdateView):
 
 
 class PostDelete(DeleteView):
+    """ 게시글 삭제 """
+
     model = Post
     success_url = '/'
 
@@ -126,18 +134,25 @@ class PostDelete(DeleteView):
 
 
 class Explore(LoginRequiredMixin, ListView):
+    """ 게시물 탐색 페이지 이동 """
+
     model = Post
     context_object_name = "object_list"
     template_name = 'posts/explore.html'
     ordering = '-create_dt'
-    paginate_by = 3
+    paginate_by = 9
 
 
 def explore_page(request):
+    """ 게시물 탐색 조회 """
+
     if request.method == 'GET':
         posts = models.Post.objects.filter().order_by('-create_dt')
         paginator = Paginator(posts, 1)
         page = request.GET.get('page')
+
+        print(page)
+        print(page)
 
         try:
             posts = paginator.page(page)

@@ -113,7 +113,7 @@
                 $.ajax({
                     url: "{% url 'profile_page' %}",
                     method: "GET",
-                    data : {page: Number(page.value)+1},
+                    data : {page: page.value},
                     dataType: "json",
                     success : function(res){
                         let post = res[0];

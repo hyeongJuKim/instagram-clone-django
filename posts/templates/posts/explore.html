@@ -127,11 +127,12 @@
                     // ajax get data
                     let page = document.querySelector('#page');
                     page.value = Number(page.value)+1;
+                    console.log(page.value);
 
                     $.ajax({
                         url: "{% url 'explore-page' %}",
                         method: "GET",
-                        data : {page: Number(page.value)+1},
+                        data : {page: page.value},
                         dataType: "json",
                         success : function(res){
                             let post = res[0];
