@@ -18,6 +18,8 @@
               */
             $(document).on('click', '.gallery-item', function () {
                 let postId = $(this).data('postId');
+
+                // 게시물 조회
                 $.ajax({
                     url: "/posts/"+postId,
                     method: "POST",
@@ -30,7 +32,7 @@
                         $('#userName').html(post.user.user_name);
                         $('#userNameReply').html(post.user.user_name);
                         $('.content-reply').first().html(post.content);
-                        {#$('#feed-more-modal-delete').attr('href', "{% url 'post-delete' pk="000" %}".replace(/000/, postId));#}
+                        $('#feed-more-modal-visit-link').attr('href', "{% url 'post' pk="000" %}".replace(/000/, postId));
                         $('.feed-box-write-time').first().html(post.create_dt_timesince + ' 전');
 
                     },
@@ -246,8 +248,8 @@
 
         <div id="feed-more-modal" class="modal">
             <div class="modal-content">
-{#                <a href="" id="feed-more-modal-delete" class="modal-button delete-color a-none">삭제</a>#}
-                <span id="feed-more-modal-link" class="modal-button modal-button-border-top a-none">링크복사</span>
+                <a href="" id="feed-more-modal-visit-link" class="modal-button a-none">게시물로 이동</a>
+                <a href="javascript:void(0);" id="feed-more-modal-link" class="modal-button modal-button-border-top a-none">링크복사</a>
                 <a href="javascript:void(0);" id="feed-more-modal-cancel" class="modal-button modal-button-border-top a-none">취소</a>
             </div>
         </div>
