@@ -15,9 +15,13 @@ from .serialize import PostUserSerializer
 
 
 class User(LoginRequiredMixin, ListView):
+    """ 프로필 페이지 이동 """
     model = Post
     template_name = 'posts/profile.html'
     paginate_by = 9
+
+    # TODO: 화면의 게시물 수를 페이징 처리 하지 않은 전체 갯수로 표시해야 함
+    total_count = model.objects.count()
 
     def get_queryset(self):
         queryset = Post.objects.filter(user=self.request.user).order_by('-create_dt')
@@ -25,6 +29,8 @@ class User(LoginRequiredMixin, ListView):
 
 
 def user_page(request):
+    """ 프로필 게시물 조회 """
+
     if request.method == 'GET':
         posts = models.Post.objects.filter(user=request.user)
         paginator = Paginator(posts, 1)
@@ -44,6 +50,7 @@ def user_page(request):
 
 
 class UserUpdate(LoginRequiredMixin, UpdateView):
+    """ 프로필 수정 """
     model = models.User
     form_class = UserUpdateForm
     template_name = 'users/user_update.html'
