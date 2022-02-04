@@ -7,12 +7,9 @@
 
     $('#take-picture1').hide();
 
-    // scroll down resize
-    window.onscroll = function() {scrollFunction()};
-
-    {% if post.id != null %}
-      $('#id_content').focus();
-    {% endif %}
+        {% if post.id != null %}
+            $('#id_content').focus();
+        {% endif %}
 
     $('#show-picture1').on('click', function (e) {
       e.preventDefault();
@@ -43,16 +40,6 @@
       });
 
 });
-
-function scrollFunction() {
-  if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
-      $('.nav').css('padding', '10px 0');
-      $('.scrolldown-hide').fadeOut(200);
-  } else {
-      $('.nav').css('padding', '20px 0');
-      $('.scrolldown-hide').fadeIn(200);
-  }
-};
 
 </script>
 
