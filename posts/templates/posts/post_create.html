@@ -3,43 +3,43 @@
 
 {% block page_content %}
 <script type="text/javascript">
-  $( document ).ready(function() {
+    $( document ).ready(function() {
 
-    $('#take-picture1').hide();
+        $('#take-picture1').hide();
 
         {% if post.id != null %}
             $('#id_content').focus();
         {% endif %}
 
-    $('#show-picture1').on('click', function (e) {
-      e.preventDefault();
-      $('#take-picture1').click();
+        $('#show-picture1').on('click', function (e) {
+            e.preventDefault();
+            $('#take-picture1').click();
+        });
+
+        $('#btnShare').on('click', function (e) {
+            $('#feed-more-modal').css('display','block');
+            document.body.style.overflow = 'hidden';
+        });
+
+        $('#feed-more-modal-share').on('click', function () {
+            document.forms[0].submit();
+        });
+
+        $('#feed-more-modal-cancel').on('click', function() {
+            $('#feed-more-modal').css('display','none');
+            document.body.style.overflow = '';
+        });
+
+        // modal click
+        $('#feed-more-modal').on('click', function (e){
+            if(e.target.className == "modal"){
+                $('#feed-more-modal').css('display','none');
+                $('#feed-more-modal-share').attr('href', '');
+                document.body.style.overflow = '';
+            }
+        });
+
     });
-
-      $('#btnShare').on('click', function (e) {
-        $('#feed-more-modal').css('display','block');
-        document.body.style.overflow = 'hidden';
-      });
-
-      $('#feed-more-modal-share').on('click', function () {
-        document.forms[0].submit();
-      });
-
-      $('#feed-more-modal-cancel').on('click', function() {
-        $('#feed-more-modal').css('display','none');
-        document.body.style.overflow = '';
-      });
-
-      // modal click
-      $('#feed-more-modal').on('click', function (e){
-        if(e.target.className == "modal"){
-          $('#feed-more-modal').css('display','none');
-          $('#feed-more-modal-share').attr('href', '');
-          document.body.style.overflow = '';
-        }
-      });
-
-});
 
 </script>
 

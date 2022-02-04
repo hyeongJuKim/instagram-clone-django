@@ -151,9 +151,6 @@ def explore_page(request):
         paginator = Paginator(posts, 1)
         page = request.GET.get('page')
 
-        print(page)
-        print(page)
-
         try:
             posts = paginator.page(page)
         except PageNotAnInteger:
