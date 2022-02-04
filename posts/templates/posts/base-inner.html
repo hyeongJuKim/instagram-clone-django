@@ -15,17 +15,17 @@
             </div>
 {#            <div class="nav-center inline-block"><input class="nav-search-input" type="text" placeholder="검색" /></div>#}
             <div class="nav-right inline-block">
-{#                <a href="{% url 'profile' pk=user.id %}" class="underline-none">#}
+{#                <a href="{% url 'profile' pk=user.id %}" class="underline-none"> #}
 {#                    <img src="{% static 'images/heart_white.png' %}" class="nav-icon icon-medium" alt="new feed"/>#}
 {#                </a>#}
                 <a href="/" class="underline-none">
-                    <img src="{% static 'images/home.png' %}" class="nav-icon icon-medium no-drag" alt="profile"/>
+                    <img src="{% static 'images/home.png' %}" class="nav-icon icon-medium no-drag" alt="home"/>
+                </a>
+                <a href="/explore" class="underline-none">
+                    <img src="{% static 'images/explore.png' %}" class="nav-icon icon-medium no-drag" alt="explore"/>
                 </a>
                 <a href="{% url 'profile' pk=user.id %}" class="underline-none">
                     <img src="{% static 'images/profile.png' %}" class="nav-icon icon-medium no-drag" alt="profile"/>
-                </a>
-                <a href="/explore" class="underline-none">
-                    <img src="{% static 'images/explore.png' %}" class="nav-icon icon-medium no-drag" alt="profile"/>
                 </a>
                 <a href="{% url 'logout' %}">
                     <img src="{% static 'images/logout.png' %}" class="nav-icon icon-medium no-drag" alt="logout"/>
