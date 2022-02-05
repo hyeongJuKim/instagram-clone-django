@@ -20,12 +20,11 @@ class User(LoginRequiredMixin, ListView):
     template_name = 'posts/profile.html'
     paginate_by = 9
 
-    # TODO: 화면의 게시물 수를 페이징 처리 하지 않은 전체 갯수로 표시해야 함
-    total_count = model.objects.count()
+    def get(self, request, *args, **kwargs):
+        tot_cnt = self.model.objects.count()
+        object_list = Post.objects.filter(user=self.request.user).order_by('-create_dt')
 
-    def get_queryset(self):
-        queryset = Post.objects.filter(user=self.request.user).order_by('-create_dt')
-        return queryset
+        return render(request, self.template_name, {'object_list': object_list, 'tot_cnt': tot_cnt})
 
 
 def user_page(request):
@@ -57,7 +56,7 @@ class UserUpdate(LoginRequiredMixin, UpdateView):
     success_url = "/users/profile-update/{id}"
 
     def get_queryset(self):
-        queryset = models.User.objects.filter(email=self.request.user.email).order_by('-create_dt')
+        queryset = models.User.objects.filter(email=self.request.user.email)
         return queryset
 
 
