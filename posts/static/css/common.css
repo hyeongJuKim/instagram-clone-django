@@ -432,6 +432,11 @@ h1 {
     transform: translate(-50%, -50%);
 }
 
+.profile-tab {
+    border-top: 1px solid rgba(var(--b38,219,219,219),1);
+    margin: 0 0 52px 0;
+}
+
 .profile-modal-content {
     z-index: 999;
     background-color: #fefefe;
