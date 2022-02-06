@@ -521,6 +521,15 @@ h1 {
     font-weight: 600;
 }
 .profile-submit-div {margin-bottom: 32px;}
+#profile-edit {
+    display: block;
+    margin-top: 5px;
+    color: #3897f0;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+
+}
 .profile-table-input > input, .profile-table-input > textarea{width: 80%; !important;}
 .profile-edit-div {
     margin: auto;
