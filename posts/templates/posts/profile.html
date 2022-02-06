@@ -194,6 +194,8 @@
 			<div class="profile-image">
 				<img class="userImgLarge no-drag float-l" src="{%if user.profile_image != '' %} {{user.profile_image.url}} {% endif %}">
 			</div>
+
+            {# TODO: 세션과 비교해서 같은 아이디면 프로필 편집 보여주고 다르 숨기기 #}
 			<div class="profile-user-settings">
 				<h1 class="profile-user-name vertical-m">{{user.user_name}}</h1>
                 <div class="profile-edit-div">
@@ -202,7 +204,6 @@
                     </a>
                     <img src="{% static 'images/settings.png' %}" class="icon-medium vertical-m" alt="logo"/>
                 </div>
-
 			</div>
 
 			<div class="profile-stats">
