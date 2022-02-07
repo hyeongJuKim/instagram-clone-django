@@ -21,17 +21,18 @@ class User(LoginRequiredMixin, ListView):
     paginate_by = 9
 
     def get(self, request, *args, **kwargs):
+
         tot_cnt = self.model.objects.count()
-        object_list = Post.objects.filter(user=self.request.user).order_by('-create_dt')
+        object_list = Post.objects.filter(user=kwargs['pk']).order_by('-create_dt')
 
         return render(request, self.template_name, {'object_list': object_list, 'tot_cnt': tot_cnt})
 
 
-def user_page(request):
+def user_page(request, pk):
     """ 프로필 게시물 조회 """
 
     if request.method == 'GET':
-        posts = models.Post.objects.filter(user=request.user)
+        posts = models.Post.objects.filter(user=pk)
         paginator = Paginator(posts, 1)
         page = request.GET.get('page')
 
