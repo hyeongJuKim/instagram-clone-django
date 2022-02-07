@@ -216,6 +216,7 @@ h1 {
 .userImg {
     width: 32px;
     border-radius: 50%;
+    cursor: pointer;
 }
 .userImg-38x {
     width: 38px;
@@ -230,6 +231,7 @@ h1 {
     margin: 0 0 0 14px;
     line-height: 32px !important;
     font-weight: 600;
+    cursor: pointer;
 }
 .feed-box-top > .hamburger {
     float:right;
@@ -470,7 +472,7 @@ h1 {
     width: 600px;
 }
 
-#profile-image {
+#profile-post-image {
     width: -webkit-fill-available;
     max-width:100%;
     max-height: 600px;

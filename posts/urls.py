@@ -7,7 +7,7 @@ from . import views
 urlpatterns = [
     path('', views.Posts.as_view(), name='posts'),
     path('users/profile/<int:pk>', views.User.as_view(), name='profile'),
-    path('users/profile-page/', views.user_page, name='profile_page'),
+    path('users/profile-page/<int:pk>', views.user_page, name='profile_page'),
     path('users/profile-update/<int:pk>', views.UserUpdate.as_view(), name='profile_update'),
     path('users/signup/', views.Signup.as_view(), name='signup'),
     path('users/forget-password/', views.password_reset_request, name='forget-password'),

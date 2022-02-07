@@ -1,7 +1,6 @@
 {% extends "posts/base-inner.html" %}
 {% load static %}
 {% block title %}{{ user.name }}({{ user.user_name }}) • Instagram 사진 및 동영상{% endblock %}
-
 {% block page_content %}
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
@@ -29,7 +28,7 @@
                     let post = res;
 
                     // post
-                    $('#profile-image').attr('src', post.image);
+                    $('#profile-post-image').attr('src', post.image);
                     $('#userName').html(post.user.user_name);
                     $('#userNameReply').html(post.user.user_name);
                     $('.content-reply').first().html(post.content);
@@ -135,9 +134,9 @@
                 page.value = Number(page.value)+1;
 
                 $.ajax({
-                    url: "{% url 'profile_page' %}",
+                    url: "{% url 'profile_page' pk=request.path|get_url_pk %}",
                     method: "GET",
-                    data : {page: page.value},
+                    data : {'page': page.value},
                     dataType: "json",
                     success : function(res){
                         let post = res[0];
@@ -186,16 +185,17 @@
 </div>
 
 <header>
-
-  <input id="page" type="hidden" value="9">
+    <input id="page" type="hidden" value="9">
 	<div class="container">
-
         <div class="profile">
 			<div class="profile-image">
 				<img class="userImgLarge no-drag float-l" src="{%if user.profile_image != '' %} {{user.profile_image.url}} {% endif %}">
 			</div>
 
-            {# TODO: 세션과 비교해서 같은 아이디면 프로필 편집 보여주고 다르 숨기기 #}
+            {# TODO: if session.userid == request.userid: #}
+            {#      프로필 편집 버튼#}
+            {#  elif: #}
+            {#      다른 버튼 #}
 			<div class="profile-user-settings">
 				<h1 class="profile-user-name vertical-m">{{user.user_name}}</h1>
                 <div class="profile-edit-div">
@@ -255,7 +255,7 @@
         <div class="profile-modal-content">
             <div class="modal-profile-container">
                 <div class="profile-image-area">
-                    <img id="profile-image" class="profile-image" src="">
+                    <img id="profile-post-image" class="profile-image" src="">
                 </div>
                 <div class="profile-content-area">
                     <div class="feed-box-top border-bottom">
@@ -276,7 +276,9 @@
                     <div class="feed-box-content">
                         <div class="feed-box-content-reply">
                             <div class="feed-box-content-reply-right">
-                                <img class="userImg no-drag float-l" src="{{user.profile_image.url}}" alt="user" />
+                                {% if user.profile_image %}
+                                    <img class="userImg no-drag float-l" src="{{user.profile_image.url}}" alt="user" />
+                                {% endif %}
                             </div>
                             <div class="feed-box-content-reply-left">
                                 <span id="userNameReply" class="userName"></span>

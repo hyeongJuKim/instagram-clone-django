@@ -18,6 +18,7 @@
               */
             $(document).on('click', '.gallery-item', function () {
                 let postId = $(this).data('postId');
+                let userId = $(this).data('userId');
 
                 // 게시물 조회
                 $.ajax({
@@ -28,13 +29,17 @@
                         let post = res;
 
                         // post
-                        $('#profile-image').attr('src', post.image);
+                        $('#profile-post-image').attr('src', post.image);
+                        $('.profile-post-userImg').attr('src', post.user.profile_image);
                         $('#userName').html(post.user.user_name);
+
+                        // 첫 번째 댓글은 자기 자신
                         $('#userNameReply').html(post.user.user_name);
                         $('.content-reply').first().html(post.content);
+
                         $('#feed-more-modal-visit-link').attr('href', "{% url 'post' pk="000" %}".replace(/000/, postId));
                         $('.feed-box-write-time').first().html(post.create_dt_timesince + ' 전');
-
+                        document.querySelector('#gallery-item-modal').dataset.userId = userId;
                     },
                     error : function(xhr, status, error){
                         console.log(status);                // 'error'
@@ -85,6 +90,14 @@
                     $('#feed-more-modal-visit-link').attr('href', '');
                     document.body.style.overflow = '';
                 }
+            });
+
+            /**
+             * 프로필 이미지, 프로필명 클릭 이벤트
+             */
+            $(document).on('click', '.userImg, .userName', function () {
+                let userId = document.querySelector('#gallery-item-modal').dataset.userId;
+                location.href = "{% url 'profile' pk="000" %}".replace(/000/, userId);
             });
 
             /**
@@ -167,6 +180,7 @@
 
                             // post
                             lastFeed.dataset.postId = post.id;
+                            lastFeed.dataset.userId = post.user.id;
                             lastFeed.querySelector('.gallery-image').setAttribute('src', post.image);
 
                         },
@@ -206,7 +220,7 @@
         <div class="container">
             <div class="gallery">
                 {% for post in object_list %}
-                    <div class="gallery-item" tabindex="0" data-post-id="{{ post.id }}">
+                    <div class="gallery-item" tabindex="0" data-post-id="{{ post.id }}" data-user-id="{{ post.user.id }}">
                         <img src="{{post.image.url}}" class="gallery-image" alt="">
                         <div class="gallery-item-info">
                             <ul>
@@ -223,20 +237,16 @@
             <div class="profile-modal-content">
                 <div class="modal-profile-container">
                     <div class="profile-image-area">
-                        <img id="profile-image" class="profile-image" src="">
+                        <img id="profile-post-image" class="profile-image" src="">
                     </div>
                     <div class="profile-content-area">
                         <div class="feed-box-top border-bottom">
                             {% if user.profile_image %}
-                                <img class="userImg no-drag float-l" src="{{user.profile_image.url}}" alt="user" />
+                                <img class="profile-post-userImg userImg no-drag float-l" src="" alt="user" />
                             {% endif %}
                             <span id="userName" class="userName"></span>
                             <span class="hamburger">
-                            <a class="feed-more-icon"
-                               data-post-id=""
-                               data-update-url=""
-                               data-delete-url=""
-                            >
+                            <a class="feed-more-icon" data-post-id="">
                                 <img class="feed-more no-drag" src="{% static 'images/more.png' %}" alt="more" />
                             </a>
                         </span>
@@ -244,7 +254,9 @@
                         <div class="feed-box-content">
                             <div class="feed-box-content-reply">
                                 <div class="feed-box-content-reply-right">
-                                    <img class="userImg no-drag float-l" src="{{user.profile_image.url}}" alt="user" />
+                                    {% if user.profile_image %}
+                                        <img class="profile-post-userImg userImg no-drag float-l" src="" alt="user" />
+                                    {% endif %}
                                 </div>
                                 <div class="feed-box-content-reply-left">
                                     <span id="userNameReply" class="userName"></span>

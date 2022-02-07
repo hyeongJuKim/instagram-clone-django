@@ -24,7 +24,7 @@
                         let post = res;
 
                         // post
-                        $('#profile-image').attr('src', post.image);
+                        $('#profile-post-image').attr('src', post.image);
                         $('#userName').html(post.user.user_name);
                         $('#userNameReply').html(post.user.user_name);
                         $('.content-reply').first().html(post.content);
@@ -91,7 +91,7 @@
             <div class="post-modal-content">
                 <div class="modal-profile-container">
                     <div class="profile-image-area">
-                        <img id="profile-image" class="profile-image" src="{{ post.image.url }}">
+                        <img id="profile-post-image" class="profile-image" src="{{ post.image.url }}">
                     </div>
                     <div class="profile-content-area">
                         <div class="feed-box-top border-bottom">
