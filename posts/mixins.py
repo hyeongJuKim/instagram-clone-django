@@ -5,16 +5,19 @@ from posts import models
 
 class AjaxFormMixin(object):
 
+    def is_ajax(self, request):
+        return request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest'
+
     def form_invalid(self, form):
         response = super(AjaxFormMixin, self).form_invalid(form)
-        if self.request.is_ajax():
+        if self.is_ajax(self.request):
             return JsonResponse(form.errors, status=400)
         else:
             return response
 
     def form_valid(self, form):
         response = super(AjaxFormMixin, self).form_valid(form)
-        if self.request.is_ajax():
+        if self.is_ajax(self.request):
             email = form.cleaned_data["email"]
             name = form.cleaned_data["name"]
             user_name = form.cleaned_data["user_name"]
@@ -26,3 +29,5 @@ class AjaxFormMixin(object):
             return JsonResponse(data)
         else:
             return response
+
+
