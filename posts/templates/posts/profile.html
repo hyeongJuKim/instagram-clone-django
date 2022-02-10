@@ -2,6 +2,7 @@
 {% load static %}
 {% block title %}{{ user.name }}({{ user.user_name }}) • Instagram 사진 및 동영상{% endblock %}
 {% block page_content %}
+{% load custom_filter %}
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
 <script type="text/javascript">
