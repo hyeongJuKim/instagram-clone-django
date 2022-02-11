@@ -16,6 +16,7 @@ from .serialize import PostUserSerializer
 
 class User(LoginRequiredMixin, ListView):
     """ 프로필 페이지 이동 """
+
     model = Post
     template_name = 'posts/profile.html'
     paginate_by = 9
@@ -172,6 +173,8 @@ def explore_page(request):
 
 
 class Signup(AjaxFormMixin, FormView):
+    """ 회원가입 """
+
     form_class = UserCreationForm
     template_name = 'registration/signup.html'
     success_url = reverse_lazy('login')
