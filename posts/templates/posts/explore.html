@@ -241,9 +241,7 @@
                     </div>
                     <div class="profile-content-area">
                         <div class="feed-box-top border-bottom">
-                            {% if user.profile_image %}
-                                <img class="profile-post-userImg userImg no-drag float-l" src="" alt="user" />
-                            {% endif %}
+                            <img class="profile-post-userImg userImg no-drag float-l" src="{% static 'default/default-user-img.png' %}" alt="user" />
                             <span id="userName" class="userName"></span>
                             <span class="hamburger">
                             <a class="feed-more-icon" data-post-id="">
@@ -254,9 +252,7 @@
                         <div class="feed-box-content">
                             <div class="feed-box-content-reply">
                                 <div class="feed-box-content-reply-right">
-                                    {% if user.profile_image %}
-                                        <img class="profile-post-userImg userImg no-drag float-l" src="" alt="user" />
-                                    {% endif %}
+                                    <img class="profile-post-userImg userImg no-drag float-l" src="" alt="user" />
                                 </div>
                                 <div class="feed-box-content-reply-left">
                                     <span id="userNameReply" class="userName"></span>
