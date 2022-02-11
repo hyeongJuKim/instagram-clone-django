@@ -195,6 +195,10 @@ h1 {
 .icon-medium { width: 24px; }
 .icon-large { width: 32px; }
 
+.feed-box-profile {
+    text-align: center;
+}
+
 .feed-box {
     max-width: 600px;
     margin: 0 auto 60px auto;
