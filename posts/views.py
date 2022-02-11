@@ -22,8 +22,8 @@ class User(LoginRequiredMixin, ListView):
 
     def get(self, request, *args, **kwargs):
 
-        tot_cnt = self.model.objects.count()
         object_list = Post.objects.filter(user=kwargs['pk']).order_by('-create_dt')
+        tot_cnt = object_list.count()
 
         return render(request, self.template_name, {'object_list': object_list, 'tot_cnt': tot_cnt})
 

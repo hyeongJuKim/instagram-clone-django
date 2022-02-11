@@ -190,21 +190,18 @@
 	<div class="container">
         <div class="profile">
 			<div class="profile-image">
-				<img class="userImgLarge no-drag float-l" src="{%if user.profile_image != '' %} {{user.profile_image.url}} {% endif %}">
+				<img class="userImgLarge no-drag float-l" src="{%if object_list.0.user.profile_image != '' %} {{ object_list.0.user.profile_image.url}} {% endif %}">
 			</div>
-
-            {# TODO: if session.userid == request.userid: #}
-            {#      프로필 편집 버튼#}
-            {#  elif: #}
-            {#      다른 버튼 #}
 			<div class="profile-user-settings">
-				<h1 class="profile-user-name vertical-m">{{user.user_name}}</h1>
-                <div class="profile-edit-div">
-                    <a href="{% url 'profile_update' pk=user.id %}" class="a-none">
-                        <button class="btn profile-edit-btn vertical-m">프로필 편집</button>
-                    </a>
-                    <img src="{% static 'images/settings.png' %}" class="icon-medium vertical-m" alt="logo"/>
-                </div>
+				<h1 class="profile-user-name vertical-m">{{ object_list.0.user.user_name }}</h1>
+                {% if user.id == object_list.0.user.id %}
+                    <div class="profile-edit-div">
+                        <a href="{% url 'profile_update' pk=user.id %}" class="a-none">
+                            <button class="btn profile-edit-btn vertical-m">프로필 편집</button>
+                        </a>
+                        <img src="{% static 'images/settings.png' %}" class="icon-medium vertical-m" alt="logo"/>
+                    </div>
+                {% endif %}
 			</div>
 
 			<div class="profile-stats">
@@ -217,10 +214,10 @@
 
 			<div class="profile-bio">
 				<p>
-					<span class="profile-real-name">{{user.name}}</span><br>
-					<span>{{user.comment}}</span>
+					<span class="profile-real-name">{{object_list.0.user.name}}</span><br>
+					<span>{{object_list.0.user.comment}}</span>
 					<br>
-					<span><a href="http://{{user.web_site}}" class="underline-none " target="_blank">{{user.web_site}}</a></span>
+					<span><a href="http://{{object_list.0.user.web_site}}" class="underline-none " target="_blank">{{object_list.0.user.web_site}}</a></span>
         		</p>
 			</div>
 
